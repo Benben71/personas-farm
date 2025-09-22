@@ -1,5 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Function to generate contextual responses based on message content
+function generateContextualResponse(personaId: string, message: string, personaData: any): string {
+  const lowerMessage = message.toLowerCase();
+  
+  // Define persona-specific response patterns
+  const personaResponses = {
+    nina: {
+      // Services en ligne / médias
+      services: [
+        "Oh, des services en ligne pour comprendre les médias ? Ça m'intéresse ! Moi j'aimerais bien quelque chose de fun, pas trop scolaire. Genre des vidéos courtes qui expliquent comment les journalistes travaillent, ou des jeux pour apprendre à repérer les fake news. TikTok c'est mon truc, alors si c'est dans ce style, je suis partante !",
+        "Pour comprendre la fabrique de l'info ? Hmm, moi j'aime bien quand c'est interactif ! Peut-être des quiz sur les sources, ou des vidéos qui montrent les coulisses d'un journal. Mais faut que ce soit pas trop long, sinon je décroche. Et si on pouvait partager nos découvertes avec nos amis, ce serait encore mieux !",
+        "Des services pour comprendre les médias ? Cool ! Moi j'aimerais quelque chose qui me montre comment vérifier si une info est vraie. Genre des outils simples que je peux utiliser sur mon téléphone. Et si c'est présenté de façon marrante, avec des exemples concrets, je pense que ça m'aiderait beaucoup !"
+      ],
+      // Expositions / musées
+      expositions: [
+        "Des expos ? J'aime bien quand c'est interactif et pas trop sérieux ! Genre des trucs où on peut toucher, tester, prendre des photos. Les expos sur les réseaux sociaux ou sur l'histoire d'internet, ça m'intéresse. Mais faut que ce soit pas trop long, sinon je m'ennuie. Et si on peut y aller avec des amis, c'est encore mieux !",
+        "Les expos que j'aime ? Celles où on apprend en s'amusant ! Genre des trucs sur la technologie, les médias, ou l'histoire récente. J'aime bien quand on peut participer, pas juste regarder. Et si c'est lié à ce que je vois sur les réseaux sociaux, ça me parle encore plus !",
+        "Pour les expos, moi j'aime quand c'est moderne et connecté ! Des trucs sur l'évolution des médias, ou sur comment l'info circule aujourd'hui. Si on peut utiliser nos téléphones pendant la visite, ou si c'est présenté de façon originale, je suis partante !"
+      ],
+      // Réseaux sociaux / TikTok
+      reseaux: [
+        "TikTok c'est vraiment mon truc ! J'y passe beaucoup de temps avec mes amis. On se partage des vidéos marrantes, mais parfois on tombe sur des trucs bizarres. C'est là que je me demande si c'est vrai ou pas. Ça serait bien d'avoir des outils pour vérifier directement depuis l'app !",
+        "Sur les réseaux, moi je suis surtout sur TikTok et Instagram. On partage beaucoup de trucs avec mes potes, mais parfois on se demande si ce qu'on voit est vrai. Genre les vidéos qui font peur ou qui semblent trop belles pour être vraies. C'est compliqué de faire le tri !",
+        "Les réseaux sociaux, c'est mon quotidien ! Mais parfois je me demande si ce que je vois est vraiment vrai. Genre les infos qui circulent, ou les vidéos qui semblent suspectes. Ça serait bien d'apprendre à mieux vérifier tout ça !"
+      ],
+      // Général / autres questions
+      general: [
+        "C'est une bonne question ! Moi j'aime bien apprendre des trucs nouveaux, surtout si c'est présenté de façon fun. Qu'est-ce que tu veux savoir exactement ?",
+        "Intéressant ! Moi j'aime bien quand on peut discuter de plein de trucs. Tu veux qu'on parle de quoi ?",
+        "Cool ! Moi j'aime bien découvrir de nouvelles choses. Qu'est-ce qui t'intéresse ?"
+      ]
+    },
+    // Add other personas as needed...
+  };
+
+  // Get persona-specific responses
+  const persona = personaResponses[personaId as keyof typeof personaResponses];
+  if (!persona) {
+    return "Intéressant ! Peux-tu me dire plus sur ce que tu penses ?";
+  }
+
+  // Analyze message content and select appropriate response category
+  if (lowerMessage.includes('service') || lowerMessage.includes('en ligne') || lowerMessage.includes('médias') || lowerMessage.includes('information')) {
+    return persona.services[Math.floor(Math.random() * persona.services.length)];
+  } else if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite')) {
+    return persona.expositions[Math.floor(Math.random() * persona.expositions.length)];
+  } else if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social')) {
+    return persona.reseaux[Math.floor(Math.random() * persona.reseaux.length)];
+  } else {
+    return persona.general[Math.floor(Math.random() * persona.general.length)];
+  }
+}
+
 export async function GET() {
   return NextResponse.json({ 
     message: 'Persona chat API is working',
@@ -148,28 +201,20 @@ export async function POST(request: NextRequest) {
       ]
     };
 
-    // Get fallback responses for this persona
-    const responses = fallbackResponses[personaId as keyof typeof fallbackResponses] || [
-      "Intéressant ! Peux-tu me dire plus sur ce que tu penses ?",
-      "C'est une bonne question ! Qu'est-ce qui t'amène à me demander ça ?",
-      "Je vois ! Et toi, qu'est-ce que tu en penses ?",
-      "C'est un sujet qui m'intéresse ! Peux-tu développer ?"
-    ];
-
-    // Select a random response
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    // Generate contextual response based on message content and persona
+    const contextualResponse = generateContextualResponse(personaId, message, personaData);
 
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
     const response = {
-      response: randomResponse,
+      response: contextualResponse,
       fallback: true,
       personaId,
       timestamp: new Date().toISOString()
     };
     
-    console.log('Persona chat response:', { personaId, responseLength: randomResponse.length });
+    console.log('Persona chat response:', { personaId, responseLength: contextualResponse.length });
     
     return NextResponse.json(response);
 
