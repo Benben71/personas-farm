@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # Reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app-info
+  - app-pasteur
+    restart: unless-stopped
+
+  # Info theme app
+  app-info:
+    build: ./app-info
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - THEME_ID=media-literacy
+      - DATABASE_URL=postgresql://user:password@db-info:5432/personas_info
+    volumes:
+      - ./app-info/data:/app/data
+      - ./app-info/exports:/app/exports
+    depends_on:
+      - db-info
+    restart: unless-stopped
+
+  # Pasteur theme app
+  app-pasteur:
+    build: ./app-pasteur
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+  - THEME_ID=pasteur-exhibition
+  - DATABASE_URL=postgresql://user:password@db-pasteur:5432/personas_pasteur
+    volumes:
+  - ./app-pasteur/data:/app/data
+  - ./app-pasteur/exports:/app/exports
+    depends_on:
+  - db-pasteur
+    restart: unless-stopped
+
+  # Info theme database
+  db-info:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=personas_info
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-info-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Pasteur theme database
+  db-pasteur:
+    image: postgres:15-alpine
+    environment:
+  - POSTGRES_DB=personas_pasteur
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+  - db-pasteur-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Redis for caching (optional)
+  redis-info:
+    image: redis:7-alpine
+    volumes:
+      - redis-info-data:/data
+    restart: unless-stopped
+
+  redis-pasteur:
+    image: redis:7-alpine
+    volumes:
+  - redis-pasteur-data:/data
+    restart: unless-stopped
+
+volumes:
+  db-info-data:
+  db-pasteur-data:
+  redis-info-data:
+  redis-pasteur-data:
+

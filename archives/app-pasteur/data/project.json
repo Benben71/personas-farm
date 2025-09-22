@@ -1,0 +1,52 @@
+{
+  "title": "Personas - Exposition Pasteur",
+  "tagline": "Découvrez, comprenez et participez à l'engagement scientifique",
+  "description": "Un projet innovant qui explore les différents profils d'utilisateurs de la science et leurs besoins spécifiques pour créer des expériences muséales adaptées à l'évolution.",
+  "mission": "Créer un espace muséal interactif qui permet aux visiteurs de comprendre comment la science évolue et comment ils peuvent devenir des acteurs éclairés de cet écosystème scientifique.",
+  "vision": "Un monde où chaque citoyen possède les outils et la compréhension nécessaires pour naviguer dans l'océan de connaissances scientifiques qui nous entoure, en développant un esprit critique et des compétences scientifiques solides.",
+  "exhibitionConcept": {
+    "title": "Concept d'Exposition",
+    "description": "L'exposition s'articule autour de quatre zones interactives correspondant aux différents profils de visiteurs identifiés. Chaque zone propose des expériences adaptées aux besoins et motivations spécifiques de chaque persona.",
+    "zones": [
+      {
+        "name": "Zone Marie - Génération Z Scientifique",
+        "description": "Espace dédié aux adolescents avec des ateliers de découverte scientifique, des simulateurs d'évolution et des jeux interactifs."
+      },
+      {
+        "name": "Zone Pierre - Professionnels de l'Éducation",
+        "description": "Espace pour les enseignants et éducateurs avec des outils pédagogiques, des formations et un réseau d'experts."
+      },
+      {
+        "name": "Zone Sophie - Communauté Scientifique",
+        "description": "Espace collaboratif pour les chercheurs et scientifiques avec des outils de partage et des partenariats."
+      }
+    ]
+  },
+  "ecoResponsibility": {
+    "title": "Éco-responsabilité",
+    "description": "Le projet s'engage dans une démarche éco-responsable en utilisant des technologies low-tech, en privilégiant les partenariats locaux et en sensibilisant les visiteurs aux enjeux environnementaux liés à la recherche scientifique.",
+    "initiatives": [
+      "Utilisation d'équipements éco-conçus",
+      "Partenariats avec des institutions scientifiques locales",
+      "Sensibilisation à l'impact environnemental de la recherche",
+      "Recyclage et réutilisation des matériels scientifiques"
+    ]
+  },
+  "educationalGoals": {
+    "title": "Objectifs Pédagogiques",
+    "goals": [
+      "Développer l'esprit critique scientifique des visiteurs",
+      "Améliorer la compréhension des mécanismes de l'évolution",
+      "Favoriser l'engagement citoyen dans la science",
+      "Promouvoir l'éducation scientifique",
+      "Créer des ponts entre les générations autour de la science"
+    ]
+  },
+  "contact": {
+  "email": "contact@pasteur-museum.org",
+    "phone": "+33 1 23 45 67 89",
+    "address": "123 Avenue de la Science, 75001 Paris, France",
+  "website": "www.pasteur-museum.org"
+  }
+}
+

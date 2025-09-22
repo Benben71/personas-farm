@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "cd personas-unified-demo && npm run build",
+  "outputDirectory": "personas-unified-demo/.next",
+  "installCommand": "cd personas-unified-demo && npm install",
+  "framework": "nextjs",
+  "regions": ["cdg1"]
+}

@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app-darwin:
+    build: .
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - THEME_ID=darwin-exhibition
+      - DATABASE_URL=postgresql://user:password@db-darwin:5432/personas_darwin
+    volumes:
+      - ./data:/app/data
+      - ./exports:/app/exports
+    depends_on:
+      - db-darwin
+    restart: unless-stopped
+
+  db-darwin:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=personas_darwin
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-darwin-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+
+  redis-darwin:
+    image: redis:7-alpine
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis-darwin-data:/data
+    restart: unless-stopped
+
+volumes:
+  db-darwin-data:
+  redis-darwin-data:
+

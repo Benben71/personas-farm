@@ -1,0 +1,445 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Persona Schema",
+  "description": "Canonical schema for museum-sector personas",
+  "type": "object",
+  "required": ["id", "identite_profil", "valeurs", "besoins_freins_jtbd", "motivations"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the persona"
+    },
+    "identite_profil": {
+      "type": "object",
+      "required": ["age", "statut", "situation"],
+      "properties": {
+        "age": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 120
+        },
+        "statut": {
+          "type": "string",
+          "description": "Professional or educational status"
+        },
+        "situation": {
+          "type": "string",
+          "description": "Life situation context"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Target audience segments"
+        }
+      }
+    },
+    "systeme_croyances": {
+      "type": "object",
+      "properties": {
+        "rapport_information": {
+          "type": "string",
+          "description": "Relationship to information"
+        },
+        "perception_medias": {
+          "type": "string",
+          "description": "Perception of media"
+        },
+        "liberte_expression_désinfo": {
+          "type": "string",
+          "description": "Freedom of expression vs disinformation"
+        }
+      }
+    },
+    "pratiques_et_indicateurs": {
+      "type": "object",
+      "properties": {
+        "canaux": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Communication channels"
+        },
+        "pratiques": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Behavioral practices"
+        },
+        "frequence_intensite": {
+          "type": "string",
+          "description": "Usage frequency and intensity"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Devices used"
+        },
+        "indicateurs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "intitulé": {
+                "type": "string"
+              },
+              "valeur": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "valeurs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Core values and beliefs"
+    },
+    "besoins_freins_jtbd": {
+      "type": "object",
+      "required": ["jobs", "freins"],
+      "properties": {
+        "jobs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Jobs to be done"
+        },
+        "freins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Barriers and obstacles"
+        }
+      }
+    },
+    "motivations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key motivations"
+    },
+    "enjeux_communication": {
+      "type": "object",
+      "properties": {
+        "sujets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Topics of interest"
+        },
+        "leviers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Communication levers"
+        },
+        "lien_lieu_physique": {
+          "type": "string",
+          "description": "Connection to physical space"
+        }
+      }
+    },
+    "services_offres": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Services and offerings"
+    },
+    "tonalite_et_eviter": {
+      "type": "object",
+      "required": ["ton", "a_eviter"],
+      "properties": {
+        "ton": {
+          "type": "string",
+          "description": "Communication tone"
+        },
+        "a_eviter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Things to avoid"
+        }
+      }
+    },
+    "accessibilite_inclusion": {
+      "type": "object",
+      "required": ["langage", "formats"],
+      "properties": {
+        "langage": {
+          "type": "string",
+          "description": "Language accessibility"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Accessible formats"
+        }
+      }
+    },
+    "parcours_triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Journey triggers"
+    },
+    "posture_ia_personnalisation": {
+      "type": "object",
+      "properties": {
+        "usage": {
+          "type": "string",
+          "description": "AI usage guidelines"
+        },
+        "limites": {
+          "type": "string",
+          "description": "AI limitations"
+        }
+      }
+    },
+    "role_democratique_percu": {
+      "type": "string",
+      "description": "Perceived democratic role"
+    },
+    "indice_confiance_info": {
+      "type": "object",
+      "properties": {
+        "valeur": {
+          "type": "string",
+          "description": "Confidence value"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the index"
+        }
+      }
+    },
+    "indice_fatigue_ou_evitement": {
+      "type": "object",
+      "properties": {
+        "valeur": {
+          "type": "string",
+          "description": "Fatigue/avoidance value"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the index"
+        }
+      }
+    },
+    "vigilance_desinformation": {
+      "type": "object",
+      "properties": {
+        "niveau": {
+          "type": "string",
+          "description": "Disinformation vigilance level"
+        },
+        "illustration": {
+          "type": "string",
+          "description": "Illustration of vigilance"
+        }
+      }
+    },
+    "attentes_transparence_medias": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Media transparency expectations"
+    },
+    "attitude_ia_medias": {
+      "type": "object",
+      "properties": {
+        "favorable": {
+          "type": "string",
+          "description": "Favorability toward AI in media"
+        },
+        "risques_top": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Top risks identified"
+        }
+      }
+    },
+    "parts_temps_par_canal": {
+      "type": "object",
+      "properties": {
+        "reseaux_sociaux": {
+          "type": "string",
+          "description": "Time spent on social networks"
+        },
+        "sites_actu": {
+          "type": "string",
+          "description": "Time spent on news sites"
+        },
+        "tv_radio": {
+          "type": "string",
+          "description": "Time spent on TV/Radio"
+        },
+        "messageries": {
+          "type": "string",
+          "description": "Time spent on messaging"
+        }
+      }
+    },
+    "confiance_par_canal": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canal": {
+            "type": "string",
+            "description": "Communication channel"
+          },
+          "niveau": {
+            "type": "string",
+            "description": "Trust level"
+          }
+        }
+      }
+    },
+    "mode_socialisation_info": {
+      "type": "string",
+      "description": "Information socialization mode"
+    },
+    "fenetre_attention": {
+      "type": "string",
+      "description": "Attention span"
+    },
+    "contraintes_pratiques": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Practical constraints"
+    },
+    "objections_cles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key objections"
+    },
+    "learner_profile": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Learning profile label"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Learning profile tagline"
+        }
+      }
+    },
+    "astuce_activation": {
+      "type": "string",
+      "description": "Activation tip"
+    },
+    "note_neutralite": {
+      "type": "string",
+      "description": "Neutrality note"
+    },
+    "global_vs_local_identity": {
+      "type": "string",
+      "description": "Global vs local identity"
+    },
+    "language_preferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Language preferences"
+    },
+    "preferred_contact_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Preferred contact points"
+    },
+    "possible_barriers_to_engagement": {
+      "type": "string",
+      "description": "Possible barriers to engagement"
+    },
+    "attitudes_envers_journalistes": {
+      "type": "string",
+      "description": "Attitudes toward journalists"
+    },
+    "attitudes_envers_institutions": {
+      "type": "string",
+      "description": "Attitudes toward institutions"
+    },
+    "attitudes_envers_fact_checkers": {
+      "type": "string",
+      "description": "Attitudes toward fact-checkers"
+    },
+    "indicateurs_sources_normes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "intitule": {
+            "type": "string"
+          },
+          "valeur": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "date_derniere_mise_a_jour": {
+      "type": "string",
+      "description": "Last update date"
+    },
+    "niveau_preuve": {
+      "type": "string",
+      "description": "Evidence level"
+    },
+    "conclusion": {
+      "type": "string",
+      "description": "Summary and insights"
+    },
+    "motto": {
+      "type": "string",
+      "description": "Personal motto"
+    },
+    "image": {
+      "type": "string",
+      "description": "Image path"
+    },
+    "theme_sections": {
+      "type": "object",
+      "description": "Theme-specific sections (dynamic based on theme.config.ts)",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
+

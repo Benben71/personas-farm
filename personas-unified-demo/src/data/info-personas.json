@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "nina",
+    "identite_profil": {
+      "age": 14,
+      "statut": "Collégienne (3e)",
+      "situation": "Urbain, forte sociabilité en ligne",
+      "segments": ["public", "15-19"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Intéressée mais vulnérable aux signaux sociaux",
+      "perception_medias": "Pairs/influenceurs perçus comme plus crédibles que médias traditionnels",
+      "liberte_expression_désinfo": "Sensibilisée, souhaite repères simples pour éviter la désinformation"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["TikTok", "Instagram", "YouTube", "WhatsApp", "Discord"],
+      "pratiques": ["Vidéos courtes", "Stories", "Défis", "DM avec amis"],
+      "frequence_intensite": "≈4h20/jour, sessions multiples, usage majoritairement social",
+      "devices": ["smartphone"],
+      "indicateurs": [
+        {"intitule": "Temps quotidien moyen 15-24 ans", "valeur": "≈4h21/j dont ≈60% sur réseaux sociaux", "source": "Médiamétrie 2024/2025"},
+        {"intitule": "Évitement de l'info (tendance FR)", "valeur": ">50% évitent parfois ou souvent", "source": "La Croix/Verian 2024-2025"},
+        {"intitule": "Confiance/vigilance", "valeur": "Préoccupation élevée face aux fake news", "source": "Reuters DNR 2025; UNESCO/Ipsos 2023"}
+      ]
+    },
+    "valeurs": ["Authenticité", "Amitié", "Créativité", "Expression"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Comprendre sans jargon", "Distinguer vrai/faux", "Apprendre en jouant"],
+      "freins": ["Faible attention", "Sensationnalisme", "Sur-abondance"]
+    },
+    "motivations": ["Partager avec ses amis", "Se sentir actrice", "Apprendre en s'amusant"],
+    "enjeux_communication": {
+      "sujets": ["Fake news", "Liberté d'expression", "Coulisses de l'info"],
+      "leviers": ["Ludification", "Storytelling immersif", "Participation"],
+      "lien_lieu_physique": "Ateliers collaboratifs sur place comme prolongement des défis numériques"
+    },
+    "services_offres": ["Quiz & jeux (#DéfiInfo)", "Mini-séries pédagogiques RS", "Fact-checking simplifié (Ask Vera)"],
+    "tonalite_et_eviter": {"ton": "Positif, participatif", "a_eviter": ["Paternalisme", "Longueurs scolaires"]},
+    "accessibilite_inclusion": {"langage": "B1-B2", "formats": ["Sous-titres", "Audio court", "Vertical mobile"]},
+    "parcours_triggers": ["Devoir scolaire", "Actu virale", "Débat en classe"],
+    "posture_ia_personnalisation": {"usage": "OK pour résumés/traductions", "limites": "Demande transparence"},
+    "role_democratique_percu": "La presse aide à  comprendre et débattre, mais je m'informe surtout via mes pairs et les réseaux.",
+    "indice_confiance_info": {
+      "valeur": "basse à  moyenne (jeunes)",
+      "source": "Reuters Digital News Report 2025 – France"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur": "évitement occasionnel/élevé chez les 15–24",
+      "source": "La Croix/Verian 2025; Reuters DNR 2025 (FR)"
+    },
+    "vigilance_desinformation": {
+      "niveau": "moyenne",
+      "illustration": "Repère les buzz mais vérifie peu; sait que les RS diffusent vrai/faux mais reste passive."
+    },
+    "attentes_transparence_medias": [
+      "Expliquer simplement comment l'info est faite",
+      "Montrer les sources de façon visuelle",
+      "Alerter sur les manipulations typiques (deepfakes, titres trompeurs)"
+    ],
+    "attitude_ia_medias": {
+      "favorable": "mitigé",
+      "risques_top": [
+        "Fausses images/sons (deepfakes)",
+        "Perte de repères",
+        "Algorithmes qui poussent le buzz"
+      ]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux": "~60%",
+      "sites_actu": "~15%",
+      "tv_radio": "~10%",
+      "messageries": "~15%"
+    },
+    "confiance_par_canal": [
+      {"canal":"TV/Radio","niveau":"moyen"},
+      {"canal":"Presse en ligne","niveau":"moyen"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "pair-à -pair (classe/amis) et créateurs RS",
+    "fenetre_attention": "≤60 s vidéo; ≤3 min lecture",
+    "contraintes_pratiques": [
+      "Temps fragmenté",
+      "Accès mobile uniquement",
+      "Anglicismes/jargon"
+    ],
+    "objections_cles": [
+      "C'est ennuyeux/scolaire",
+      "C'est trop long",
+      "On veut me faire la leçon"
+    ],
+    "learner_profile": {
+      "label": "Apprenante sociale & visuelle",
+      "tagline": "Comprend vite avec des formats courts et interactifs"
+    },
+    "astuce_activation": "Proposer un défi court et partageable (duel info/intox) relié à  un atelier sur place.",
+    "note_neutralite": "Éviter l'infantilisation; rester factuel et participatif.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["TikTok", "Instagram", "WhatsApp", "YouTube"],
+    "possible_barriers_to_engagement": "Attention fragmentée; ras-le-bol informationnel (tendance FR); mobile-only.",
+    "attitudes_envers_journalistes": "Confiance contrastée; médias traditionnels/en ligne perçus plus fiables que RS (tendance FR – La Croix/Verian 2025).",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {
+        "intitule":"Temps en ligne 15–24",
+        "valeur":"≈4h21/j (15–24, proxy) ; ≈60% social",
+        "source":"Médiamétrie – L'Année Internet 2024 (CP 13/02/2025)"
+      },
+      {
+        "intitule":"Évitement jeunes",
+        "valeur":"fréquent/occasionnel",
+        "source":"Reuters Digital News Report 2025 – France"
+      }
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres (Médiamétrie, DNR, La Croix/Verian)",
+    "conclusion": "Apprenante précoce exposée aux risques en ligne ; peut devenir un relais positif si on valorise sa participation.",
+    "motto": "Je découvre et je partage au rythme des réseaux sur mon téléphone. J'aime ce qui est fun, rapide et facile à  montrer."
+  },
+  {
+    "id": "lucas",
+    "identite_profil": {
+      "age": 15,
+      "statut": "Lycéen (seconde) désengagé",
+      "situation": "Peu d'intérêt pour l'actualité, usage récréatif des écrans",
+      "segments": ["public", "15-19"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Faible curiosité, consomme passivement",
+      "perception_medias": "Faible confiance globale, primat des pairs et tendances",
+      "liberte_expression_désinfo": "Peu sensibilisé, n'identifie pas les mécanismes de manipulation"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["TikTok", "Snapchat", "YouTube"],
+      "pratiques": ["Divertissement", "Challenges", "Jeux en ligne"],
+      "frequence_intensite": "Quotidien, sessions courtes répétées",
+      "devices": ["smartphone"],
+      "indicateurs": [
+        {"intitule": "Temps quotidien moyen 15-24 ans", "valeur": "≈4h21/j", "source": "Médiamétrie 2024/2025"}
+      ]
+    },
+    "valeurs": ["Divertissement", "Rapidité", "Appartenance au groupe"],
+    "besoins_freins_jtbd": {
+      "jobs": ["S'amuser sans effort", "Participer à  des formats courts"],
+      "freins": ["Rejet des formats longs", "Perception scolaire des contenus", "Saturation d'injonctions éducatives"]
+    },
+    "motivations": ["Se conformer au groupe", "Éviter l'ennui"],
+    "enjeux_communication": {
+      "sujets": ["Culture web", "Décryptage express", "Rumeurs"],
+      "leviers": ["Jeu", "Compétition légère", "Récompenses"],
+      "lien_lieu_physique": "Jeux de rôle immersifs et ateliers gamifiés"
+    },
+    "services_offres": ["Quiz rapides", "Jeux de rôle", "Ateliers gamifiés"],
+    "tonalite_et_eviter": {"ton": "Ludique, direct", "a_eviter": ["Moralisme", "Jargon"]},
+    "accessibilite_inclusion": {"langage": "B1", "formats": ["Ultra-court", "Visuel", "Mobile-first"]},
+    "parcours_triggers": ["Sortie scolaire", "Pression du groupe"],
+    "posture_ia_personnalisation": {"usage": "OK si bénéfice immédiat (résumés)", "limites": "Refus de complexité"},
+    "role_democratique_percu": "L'info m'intéresse peu; je la vois surtout passer via mes amis et tendances.",
+    "indice_confiance_info": {
+      "valeur":"basse",
+      "source":"La Croix/Verian 2025 – France"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"élevé (désintérêt/saturation)",
+      "source":"Reuters DNR 2025 (FR)"
+    },
+    "vigilance_desinformation": {
+      "niveau":"faible",
+      "illustration":"Rumeurs prises comme divertissement; faible vérification"
+    },
+    "attentes_transparence_medias": [
+      "Formats très courts et concrets",
+      "Exemples tirés de sa culture web",
+      "Signalétique claire vrai/faux"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"plutôt favorable",
+      "risques_top":["Recommandations enfermantes","Faux contenus viraux"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~70%",
+      "sites_actu":"~10%",
+      "tv_radio":"~5%",
+      "messageries":"~15%"
+    },
+    "confiance_par_canal": [
+      {"canal":"TV/Radio","niveau":"faible"},
+      {"canal":"Presse en ligne","niveau":"faible"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "entre pairs (groupe/classe)",
+    "fenetre_attention": "≤30–45 s vidéo; ≤1 min lecture",
+    "contraintes_pratiques": [
+      "Faible attention",
+      "Rejet de la posture scolaire"
+    ],
+    "objections_cles": [
+      "Ça sert à  rien",
+      "C'est trop long",
+      "C'est moralisateur"
+    ],
+    "learner_profile": {
+      "label":"Joueur social",
+      "tagline":"Apprend par le jeu et la compétition légère"
+    },
+    "astuce_activation": "Mini-jeu 'spot l'intox' avec score à  partager, puis carte pour atelier musée.",
+    "note_neutralite": "Ne pas culpabiliser; valoriser la découverte.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["TikTok", "Snapchat", "YouTube"],
+    "possible_barriers_to_engagement": "Évitement fréquent/occasionnel; formats jugés trop longs (DNR 2025 FR).",
+    "attitudes_envers_journalistes": "Confiance faible/contrastée chez les jeunes (La Croix/Verian 2025).",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Temps en ligne 15–24","valeur":"≈4h21/j (15–24, ordre de grandeur)","source":"Médiamétrie 2024"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres (Médiamétrie, DNR)",
+    "conclusion": "Cible captive par le scolaire ; l'engagement passe par le jeu et l'ultra-court.",
+    "motto": "Je scrolle pour me distraire et suivre mes amis. L'actualité m'intéresse peu, je passe à autre chose."
+  },
+  {
+    "id": "mateo",
+    "identite_profil": {
+      "age": 21,
+      "statut": "Étudiant en journalisme et sciences sociales",
+      "situation": "Prépare sa carrière, réseau actif",
+      "segments": ["pro", "20-24"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Journalisme = pilier démocratique en crise de confiance",
+      "perception_medias": "Valorise éthique et méthodes de vérification",
+      "liberte_expression_désinfo": "Veut lutter contre la désinformation par la preuve"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["LinkedIn", "X/Twitter", "Podcasts", "Newsletters", "Bases de données"],
+      "pratiques": ["Veille académique", "Lecture d'enquêtes", "Débats"],
+      "frequence_intensite": "Quotidien, multitâche",
+      "devices": ["ordinateur","smartphone"],
+      "indicateurs": [
+        {"intitule": "Confiance média (jeunes adultes)", "valeur": "intermédiaire/contrastée", "source": "Reuters DNR 2025 (FR)"}
+      ]
+    },
+    "valeurs": ["Vérité", "Éthique", "Engagement civique", "Crédibilité"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Accéder à  des archives", "Outiller le fact-checking", "Construire un portfolio crédible"],
+      "freins": ["Paywalls", "Concurrence élevée"]
+    },
+    "motivations": ["Reconnaissance pro", "Impact civique"],
+    "enjeux_communication": {
+      "sujets": ["Éthique", "Pluralité", "Méthodes de vérification"],
+      "leviers": ["Crédibilité", "Mentorat", "Réseaux pro"],
+      "lien_lieu_physique": "Lieu-hub de ressources et laboratoire citoyen"
+    },
+    "services_offres": ["MOOC métiers", "Archives presse", "Outils collaboratifs de fact-checking", "Webinaires pros"],
+    "tonalite_et_eviter": {"ton": "Professionnel, inspirant", "a_eviter": ["Simplismes", "Buzz sans sources"]},
+    "accessibilite_inclusion": {"langage": "C1", "formats": ["Guides PDF", "Ateliers live", "Replays"]},
+    "parcours_triggers": ["Travaux dirigés", "Stages", "Concours"],
+    "posture_ia_personnalisation": {"usage": "Outils IA pour recherche/tri/synthèse", "limites": "Exige traçabilité"},
+    "role_democratique_percu": "Le journalisme est un service public de fait: informer pour permettre le débat éclairé.",
+    "indice_confiance_info": {
+      "valeur":"moyenne (selon marque)",
+      "source":"Reuters DNR 2025 – France"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"épisodique (surcharge/études)",
+      "source":"La Croix/Verian 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau":"élevée",
+      "illustration":"Pratique le fact-checking; exige traçabilité"
+    },
+    "attentes_transparence_medias": [
+      "Méthodes publiées",
+      "Sources accessibles",
+      "Signalement usage IA"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"mitigé",
+      "risques_top":["Biais de modèle","Hallucinations","Dérive vers l'industrialisation du contenu"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~35%",
+      "sites_actu":"~35%",
+      "tv_radio":"~10%",
+      "messageries":"~20%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Presse en ligne","niveau":"moyen+"},
+      {"canal":"TV/Radio","niveau":"moyen"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "pairs pro/étudiants, réseaux pro",
+    "fenetre_attention": "≤8–10 min lecture; ≤20–30 min podcast",
+    "contraintes_pratiques": [
+      "Paywalls",
+      "Accès bases de données"
+    ],
+    "objections_cles": [
+      "Outils trop fermés",
+      "Sources non traçables"
+    ],
+    "learner_profile": {
+      "label":"Analytique",
+      "tagline":"Méthode, preuve, comparative"
+    },
+    "astuce_activation": "Accès offert à  un pack d'archives + atelier méthode d'enquête.",
+    "note_neutralite": "Neutralité procédurale; pluralisme des sources.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": [],
+    "preferred_contact_points": ["LinkedIn", "X/Twitter", "Newsletters", "Podcasts"],
+    "possible_barriers_to_engagement": "Paywalls; accès bases de données (déjà  listés).",
+    "attitudes_envers_journalistes": "N/A",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Confiance par marque (FR)","valeur":"contrastée","source":"Reuters DNR 2025 – FR"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres + observation terrain",
+    "conclusion": "Génération-pivot : équipé et connecté, peut devenir un acteur de confiance.",
+    "motto": "Je crois que la presse peut rester un pilier de la démocratie. Méthode et transparence avant tout."
+  },
+  {
+    "id": "samuel",
+    "identite_profil": {
+      "age": 27,
+      "statut": "Étudiant étranger en journalisme, en France",
+      "situation": "Vit/étudie en France, ancré dans réseaux associatifs",
+      "segments": ["pro", "20-29"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Journalisme essentiel pour la démocratie",
+      "perception_medias": "Souligne la vulnérabilité aux fake news",
+      "liberte_expression_désinfo": "Motivé pour promouvoir des pratiques éthiques"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["WhatsApp", "X/Twitter", "YouTube", "Médias FR/FR-Intl"],
+      "pratiques": ["Fact-checks", "Débats", "Lecture d'articles internationaux"],
+      "frequence_intensite": "Intensif (études + engagement)",
+      "devices": ["smartphone","ordinateur"],
+      "indicateurs": [
+        {
+          "intitule": "Part des étudiants internationaux en écoles de journalisme en France",
+          "valeur": "≈15-20%",
+          "source": "UNESCO/Ipsos 2023"
+        }
+      ]
+    },
+    "valeurs": ["Intégrité", "Engagement citoyen", "Ouverture internationale"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Accès FR/EN à  des archives", "Outils de vérification"],
+      "freins": ["Ressources payantes", "Hétérogénéité des sources"]
+    },
+    "motivations": ["Contribuer à  un journalisme de qualité", "S'inspirer de modèles internationaux"],
+    "enjeux_communication": {
+      "sujets": ["Lutte contre désinformation", "Solidarité internationale"],
+      "leviers": ["Communautés d'apprentissage", "Études de cas"],
+      "lien_lieu_physique": "Archives mondiales et échanges interculturels"
+    },
+    "services_offres": ["Formations en ligne", "Réseaux étudiants/journalistes", "Bases de données multilingues"],
+    "tonalite_et_eviter": {"ton": "Inclusif, inspirant", "a_eviter": ["Provincialisme", "Opacité des méthodes"]},
+    "accessibilite_inclusion": {"langage": "B2-C1", "formats": ["Multilingue", "Guides pratiques"]},
+    "parcours_triggers": ["Travaux universitaires", "Polémiques info", "Opportunités de stages"],
+    "posture_ia_personnalisation": {"usage": "IA pour tri/synthèse/traduction", "limites": "Exige transparence et citations"},
+    "role_democratique_percu": "Le journalisme relie des publics et protège le débat dans une société diverse.",
+    "indice_confiance_info": {
+      "valeur":"moyenne",
+      "source":"Reuters DNR 2025 – FR"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"faible à  moyenne",
+      "source":"La Croix/Verian 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau":"élevée",
+      "illustration":"Compare médias FR et internationaux; repère les divergences"
+    },
+    "attentes_transparence_medias": [
+      "Citer les sources multilingues",
+      "Contextualiser culturellement",
+      "Expliquer la sélection des faits"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"plutôt favorable",
+      "risques_top":["Traductions approximatives","Deepfakes transfrontières"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~40%",
+      "sites_actu":"~35%",
+      "tv_radio":"~10%",
+      "messageries":"~15%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Presse internationale","niveau":"moyen+"},
+      {"canal":"Médias FR","niveau":"moyen"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "communautés diasporas + pairs universitaires",
+    "fenetre_attention": "≤6–8 min lecture; ≤15 min vidéo explicative",
+    "contraintes_pratiques": [
+      "Langue/terminologie",
+      "Accès multilingue"
+    ],
+    "objections_cles": [
+      "Ressources trop franco-centrées",
+      "Sources payantes"
+    ],
+    "learner_profile": {
+      "label":"Comparatif",
+      "tagline":"Met en regard plusieurs sources/pays"
+    },
+    "astuce_activation": "Bundles FR/EN d'archives sur un même sujet + atelier comparatif.",
+    "note_neutralite": "Éviter l'ethnocentrisme; expliciter le cadrage.",
+    "global_vs_local_identity": "Globale (compare FR et international).",
+    "language_preferences": ["FR", "EN"],
+    "preferred_contact_points": ["WhatsApp", "YouTube", "X/Twitter"],
+    "possible_barriers_to_engagement": "Langue/terminologie; accès multilingue (déjà  listés).",
+    "attitudes_envers_journalistes": "N/A",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Étudiants internationaux (journalisme)","valeur":"≈15–20%","source":"UNESCO/Ipsos 2023"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres + étude UNESCO/Ipsos",
+    "conclusion": "Relie la lutte contre la désinformation à  une perspective globale en contexte français.",
+    "motto": "Je croise les infos d'ici et d'ailleurs. Je m'intéresse aux histoires qui relient les cultures."
+  },
+  {
+    "id": "sofia",
+    "identite_profil": {
+      "age": 29,
+      "statut": "Expatriée culturelle en France",
+      "situation": "Vit en France, passionnée de culture & démocratie",
+      "segments": ["pro", "25-34"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Voit le journalisme comme miroir des sociétés",
+      "perception_medias": "Recherche authenticité et contextualisation",
+      "liberte_expression_désinfo": "Intérêt pour liberté de la presse et pluralisme"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["YouTube", "Apps culturelles", "Audioguides", "Instagram"],
+      "pratiques": ["Visites immersives", "Unes historiques", "Partage sur RS"],
+      "frequence_intensite": "Régulier (vie en France)",
+      "devices": ["smartphone"],
+      "indicateurs": [
+        {"intitule": "Besoin multilingue", "valeur": "FR/EN + >10 langues utiles", "source": "Ciblage touristique Paris"}
+      ]
+    },
+    "valeurs": ["Découverte", "Ouverture", "Mémoire collective"],
+    "besoins_freins_jtbd": {"jobs": ["Contenus multilingues", "Expériences immersives"], "freins": ["Accès aux archives", "Contexte culturel"]},
+    "motivations": ["Apprendre en voyageant", "Partager"],
+    "enjeux_communication": {"sujets": ["Liberté de la presse", "Interculturalité"], "leviers": ["Accessibilité linguistique", "Images fortes"], "lien_lieu_physique": "Incitation à  la visite sur place"},
+    "services_offres": ["Application multilingue", "Visites VR/AR", "Accès aux Unes"],
+    "tonalite_et_eviter": {"ton": "International, accessible", "a_eviter": ["Jargon local", "Monolinguisme"]},
+    "accessibilite_inclusion": {"langage": "A2-B1 (EN)", "formats": ["Audio", "Texte simple", "Pictos"]},
+    "parcours_triggers": [
+      "Actualité française ou internationale qui touche son pays d'origine",
+      "Besoin de rester connectée avec sa communauté en ligne",
+      "Recherche de contenus pratiques pour comprendre la société française",
+      "Comparaison entre médias français et médias de son pays"
+    ],
+    "posture_ia_personnalisation": {"usage": "Guidage et traduction IA", "limites": "Exige qualité et exactitude"},
+    "role_democratique_percu": "Comprendre un pays par ses médias; la liberté de la presse comme repère culturel.",
+    "indice_confiance_info": {
+      "valeur":"variable selon langue/source",
+      "source":"Reuters DNR 2025 (FR & intl)"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"occasionnel (voyage)",
+      "source":"UNESCO/MOPAN 2025 (cadre EMI)"
+    },
+    "vigilance_desinformation": {
+      "niveau":"moyenne",
+      "illustration":"Cherche des repères accessibles, multilingues"
+    },
+    "attentes_transparence_medias": [
+      "Contextualisation historique",
+      "Sources accessibles",
+      "Multilingue clair"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"plutôt favorable",
+      "risques_top":["Traductions inexactes","Contenus générés sans signalement"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~45%",
+      "sites_actu":"~20%",
+      "tv_radio":"~15%",
+      "messageries":"~20%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Médias culture/visite","niveau":"moyen+"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "réseaux d'expats + plateformes culturelles",
+    "fenetre_attention": "≤3–5 min par contenu",
+    "contraintes_pratiques": [
+      "Langue",
+      "Temps limité en visite"
+    ],
+    "objections_cles": [
+      "Trop de texte",
+      "Pas dans ma langue"
+    ],
+    "learner_profile": {
+      "label":"Exploratrice culturelle",
+      "tagline":"Apprend par l'image et l'expérience"
+    },
+    "astuce_activation": "Audioguides multilingues + carte vers ateliers liberté de la presse.",
+    "note_neutralite": "Éviter les jugements nation-centrés.",
+    "global_vs_local_identity": "Globale.",
+    "language_preferences": ["EN", "FR"],
+    "preferred_contact_points": ["Instagram", "Apps culturelles", "Audioguides"],
+    "possible_barriers_to_engagement": "Langue; contexte culturel à  expliciter.",
+    "attitudes_envers_journalistes": "N/A",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Besoins multilingues","valeur":">10 langues utiles","source":"Pratiques de visite / accueil intl"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "cadres UNESCO + observation terrain",
+    "conclusion": "Ambassadrice naturelle : partage son expérience et donne une portée internationale au projet.",
+    "motto": "Je découvre un pays à  travers ses médias. Je veux des repères accessibles et ouverts."
+  },
+  {
+    "id": "amina",
+    "identite_profil": {
+      "age": 35,
+      "statut": "Citoyenne sur-informée",
+      "situation": "Cadre marketing, mère de famille",
+      "segments": ["public", "30-39"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Méfiance et anxiété liées à  la surcharge",
+      "perception_medias": "Perçoit biais/exagération, veut de la transparence",
+      "liberte_expression_désinfo": "Souhaite outils simples de vérification"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["Sites d'actualité", "Newsletters", "Instagram Stories", "Vidéos explicatives"],
+      "pratiques": ["Lectures courtes", "Infographies", "Veille matin/soir"],
+      "frequence_intensite": "Quotidien, rapide",
+      "devices": ["smartphone"],
+      "indicateurs": [
+        {"intitule": "Fatigue/évitement info (FR)", "valeur": ">50%", "source": "La Croix/Verian 2024-2025"}
+      ]
+    },
+    "valeurs": ["Clarté", "Équilibre", "Sérénité", "Confiance"],
+    "besoins_freins_jtbd": {"jobs": ["Formats simplifiés", "Vérification accessible"], "freins": ["Peu de temps", "Sur-abondance"]},
+    "motivations": ["Réduire l'anxiété", "Protéger ses proches"],
+    "enjeux_communication": {"sujets": ["Transparence", "Confiance"], "leviers": ["Pédagogie visuelle", "Synthèse"], "lien_lieu_physique": "Parcours guidés 'consommer l'info sans stress'"},
+    "services_offres": ["Newsletters vérifiées", "Fiches visuelles", "Alertes fact-check"],
+    "tonalite_et_eviter": {"ton": "Rassurant, clair", "a_eviter": ["Anxiogène", "Jargon technique"]},
+    "accessibilite_inclusion": {"langage": "B2", "formats": ["Mobile-first", "Audio bref"]},
+    "parcours_triggers": ["Crise info", "Polémiques de réseaux"],
+    "posture_ia_personnalisation": {"usage": "Résumés personnalisés", "limites": "Exige transparence des sources"},
+    "role_democratique_percu": "A besoin d'information fiable pour décider sereinement (famille, citoyenneté).",
+    "indice_confiance_info": {
+      "valeur":"moyenne-",
+      "source":"La Croix/Verian 2025 – FR"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"élevé (ras-le-bol)",
+      "source":"La Croix/Verian 2025; Reuters DNR 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau":"moyenne+",
+      "illustration":"Craint la manipulation; recherche des preuves rapides"
+    },
+    "attentes_transparence_medias": [
+      "Sources visibles",
+      "Synthèses sans alarmisme",
+      "Explication des méthodes"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"mitigé",
+      "risques_top":["Sensationnalisme automatisé","Hallucinations","Bulle de filtres"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~40%",
+      "sites_actu":"~30%",
+      "tv_radio":"~20%",
+      "messageries":"~10%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Presse/TV","niveau":"moyen"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "amis/famille, groupes parentaux",
+    "fenetre_attention": "≤3–4 min lecture; ≤90 s vidéo",
+    "contraintes_pratiques": [
+      "Temps limité",
+      "Charge mentale"
+    ],
+    "objections_cles": [
+      "Trop anxiogène",
+      "Trop long"
+    ],
+    "learner_profile": {
+      "label":"Pragmatique pressée",
+      "tagline":"Veut l'essentiel sourcé vite"
+    },
+    "astuce_activation": "Newsletter anti-bruit + badge 'sources vérifiées'.",
+    "note_neutralite": "Éviter l'effet 'alarmiste'.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["Newsletters", "Instagram", "Sites d'actualité"],
+    "possible_barriers_to_engagement": "Fatigue/évitement >50% (La Croix/Verian); peu de temps.",
+    "attitudes_envers_journalistes": "Confiance moyenne; attente de transparence (La Croix/Verian 2025).",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Évitement/ras-le-bol","valeur":">50%","source":"La Croix/Verian 2025"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres FR",
+    "conclusion": "Public saturé et méfiant : transparence et formats digestes sont clés.",
+    "motto": "Le flux d'infos m'épuise. Je veux de la clarté et des sources sûres."
+  },
+  {
+    "id": "david",
+    "identite_profil": {
+      "age": 38,
+      "statut": "Journaliste freelance",
+      "situation": "Travaille avec des médias internationaux",
+      "segments": ["pro", "35-44"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Le journalisme est contre-pouvoir mais fragilisé",
+      "perception_medias": "Besoin de transparence/certification",
+      "liberte_expression_désinfo": "Renforcer les standards éthiques"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["Newsletters spécialisées", "Bases de données", "Forums pro", "API"],
+      "pratiques": ["Enquêtes", "Analyses", "Vérifications avancées"],
+      "frequence_intensite": "Quotidien, professionnel",
+      "devices": ["ordinateur"],
+      "indicateurs": [
+        {"intitule": "Perception d'indépendance des journalistes (FR)", "valeur": "≈2/3 doutent", "source": "Arcom/La Croix 2025"}
+      ]
+    },
+    "valeurs": ["Indépendance", "Éthique", "Qualité", "Transparence"],
+    "besoins_freins_jtbd": {"jobs": ["Outils de certification", "Réseaux pro", "Accès à  données"], "freins": ["Coût outils", "Accès restreints"]},
+    "motivations": ["Crédibilité", "Défendre liberté de la presse"],
+    "enjeux_communication": {"sujets": ["Éthique", "Certification", "Tendances"], "leviers": ["Expertise", "Valorisation"], "lien_lieu_physique": "Conférences, archives"},
+    "services_offres": ["Outils de vérification avancés", "Base mondiale de presse", "Newsletter pro", "Plateformes d'échanges"],
+    "tonalite_et_eviter": {"ton": "Expert, crédible", "a_eviter": ["Promesses vagues", "Opacité"]},
+    "accessibilite_inclusion": {"langage": "C1", "formats": ["Docs techniques", "APIs", "Datasets"]},
+    "parcours_triggers": ["Sujet d'enquête", "Appel d'offres média"],
+    "posture_ia_personnalisation": {"usage": "IA pour traçabilité et cross-check", "limites": "Refuse black box"},
+    "role_democratique_percu": "Informer avec preuves et transparence pour mériter la confiance.",
+    "indice_confiance_info": {
+      "valeur":"moyenne (public) / élevée (entre pairs)",
+      "source":"La Croix/Verian 2025; Edelman 2025 (tendance institutions)"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"moyen (surcharge pro)",
+      "source":"Reuters DNR 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau":"très élevée",
+      "illustration":"Exige traçabilité, craint deepfakes et opacité des modèles"
+    },
+    "attentes_transparence_medias": [
+      "Provenance des données",
+      "Journal de vérification",
+      "Signalement explicite de l'usage IA"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"prudent",
+      "risques_top":["Deepfakes","Opacité","Propagande automatisée"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~25%",
+      "sites_actu":"~45%",
+      "tv_radio":"~10%",
+      "messageries":"~20%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Presse pro","niveau":"élevé"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "pairs/journalistes, communautés pro",
+    "fenetre_attention": "≤15 min lecture; ≤30–45 min podcast",
+    "contraintes_pratiques": [
+      "Coût outils",
+      "Temps d'enquête"
+    ],
+    "objections_cles": [
+      "Outils non traçables",
+      "Limites d'accès aux données"
+    ],
+    "learner_profile": {
+      "label":"Enquêteur",
+      "tagline":"Procédure, sources, recoupements"
+    },
+    "astuce_activation": "Offrir un 'lab vérif' + accès API d'archives.",
+    "note_neutralite": "Transparence procédurale > slogans.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": ["FR", "EN"],
+    "preferred_contact_points": ["Newsletters spécialisées", "Forums pro", "Bases de données", "API"],
+    "possible_barriers_to_engagement": "Coût outils; accès données (déjà  listés).",
+    "attitudes_envers_journalistes": "N/A",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Perception d'indépendance","valeur":"≈2/3 doutent","source":"Baromètre Médias (La Croix/Verian 2025)"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres + études IA & journalisme",
+    "conclusion": "Acteur pivot : mieux outillé, il consolide la confiance démocratique.",
+    "motto": "Je défends une presse libre et indépendante. Ma crédibilité passe par des vérifications solides, y compris face à  l'IA."
+  },
+  {
+    "id": "emilie",
+    "identite_profil": {
+      "age": 42,
+      "statut": "Enseignante / médiatrice culturelle (Lycée)",
+      "situation": "Pilote des projets EMI",
+      "segments": ["pro", "enseignement secondaire"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "EMI essentielle à  la citoyenneté",
+      "perception_medias": "Recherche d'outils pratiques et validés",
+      "liberte_expression_désinfo": "Responsabilité éducative forte"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["CLEMI", "Éduscol", "Plateformes éducatives", "Forums enseignants"],
+      "pratiques": ["Kits", "Tutoriels", "MOOC enseignants"],
+      "frequence_intensite": "Régulier, intégré aux cours",
+      "devices": ["ordinateur","TNI","tablettes"],
+      "indicateurs": [
+        {"intitule": "Temps disponible en classe", "valeur": "contraint", "source": "Terrain pédagogique"}
+      ]
+    },
+    "valeurs": ["Transmission", "Équité", "Rigueur", "Collaboration"],
+    "besoins_freins_jtbd": {"jobs": ["Kits EMI prêts à  l'emploi", "Formations certifiantes"], "freins": ["Temps limité", "Adaptation à  niveaux hétérogènes"]},
+    "motivations": ["Former à  l'esprit critique", "Valoriser son rôle"],
+    "enjeux_communication": {"sujets": ["EMI pilier démocratique", "Outillage"], "leviers": ["Praticité", "Certification"], "lien_lieu_physique": "Visites pédagogiques, ateliers"},
+    "services_offres": ["Kits numériques", "Formations EMI", "Plateformes collaboratives", "Ressources multilingues"],
+    "tonalite_et_eviter": {"ton": "Institutionnel et stimulant", "a_eviter": ["Complexité inutile", "Ressources non alignées programmes"]},
+    "accessibilite_inclusion": {"langage": "B2", "formats": ["Imprimables", "Diapos", "Fiches activité"]},
+    "parcours_triggers": ["Séquence EMC/EMI", "Sortie scolaire"],
+    "posture_ia_personnalisation": {"usage": "Génération d'exercices, rubrics, différenciation", "limites": "Exige contrôle humain et sources"},
+    "role_democratique_percu": "Former des citoyens capables de vérifier et débattre.",
+    "indice_confiance_info": {
+      "valeur":"moyenne",
+      "source":"La Croix/Verian 2025 – FR"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"faible (public scolaire)",
+      "source":"Arcom 2024 (écoles/EMI)"
+    },
+    "vigilance_desinformation": {
+      "niveau":"élevée",
+      "illustration":"Fait travailler la vérification en classe"
+    },
+    "attentes_transparence_medias": [
+      "Ressources validées",
+      "Cas concrets",
+      "Rubriques 'comment on a fait'"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"prudent",
+      "risques_top":["Plagiat","Biais","Désinfo générée"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~30%",
+      "sites_actu":"~30%",
+      "tv_radio":"~20%",
+      "messageries":"~20%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Ressources éducatives","niveau":"élevé"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "en classe (collectif) + réseaux enseignants",
+    "fenetre_attention": "séquences de 10–20 min",
+    "contraintes_pratiques": [
+      "Temps limité",
+      "Hétérogénéité des niveaux"
+    ],
+    "objections_cles": [
+      "Ressources trop complexes",
+      "Pas adaptées au programme"
+    ],
+    "learner_profile": {
+      "label":"Pédagogue",
+      "tagline":"Privilégie l'expérience et l'évaluation"
+    },
+    "astuce_activation": "Kit EMI clé-en-main + évaluation d'impact.",
+    "note_neutralite": "Neutralité, pluralisme, pas de prosélytisme.",
+    "global_vs_local_identity": "N/A",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["CLEMI", "Éduscol", "Plateformes éducatives"],
+    "possible_barriers_to_engagement": "Temps limité; hétérogénéité des niveaux (déjà  listés).",
+    "attitudes_envers_journalistes": "N/A",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Cadre scolaire EMI","valeur":"intégré annuellement","source":"CLEMI / pratiques EMI"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "observation terrain + cadres EMI",
+    "conclusion": "Relais stratégique : soutenir son travail démultiplie l'impact sur des générations d'élèves.",
+    "motto": "J'enseigne l'esprit critique à  mes élèves. Il me faut des outils simples et adaptés à  leur quotidien numérique."
+  },
+  {
+    "id": "alex",
+    "identite_profil": {
+      "age": 46,
+      "statut": "Sceptique / adepte de théories du complot",
+      "situation": "Actif sur Facebook et Telegram",
+      "segments": ["public", "45-54"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Défiance élevée, cherche 'sa vérité'",
+      "perception_medias": "Voit manipulation, privilégie sources alternatives",
+      "liberte_expression_désinfo": "Très attaché à  la liberté d'expression, ambigu sur la modération"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["Facebook groups", "Telegram", "Forums alternatifs"],
+      "pratiques": ["Débats", "Partage de contenus viraux"],
+      "frequence_intensite": "Fréquent, actif en commentaires",
+      "devices": ["smartphone","ordinateur"],
+      "indicateurs": [
+        {"intitule": "Adhésion à  au moins une théorie du complot (FR)", "valeur": "≈1/4", "source": "Ipsos/UNESCO 2023"}
+      ]
+    },
+    "valeurs": ["Autonomie", "Liberté de pensée", "Esprit critique"],
+    "besoins_freins_jtbd": {"jobs": ["Comparer des sources", "Comprendre les méthodes"], "freins": ["Biais de confirmation", "Bulles de filtres"]},
+    "motivations": ["Remettre en cause les discours dominants", "Vérifier par soi-même"],
+    "enjeux_communication": {"sujets": ["Coulisses de l'info", "Pluralité"], "leviers": ["Transparence procédurale", "Dialogue cadré"], "lien_lieu_physique": "Ateliers immersifs sur la construction de rumeurs"},
+    "services_offres": ["Simulations interactives", "Ateliers fact-checking", "Comparateurs de sources", "Débats modérés"],
+    "tonalite_et_eviter": {"ton": "Respectueux, non condescendant", "a_eviter": ["Stigmatisation", "Argument d'autorité"]},
+    "accessibilite_inclusion": {"langage": "B2", "formats": ["Pas à  pas", "Transparence des sources"]},
+    "parcours_triggers": ["Polémiques", "Crises"],
+    "posture_ia_personnalisation": {"usage": "OK si contrôlable et traçable", "limites": "Refuse boîtes noires"},
+    "role_democratique_percu": "La liberté d'expression prime; méfiance envers institutions et médias.",
+    "indice_confiance_info": {
+      "valeur":"faible",
+      "source":"La Croix/Verian 2025 – FR"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"moyen (sélectif)",
+      "source":"Reuters DNR 2025 – FR"
+    },
+    "vigilance_desinformation": {
+      "niveau":"paradoxale",
+      "illustration":"Pense être vigilant mais suit des sources alternatives non vérifiées"
+    },
+    "attentes_transparence_medias": [
+      "Montrer les preuves",
+      "Publier les sources brutes",
+      "Débattre à  armes égales"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"très prudent",
+      "risques_top":["Manipulation de masse","Deepfakes","Censure algorithmique"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~55%",
+      "sites_actu":"~15%",
+      "tv_radio":"~10%",
+      "messageries":"~20%"
+    },
+    "confiance_par_canal": [
+      {"canal":"Réseaux sociaux alternatifs","niveau":"moyen"},
+      {"canal":"Médias traditionnels","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "groupes affinitaires en ligne",
+    "fenetre_attention": "≤5–7 min vidéo/lecture si contradictoire",
+    "contraintes_pratiques": [
+      "Biais de confirmation",
+      "Surcharge de contenus alternatifs"
+    ],
+    "objections_cles": [
+      "Médias partisans",
+      "Sources cachées"
+    ],
+    "learner_profile": {
+      "label":"Contestataire",
+      "tagline":"Met à  l'épreuve, compare, doute"
+    },
+    "astuce_activation": "Atelier 'refaire une rumeur' avec mesures et preuves publiées.",
+    "note_neutralite": "Respecter; bannir le ton condescendant.",
+    "global_vs_local_identity": "Identité surtout locale/nationale ; méfiant vis-à -vis des médias internationaux.",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["Groupes Facebook", "Telegram", "Forums alternatifs"],
+    "possible_barriers_to_engagement": "Défiance élevée, biais de confirmation, exposition massive aux sources alternatives.",
+    "attitudes_envers_journalistes": "Méfiance forte ; doute sur l'indépendance (≈2/3 des Français doutent que les journalistes soient indépendants du pouvoir politique/économique).",
+    "attitudes_envers_institutions": "Défiance vis-à -vis des institutions publiques et médiatiques (corrélé aux niveaux de confiance faibles – Edelman Trust 2025).",
+    "attitudes_envers_fact_checkers": "Considérés comme biaisés ou liés aux 'médias dominants' ; rejet fréquent des vérifications externes.",
+    "indicateurs_sources_normes": [
+      { "intitule": "Adhésion complot (FR)", "valeur": "≈25% FR adhèrent à  une théorie complotiste", "source": "UNESCO/Ipsos 2023" }
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres + étude UNESCO",
+    "conclusion": "Public difficile mais stratégique : la transparence procédurale et l'échange de bonne foi réduisent la défiance.",
+    "motto": "Les médias traditionnels mentent. La vraie information est ailleurs et je la suis."
+  },
+  {
+    "id": "jean",
+    "identite_profil": {
+      "age": 74,
+      "statut": "Retraité engagé",
+      "situation": "Ancien professeur HG, suit l'actualité mais se sent dépassé par la vitesse",
+      "segments": ["public", "65+"]
+    },
+    "systeme_croyances": {
+      "rapport_information": "Veut des repères clairs et vérifiés",
+      "perception_medias": "Confiance relative aux médias traditionnels, méfiance envers réseaux",
+      "liberte_expression_désinfo": "Craint manipulation et perte de repères"
+    },
+    "pratiques_et_indicateurs": {
+      "canaux": ["Radio France", "France 2", "PQR", "Facebook (usage familial)"],
+      "pratiques": ["TV/radio quotidiennes", "Lecture presse"],
+      "frequence_intensite": "Quotidien, sélectif",
+      "devices": ["TV","radio"],
+      "indicateurs": [
+        {"intitule": "Équipement & usages seniors", "valeur": "TV/radio dominants, usage RS limité", "source": "Médiamétrie 2024; DEPS 2024"}
+      ]
+    },
+    "valeurs": ["Vérité historique", "Transmission", "Stabilité"],
+    "besoins_freins_jtbd": {"jobs": ["Formats longs et contextualisés", "Outils pédagogiques simples"], "freins": ["Navigation numérique difficile", "Défiance envers indépendance"]},
+    "motivations": ["Rester connecté", "Aider ses petits-enfants"],
+    "enjeux_communication": {"sujets": ["Mémoire des médias", "Histoire & actualité"], "leviers": ["Brochures", "Conférences-débats"], "lien_lieu_physique": "Espace mémoire, ateliers papier-numérique"},
+    "services_offres": ["Conférences seniors", "Ateliers accompagnés", "Espace mémoire"],
+    "tonalite_et_eviter": {"ton": "Respectueux, pédagogique", "a_eviter": ["Technicisme", "Ton infantilisant"]},
+    "accessibilite_inclusion": {"langage": "B1", "formats": ["Gros caractères", "Audio", "Accompagnement humain"]},
+    "parcours_triggers": ["Visites familiales", "Vacances chez les petits-enfants"],
+    "posture_ia_personnalisation": {"usage": "Guidage simplifié", "limites": "Exige garanties de fiabilité"},
+    "role_democratique_percu": "La presse est un repère pour comprendre et transmettre.",
+    "indice_confiance_info": {
+      "valeur":"moyenne+ (traditionnels)",
+      "source":"La Croix/Verian 2025 – FR"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur":"faible à  moyen",
+      "source":"Reuters DNR 2025 – FR"
+    },
+    "vigilance_desinformation": {
+      "niveau":"moyenne",
+      "illustration":"Méfie les réseaux, recherche des repères stables"
+    },
+    "attentes_transparence_medias": [
+      "Contextualisation historique",
+      "Sources claires",
+      "Explications sans jargon"
+    ],
+    "attitude_ia_medias": {
+      "favorable":"prudent",
+      "risques_top":["Perte du regard humain","Faux contenus"]
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux":"~10%",
+      "sites_actu":"~15%",
+      "tv_radio":"~65%",
+      "messageries":"~10%"
+    },
+    "confiance_par_canal": [
+      {"canal":"TV/Radio","niveau":"élevé"},
+      {"canal":"Presse","niveau":"moyen+"},
+      {"canal":"Réseaux sociaux","niveau":"faible"}
+    ],
+    "mode_socialisation_info": "famille (transmission), associations",
+    "fenetre_attention": "≤8–12 min lecture; formats audio longs OK",
+    "contraintes_pratiques": [
+      "Navigation numérique complexe",
+      "Vue/ergonomie"
+    ],
+    "objections_cles": [
+      "Écrans fatigants",
+      "Sites trop chargés"
+    ],
+    "learner_profile": {
+      "label":"Passeur",
+      "tagline":"Aime relier histoire et présent"
+    },
+    "astuce_activation": "Conférence + livret papier + relecture numérique assistée.",
+    "note_neutralite": "Éviter le militantisme; privilégier l'explication.",
+    "global_vs_local_identity": "Locale/nationale (France).",
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["Radio/TV", "PQR", "Associations"],
+    "possible_barriers_to_engagement": "Navigation numérique difficile; ergonomie/vision.",
+    "attitudes_envers_journalistes": "Confiance plus élevée pour l'audiovisuel public; faible pour RS (La Croix/Verian 2025).",
+    "attitudes_envers_institutions": "N/A",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {"intitule":"Usages seniors","valeur":"TV/Radio dominants","source":"Médiamétrie 2024; DEPS 2024"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-20",
+    "niveau_preuve": "baromètres FR",
+    "conclusion": "Attaché aux médias traditionnels, a besoin d'accompagnement pour le numérique.",
+    "motto": "Je reste fidèle aux médias que je connais. Dans le bruit du numérique, je veux des repères stables."
+  }
+]

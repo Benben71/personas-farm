@@ -1,0 +1,55 @@
+{
+  "title": "Personas - Musée Participatif de l'Information",
+  "tagline": "Découvrez, comprenez et participez à l'écosystème de l'information",
+  "description": "Un projet innovant qui explore les différents profils d'utilisateurs de l'information et leurs besoins spécifiques pour créer des expériences muséales adaptées.",
+  "mission": "Créer un espace muséal interactif qui permet aux visiteurs de comprendre comment l'information circule dans notre société et comment ils peuvent devenir des acteurs éclairés de cet écosystème.",
+  "vision": "Un monde où chaque citoyen possède les outils et la compréhension nécessaires pour naviguer dans l'océan d'informations qui nous entoure, en développant un esprit critique et des compétences médiatiques solides.",
+  "exhibitionConcept": {
+    "title": "Concept d'Exposition",
+    "description": "L'exposition s'articule autour de quatre zones interactives correspondant aux différents profils de visiteurs identifiés. Chaque zone propose des expériences adaptées aux besoins et motivations spécifiques de chaque persona.",
+    "zones": [
+      {
+        "name": "Zone Nina - Génération Z",
+        "description": "Espace dédié aux adolescents avec des ateliers de création de contenu, des simulateurs de réseaux sociaux et des jeux interactifs."
+      },
+      {
+        "name": "Zone Marco - Professionnels",
+        "description": "Espace pour les journalistes et professionnels de l'information avec des outils de veille, des formations et un réseau d'experts."
+      },
+      {
+        "name": "Zone Sophie - Éducateurs",
+        "description": "Espace pédagogique avec des ressources pour enseignants, des kits éducatifs et des formations continues."
+      },
+      {
+        "name": "Zone Ahmed - Communautés",
+        "description": "Espace collaboratif pour les associations et organisations avec des outils de communication et des partenariats."
+      }
+    ]
+  },
+  "ecoResponsibility": {
+    "title": "Éco-responsabilité",
+    "description": "Le projet s'engage dans une démarche éco-responsable en utilisant des technologies low-tech, en privilégiant les partenariats locaux et en sensibilisant les visiteurs aux enjeux environnementaux liés au numérique.",
+    "initiatives": [
+      "Utilisation d'équipements éco-conçus",
+      "Partenariats avec des fournisseurs locaux",
+      "Sensibilisation à l'impact environnemental du numérique",
+      "Recyclage et réutilisation des matériels"
+    ]
+  },
+  "educationalGoals": {
+    "title": "Objectifs Pédagogiques",
+    "goals": [
+      "Développer l'esprit critique des visiteurs",
+      "Améliorer la compréhension des mécanismes de l'information",
+      "Favoriser l'engagement citoyen",
+      "Promouvoir l'éducation aux médias",
+      "Créer des ponts entre les générations"
+    ]
+  },
+  "contact": {
+    "email": "contact@personas-museum.org",
+    "phone": "+33 1 23 45 67 89",
+    "address": "123 Avenue de l'Information, 75001 Paris, France",
+    "website": "www.personas-museum.org"
+  }
+}

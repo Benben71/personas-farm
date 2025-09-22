@@ -1,0 +1,82 @@
+{
+  "media": [
+    {
+      "name": "Le Monde",
+      "logo": "/partners/lemonde.png",
+      "type": "Presse écrite",
+      "description": "Partenariat éditorial pour la couverture du projet"
+    },
+    {
+      "name": "France Info",
+      "logo": "/partners/franceinfo.png",
+      "type": "Radio",
+      "description": "Émissions spéciales sur l'éducation aux médias"
+    },
+    {
+      "name": "Arte",
+      "logo": "/partners/arte.png",
+      "type": "Télévision",
+      "description": "Documentaires et contenus éducatifs"
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Ministère de l'Éducation Nationale",
+      "logo": "/partners/education.png",
+      "type": "Institution publique",
+      "description": "Soutien au programme éducatif"
+    },
+    {
+      "name": "Bibliothèque Nationale de France",
+      "logo": "/partners/bnf.png",
+      "type": "Institution culturelle",
+      "description": "Ressources documentaires et expertise"
+    },
+    {
+      "name": "Centre Pompidou",
+      "logo": "/partners/pompidou.png",
+      "type": "Musée",
+      "description": "Partenariat culturel et échange d'expertise"
+    }
+  ],
+  "associations": [
+    {
+      "name": "Reporters Sans Frontières",
+      "logo": "/partners/rsf.png",
+      "type": "Association",
+      "description": "Expertise en liberté de la presse"
+    },
+    {
+      "name": "Fondation pour l'Innovation Politique",
+      "logo": "/partners/fondapol.png",
+      "type": "Think tank",
+      "description": "Recherche sur les enjeux démocratiques"
+    },
+    {
+      "name": "Association des Journalistes de l'Information en Continu",
+      "logo": "/partners/ajic.png",
+      "type": "Association professionnelle",
+      "description": "Formation et éthique journalistique"
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Google News Initiative",
+      "logo": "/partners/google.png",
+      "type": "Technologie",
+      "description": "Outils de vérification et formation"
+    },
+    {
+      "name": "Facebook Journalism Project",
+      "logo": "/partners/facebook.png",
+      "type": "Technologie",
+      "description": "Formation aux réseaux sociaux"
+    },
+    {
+      "name": "Microsoft",
+      "logo": "/partners/microsoft.png",
+      "type": "Technologie",
+      "description": "Solutions technologiques et IA"
+    }
+  ]
+}

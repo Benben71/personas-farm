@@ -1,0 +1,137 @@
+{
+  "title": "Soutenir le Projet Personas",
+  "description": "Rejoignez-nous dans cette aventure pour créer un musée innovant dédié à l'éducation aux médias et à l'information.",
+  "waysToSupport": [
+    {
+      "type": "financial",
+      "title": "Soutien Financier",
+      "description": "Contribuez financièrement au développement et à la pérennité du projet",
+      "options": [
+        {
+          "name": "Mécénat d'entreprise",
+          "amount": "À partir de 10 000€",
+          "benefits": [
+            "Visibilité sur tous les supports de communication",
+            "Accès privilégié aux événements",
+            "Possibilité de co-création d'expériences",
+            "Rapport d'impact personnalisé"
+          ]
+        },
+        {
+          "name": "Partenariat stratégique",
+          "amount": "À partir de 50 000€",
+          "benefits": [
+            "Zone d'exposition dédiée",
+            "Programme de formation sur mesure",
+            "Accès aux données d'usage anonymisées",
+            "Participation au comité de pilotage"
+          ]
+        },
+        {
+          "name": "Don individuel",
+          "amount": "À partir de 50€",
+          "benefits": [
+            "Reçu fiscal",
+            "Newsletter exclusive",
+            "Accès anticipé aux nouvelles expériences",
+            "Invitation aux événements privés"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "inkind",
+      "title": "Soutien en Nature",
+      "description": "Contribuez avec vos compétences, votre expertise ou vos ressources",
+      "options": [
+        {
+          "name": "Expertise technique",
+          "description": "Développement d'outils interactifs, design UX/UI, développement web",
+          "commitment": "Projet ponctuel ou suivi régulier"
+        },
+        {
+          "name": "Expertise pédagogique",
+          "description": "Conception de contenus éducatifs, formation des équipes",
+          "commitment": "Participation aux comités d'experts"
+        },
+        {
+          "name": "Expertise médiatique",
+          "description": "Conseil en communication, production de contenus",
+          "commitment": "Partenariat éditorial"
+        },
+        {
+          "name": "Ressources matérielles",
+          "description": "Équipements technologiques, mobilier, matériel de communication",
+          "commitment": "Prêt ou don de matériel"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "title": "Mise à Disposition d'un Lieu",
+      "description": "Proposez un espace pour accueillir des événements ou des expériences",
+      "options": [
+        {
+          "name": "Espace événementiel",
+          "description": "Salle de conférence, auditorium, espace polyvalent",
+          "capacity": "À partir de 50 personnes",
+          "benefits": [
+            "Visibilité lors des événements",
+            "Accès aux formations",
+            "Réseau de partenaires"
+          ]
+        },
+        {
+          "name": "Espace d'exposition temporaire",
+          "description": "Hall d'accueil, espace commercial, lieu culturel",
+          "duration": "Minimum 1 mois",
+          "benefits": [
+            "Animation de l'espace",
+            "Formation des équipes",
+            "Communication partagée"
+          ]
+        },
+        {
+          "name": "Espace de coworking",
+          "description": "Bureaux partagés, espaces de travail collaboratif",
+          "capacity": "À partir de 10 postes",
+          "benefits": [
+            "Accès aux ressources",
+            "Formation continue",
+            "Réseau professionnel"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sponsoring",
+      "title": "Sponsoring de Projets",
+      "description": "Soutenez des projets spécifiques ou des événements particuliers",
+      "options": [
+        {
+          "name": "Sponsoring d'événements",
+          "description": "Conférences, workshops, lancements",
+          "visibility": "Logo sur tous les supports",
+          "engagement": "Participation aux événements"
+        },
+        {
+          "name": "Sponsoring de contenus",
+          "description": "Podcasts, vidéos, articles",
+          "visibility": "Mention dans les contenus",
+          "engagement": "Co-création possible"
+        },
+        {
+          "name": "Sponsoring de programmes",
+          "description": "Formations, ateliers, programmes éducatifs",
+          "visibility": "Nom du programme",
+          "engagement": "Suivi des résultats"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "partenaires@personas-museum.org",
+    "phone": "+33 1 23 45 67 90",
+    "person": "Marie Dubois - Responsable Partenariats"
+  }
+}

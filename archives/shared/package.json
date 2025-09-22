@@ -1,0 +1,11 @@
+{
+  "name": "personas-shared",
+  "version": "1.0.0",
+  "description": "Shared data and utilities for personas-farm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

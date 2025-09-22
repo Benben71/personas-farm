@@ -1,0 +1,74 @@
+[
+  {
+    "id": "phase1",
+    "year": 2024,
+    "month": "Janvier",
+    "title": "Lancement du projet",
+    "description": "Définition des personas et conception initiale de l'exposition",
+    "status": "completed"
+  },
+  {
+    "id": "phase2",
+    "year": 2024,
+    "month": "Mars",
+    "title": "Recherche et développement",
+    "description": "Étude approfondie des besoins utilisateurs et développement des prototypes",
+    "status": "completed"
+  },
+  {
+    "id": "phase3",
+    "year": 2024,
+    "month": "Mai",
+    "title": "Partenariats stratégiques",
+    "description": "Signature des premiers partenariats avec institutions et médias",
+    "status": "completed"
+  },
+  {
+    "id": "phase4",
+    "year": 2024,
+    "month": "Juillet",
+    "title": "Prototypage des expériences",
+    "description": "Création des premiers prototypes d'expériences interactives",
+    "status": "in_progress"
+  },
+  {
+    "id": "phase5",
+    "year": 2024,
+    "month": "Septembre",
+    "title": "Tests utilisateurs",
+    "description": "Validation des expériences avec des groupes de test représentatifs",
+    "status": "pending"
+  },
+  {
+    "id": "phase6",
+    "year": 2024,
+    "month": "Novembre",
+    "title": "Finalisation de l'exposition",
+    "description": "Intégration des retours et finalisation de tous les éléments",
+    "status": "pending"
+  },
+  {
+    "id": "phase7",
+    "year": 2025,
+    "month": "Janvier",
+    "title": "Ouverture officielle",
+    "description": "Inauguration du musée et lancement des activités publiques",
+    "status": "pending"
+  },
+  {
+    "id": "phase8",
+    "year": 2025,
+    "month": "Mars",
+    "title": "Programme éducatif",
+    "description": "Lancement des programmes éducatifs pour les écoles et universités",
+    "status": "pending"
+  },
+  {
+    "id": "phase9",
+    "year": 2025,
+    "month": "Mai",
+    "title": "Expansion numérique",
+    "description": "Développement de la plateforme en ligne et des outils numériques",
+    "status": "pending"
+  }
+]

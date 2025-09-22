@@ -1,0 +1,760 @@
+[
+  {
+    "id": "marie",
+    "identite_profil": {
+      "age": 16,
+      "statut": "Lycéenne en Terminale S",
+      "situation": "Passionnée de biologie, curieuse des découvertes de Pasteur",
+      "segments": ["public", "15-19"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Bon niveau en SVT, intéressée par la génétique",
+      "perception_evolution": "Accepte la théorie de l'évolution, mais a des questions",
+      "confiance_institutions": "Fait confiance aux enseignants et aux musées"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Intermédiaire",
+      "concepts_cles": ["Microbes", "Vaccination", "Fermentation"],
+      "misconceptions": "Les microbes sont tous dangereux; Les vaccins agissent immédiatement et à 100%"
+    },
+    "valeurs": ["Curiosité scientifique", "Rigueur", "Esprit critique"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Comprendre les découvertes de Pasteur", "Préparer ses études", "Voir des expériences concrètes"],
+      "freins": ["Concepts de laboratoire abstraits", "Manque d'exemples concrets", "Confusion autour des vaccins"]
+    },
+    "motivations": ["Apprendre et explorer", "Réussir ses examens", "Comprendre le monde"],
+    "tonalite_et_eviter": {
+      "ton": "Pédagogique et accessible",
+      "a_eviter": ["Jargon scientifique", "Controverses religieuses", "Complexité excessive"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français simple et clair",
+      "formats": ["Vidéos courtes", "Schémas", "Exemples concrets"]
+    },
+    "conclusion": "Élève motivée qui a besoin d'exemples concrets et de débats pour approfondir sa compréhension de l'évolution.",
+    "parcours": {
+      "avant": "Découvre le musée via son prof ou sur les réseaux, cherche des exemples concrets pour réviser ses cours de SVT.",
+      "pendant": "Aime les contenus interactifs (fossiles, schémas, expériences simples), besoin de médiation claire sans jargon.",
+      "apres": "Revoit en ligne les schémas/vidéos pour ses examens, partage avec ses amis."
+    },
+    "pratiques_et_indicateurs": {
+      "temps_passe": "≈ 3h50/jour sur Internet (Médiamétrie 2024)",
+      "part_RS": "58% du temps sur réseaux sociaux (Médiamétrie 2024)"
+    },
+    "parts_temps_par_canal": {
+      "reseaux_sociaux": "élevé",
+      "sites": "moyen",
+      "messageries": "moyen",
+      "tv_radio": "faible"
+    },
+    "confiance_par_canal": [
+      {"canal": "Réseaux sociaux", "niveau": "moyen-"},
+      {"canal": "Professeurs/Musées", "niveau": "élevé"}
+    ],
+    "fenetre_attention": "≤60–90s pour vidéos, 3–5 min pour lecture",
+    "contraintes_pratiques": [
+      "Temps fragmenté",
+      "Accès mobile uniquement",
+      "Anglicismes/jargon scientifique"
+    ],
+    "systeme_croyances": {
+      "rapport_science": "Intéressée mais vulnérable aux signaux sociaux",
+      "perception_science": "Professeurs/musées perçus comme plus crédibles que médias traditionnels",
+      "liberte_expression_science": "Sensibilisée, souhaite repères simples pour éviter la désinformation scientifique"
+    },
+    "attitudes_envers_institutions": "Confiance élevée pour musées et enseignants, faible pour médias généralistes",
+    "attentes_transparence_science": [
+      "Expliquer simplement comment la science fonctionne",
+      "Montrer les sources de façon visuelle",
+      "Alerter sur les manipulations typiques (deepfakes, titres trompeurs)"
+    ],
+    "role_science_societe": "La science aide à comprendre et débattre, mais je m'informe surtout via mes pairs et les réseaux",
+    "enjeux_communication": {
+      "sujets": ["Découvertes scientifiques", "Histoire de la science", "Méthode scientifique"],
+      "leviers": ["Ludification", "Storytelling immersif", "Participation"],
+      "lien_lieu_physique": "Ateliers collaboratifs sur place comme prolongement des défis numériques"
+    },
+    "services_offres": ["Quiz & jeux (#DéfiScience)", "Mini-séries pédagogiques RS", "Fact-checking scientifique simplifié"],
+    "parcours_triggers": ["Devoir scolaire", "Actu scientifique virale", "Débat en classe"],
+    "astuce_activation": "Proposer un défi court et partageable (duel vrai/faux scientifique) relié à un atelier sur place",
+    "learner_profile": {
+      "label": "Apprenante sociale & visuelle",
+      "tagline": "Comprend vite avec des formats courts et interactifs"
+    },
+    "posture_ia_personnalisation": {"usage": "OK pour résumés/traductions", "limites": "Demande transparence"},
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["TikTok", "Instagram", "WhatsApp", "YouTube"],
+    "possible_barriers_to_engagement": "Attention fragmentée; ras-le-bol informationnel (tendance FR); mobile-only",
+    "indice_confiance_info": {
+      "valeur": "basse à moyenne (jeunes)",
+      "source": "Reuters Digital News Report 2025 – France"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur": "évitement occasionnel/élevé chez les 15–24",
+      "source": "La Croix/Verian 2025; Reuters DNR 2025 (FR)"
+    },
+    "vigilance_desinformation": {
+      "niveau": "moyenne",
+      "illustration": "Repère les buzz mais vérifie peu; sait que les RS diffusent vrai/faux mais reste passive"
+    },
+    "attitude_ia_science": {
+      "favorable": "mitigé",
+      "risques_top": [
+        "Fausses images/sons (deepfakes)",
+        "Perte de repères",
+        "Algorithmes qui poussent le buzz"
+      ]
+    },
+    "mode_socialisation_info": "pair-à-pair (classe/amis) et créateurs RS",
+    "objections_cles": [
+      "C'est ennuyeux/scolaire",
+      "C'est trop long",
+      "On veut me faire la leçon"
+    ],
+    "note_neutralite": "Éviter l'infantilisation; rester factuel et participatif",
+    "global_vs_local_identity": "N/A",
+    "attitudes_envers_scientifiques": "Confiance contrastée; scientifiques/musées perçus plus fiables que RS (tendance FR – La Croix/Verian 2025)",
+    "attitudes_envers_fact_checkers": "N/A",
+    "indicateurs_sources_normes": [
+      {
+        "intitule":"Temps en ligne 15–24",
+        "valeur":"≈4h21/j (15–24, proxy) ; ≈60% social",
+        "source":"Médiamétrie – L'Année Internet 2024 (CP 13/02/2025)"
+      },
+      {
+        "intitule":"Évitement jeunes",
+        "valeur":"fréquent/occasionnel",
+        "source":"Reuters Digital News Report 2025 – France"
+      }
+    ],
+    "date_derniere_mise_a_jour": "2025-01-20",
+    "niveau_preuve": "baromètres (Médiamétrie, DNR, La Croix/Verian)",
+    "motto": "Quand on me montre les microbes, je comprends la science.",
+    "image": "/personas/marie.png"
+  },
+  {
+    "id": "pierre",
+    "identite_profil": {
+      "age": 45,
+      "statut": "Professeur de SVT",
+      "situation": "Enseigne depuis 20 ans, passionné de vulgarisation",
+      "segments": ["professionnel", "35-49"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Expert en biologie et évolution",
+      "perception_evolution": "Maîtrise parfaitement la théorie",
+      "confiance_institutions": "Fait confiance aux institutions scientifiques"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Expert",
+      "concepts_cles": ["Immunité", "Vaccination", "Hygiène"],
+      "misconceptions": "Aucune misconception majeure"
+    },
+    "valeurs": ["Transmission", "Précision scientifique", "Pédagogie"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Enrichir ses cours", "Trouver de nouveaux outils", "Inspirer ses élèves"],
+      "freins": ["Manque de temps", "Résistance des élèves", "Programmes chargés"]
+    },
+    "motivations": ["Transmettre sa passion", "Améliorer ses méthodes", "Former la relève"],
+    "tonalite_et_eviter": {
+      "ton": "Professionnel et inspirant",
+      "a_eviter": ["Approche trop académique", "Négligence des controverses", "Manque de pratique"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français technique mais accessible",
+      "formats": ["Cours interactifs", "Expériences", "Débats"]
+    },
+    "conclusion": "Expert qui cherche des ressources pédagogiques innovantes pour transmettre sa passion.",
+    "parcours": {
+      "avant": "Réserve pour une classe, cherche des ressources pédagogiques et un programme adapté aux scolaires.",
+      "pendant": "Veut un parcours guidé et dynamique pour maintenir l’attention des élèves.",
+      "apres": "Exploite les dossiers pédagogiques en ligne et conseille l’expérience à d’autres collègues."
+    },
+    "pratiques_et_indicateurs": {
+      "usage_ENT": "hebdomadaire",
+      "ressources_en_ligne": "utilise régulièrement des ressources pédagogiques en ligne"
+    },
+    "parts_temps_par_canal": {
+      "sites": "élevé",
+      "reseaux_sociaux": "faible",
+      "messageries": "moyen"
+    },
+    "confiance_par_canal": [
+      {"canal": "Institutions scientifiques", "niveau": "élevé"},
+      {"canal": "YouTube pédagogique", "niveau": "moyen"}
+    ],
+    "fenetre_attention": "5–10 min",
+    "contraintes_pratiques": [
+      "Temps limité",
+      "Programmes chargés",
+      "Résistance des élèves"
+    ],
+    "systeme_croyances": {
+      "rapport_science": "Expert en biologie et évolution, maîtrise parfaitement la théorie",
+      "perception_science": "Fait confiance aux institutions scientifiques et aux méthodes rigoureuses",
+      "liberte_expression_science": "Défend la rigueur scientifique et la transmission des connaissances"
+    },
+    "attitudes_envers_institutions": "Confiance élevée pour institutions scientifiques et musées",
+    "attentes_transparence_science": [
+      "Méthodes pédagogiques validées",
+      "Sources scientifiques accessibles",
+      "Outils adaptés aux programmes scolaires"
+    ],
+    "role_science_societe": "La science doit être transmise rigoureusement pour former la relève scientifique",
+    "enjeux_communication": {
+      "sujets": ["Pédagogie scientifique", "Innovation éducative", "Transmission des savoirs"],
+      "leviers": ["Crédibilité", "Mentorat", "Ressources pédagogiques"],
+      "lien_lieu_physique": "Visites pédagogiques, ateliers, ressources en ligne"
+    },
+    "services_offres": ["Dossiers pédagogiques", "Formations enseignants", "Ressources interactives", "Programmes scolaires"],
+    "parcours_triggers": ["Préparation cours", "Sortie scolaire", "Formation continue"],
+    "astuce_activation": "Accès privilégié aux ressources pédagogiques + formation certifiante",
+    "learner_profile": {
+      "label": "Pédagogue expert",
+      "tagline": "Privilégie la méthode et la transmission rigoureuse"
+    },
+    "posture_ia_personnalisation": {"usage": "Outils IA pour génération d'exercices et différenciation", "limites": "Exige contrôle humain et sources"},
+    "language_preferences": ["FR"],
+    "preferred_contact_points": ["Sites éducatifs", "Formations", "Réseaux enseignants"],
+    "possible_barriers_to_engagement": "Temps limité; programmes chargés; résistance des élèves",
+    "indice_confiance_info": {
+      "valeur": "élevée (professionnel)",
+      "source": "Baromètres éducation 2025"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur": "faible (surcharge professionnelle)",
+      "source": "Enquêtes enseignants 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau": "très élevée",
+      "illustration": "Expert en vérification des sources scientifiques; exige traçabilité"
+    },
+    "attitude_ia_science": {
+      "favorable": "prudent",
+      "risques_top": [
+        "Hallucinations scientifiques",
+        "Simplification excessive",
+        "Perte de rigueur méthodologique"
+      ]
+    },
+    "mode_socialisation_info": "pairs professionnels, communautés enseignantes",
+    "objections_cles": [
+      "Ressources trop complexes",
+      "Pas adaptées au programme",
+      "Manque de temps"
+    ],
+    "note_neutralite": "Neutralité scientifique; pluralisme des approches pédagogiques",
+    "global_vs_local_identity": "Locale/nationale (programmes français)",
+    "attitudes_envers_scientifiques": "Confiance très élevée; collègues scientifiques perçus comme références",
+    "attitudes_envers_fact_checkers": "Valorise les outils de vérification scientifique",
+    "indicateurs_sources_normes": [
+      {
+        "intitule":"Usage ENT enseignants",
+        "valeur":"hebdomadaire",
+        "source":"DEPS 2024"
+      },
+      {
+        "intitule":"Ressources pédagogiques en ligne",
+        "valeur":"usage régulier",
+        "source":"Argumentaire Pasteur 2025"
+      }
+    ],
+    "date_derniere_mise_a_jour": "2025-01-20",
+    "motto": "J’aime voir mes élèves découvrir Pasteur comme un héros de la science.",
+    "image": "/personas/pierre.png"
+  },
+  {
+    "id": "sophie",
+    "identite_profil": {
+      "age": 28,
+      "statut": "Chercheuse en biologie",
+      "situation": "Doctorante en microbiologie, spécialisée en immunologie et virologie",
+      "segments": ["professionnel", "25-34"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Expert de haut niveau",
+      "perception_evolution": "Maîtrise les dernières découvertes",
+      "confiance_institutions": "Fait confiance aux institutions de recherche"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Expert avancé",
+      "concepts_cles": ["Microbiologie", "Virologie", "Techniques de laboratoire"],
+      "misconceptions": "Aucune misconception"
+    },
+    "valeurs": ["Rigueur scientifique", "Innovation", "Collaboration"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Partager ses recherches", "Inspirer la prochaine génération", "Débattre de science"],
+      "freins": ["Complexité de vulgarisation", "Manque de temps", "Résistance du public"]
+    },
+    "motivations": ["Partager ses connaissances", "Inspirer les jeunes", "Débattre de science"],
+    "tonalite_et_eviter": {
+      "ton": "Scientifique mais accessible",
+      "a_eviter": ["Jargon trop technique", "Approche condescendante", "Négligence des questions du public"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français scientifique accessible",
+      "formats": ["Conférences", "Articles", "Débats"]
+    },
+    "conclusion": "Chercheuse qui veut partager sa passion et ses connaissances avec le grand public.",
+    "parcours": {
+      "avant": "S’informe sur la programmation scientifique et les conférences, suit les actualités du musée.",
+      "pendant": "Valorise les contenus scientifiques rigoureux, aime échanger avec les médiateurs.",
+      "apres": "Partage sur ses réseaux et valorise le musée auprès de ses étudiants ou collègues."
+    },
+    "pratiques_et_indicateurs": {
+      "colloques_archives": "suit les colloques, consulte des archives",
+      "attention": "temps d’attention long"
+    },
+    "parts_temps_par_canal": {
+      "sites": "élevé",
+      "reseaux_sociaux": "moyen"
+    },
+    "confiance_par_canal": [
+      {"canal": "Recherche", "niveau": "élevé"},
+      {"canal": "Réseaux sociaux", "niveau": "moyen-"}
+    ],
+    "fenetre_attention": "10–20 min pour conférences",
+    "contraintes_pratiques": [
+      "Complexité de vulgarisation",
+      "Manque de temps",
+      "Résistance du public"
+    ],
+    "systeme_croyances": {
+      "rapport_science": "Expert de haut niveau, maîtrise les dernières découvertes",
+      "perception_science": "Fait confiance aux institutions de recherche et aux méthodes scientifiques",
+      "liberte_expression_science": "Défend la rigueur scientifique et la diffusion des connaissances"
+    },
+    "attitudes_envers_institutions": "Confiance très élevée pour institutions de recherche",
+    "attentes_transparence_science": [
+      "Méthodes publiées",
+      "Sources accessibles",
+      "Signalement usage IA"
+    ],
+    "role_science_societe": "La recherche scientifique est un pilier de la société moderne",
+    "enjeux_communication": {
+      "sujets": ["Recherche fondamentale", "Innovation", "Collaboration scientifique"],
+      "leviers": ["Expertise", "Crédibilité", "Réseaux professionnels"],
+      "lien_lieu_physique": "Conférences, archives, laboratoires"
+    },
+    "services_offres": ["Conférences scientifiques", "Archives de recherche", "Outils collaboratifs", "Publications"],
+    "parcours_triggers": ["Recherche bibliographique", "Colloques", "Collaborations"],
+    "astuce_activation": "Accès privilégié aux archives + invitations conférences",
+    "learner_profile": {
+      "label": "Chercheuse experte",
+      "tagline": "Méthode, preuve, innovation"
+    },
+    "posture_ia_personnalisation": {"usage": "IA pour recherche/tri/synthèse", "limites": "Exige traçabilité et citations"},
+    "language_preferences": ["FR", "EN"],
+    "preferred_contact_points": ["Bases de données", "Conférences", "Réseaux professionnels"],
+    "possible_barriers_to_engagement": "Complexité de vulgarisation; manque de temps; résistance du public",
+    "indice_confiance_info": {
+      "valeur": "très élevée (expert)",
+      "source": "Baromètres recherche 2025"
+    },
+    "indice_fatigue_ou_evitement": {
+      "valeur": "faible (surcharge recherche)",
+      "source": "Enquêtes doctorants 2025"
+    },
+    "vigilance_desinformation": {
+      "niveau": "très élevée",
+      "illustration": "Expert en vérification; exige traçabilité et citations"
+    },
+    "attitude_ia_science": {
+      "favorable": "mitigé",
+      "risques_top": [
+        "Biais de modèle",
+        "Hallucinations",
+        "Dérive vers l'industrialisation du contenu"
+      ]
+    },
+    "mode_socialisation_info": "pairs chercheurs, réseaux professionnels",
+    "objections_cles": [
+      "Outils non traçables",
+      "Limites d'accès aux données",
+      "Complexité de vulgarisation"
+    ],
+    "note_neutralite": "Neutralité scientifique; pluralisme des approches",
+    "global_vs_local_identity": "Globale (recherche internationale)",
+    "attitudes_envers_scientifiques": "Confiance très élevée; pairs chercheurs perçus comme références",
+    "attitudes_envers_fact_checkers": "Valorise les outils de vérification scientifique avancés",
+    "indicateurs_sources_normes": [
+      {
+        "intitule":"Suivi colloques et archives",
+        "valeur":"régulier",
+        "source":"Argumentaire Pasteur 2025"
+      },
+      {
+        "intitule":"Temps d'attention long",
+        "valeur":"10–20 min",
+        "source":"Observations terrain"
+      }
+    ],
+    "date_derniere_mise_a_jour": "2025-01-20",
+    "motto": "Pasteur me rappelle pourquoi j’ai choisi de devenir chercheuse.",
+    "image": "/personas/sophie.png"
+  },
+  {
+    "id": "clara",
+    "identite_profil": {
+      "age": 32,
+      "statut": "Touriste culturelle",
+      "situation": "Jeune cadre voyageant à Paris, passionnée de culture et de sciences",
+      "segments": ["public", "25-34"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Niveau grand public, intéressée par les découvertes",
+      "perception_evolution": "Positive, curieuse sans expertise",
+      "confiance_institutions": "Fait confiance aux musées et aux guides de voyage"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Basique",
+      "concepts_cles": ["Pasteur", "Vaccins", "Microbes"],
+      "misconceptions": "Pense que la science a toujours des réponses immédiates"
+    },
+    "valeurs": ["Curiosité", "Découverte", "Expérience culturelle"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Préparer sa visite", "Réserver billets et restaurant", "Découvrir les expositions"],
+      "freins": ["Navigation confuse", "Manque d’informations pratiques regroupées"]
+    },
+    "motivations": ["Vivre une expérience complète", "Gagner du temps", "Profiter de son séjour"],
+    "tonalite_et_eviter": {
+      "ton": "Accueillant et pratique",
+      "a_eviter": ["Informations trop techniques", "Excès de jargon"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français simple",
+      "formats": ["Billetterie en ligne", "Visites virtuelles", "Brochures numériques"]
+    },
+    "conclusion": "Touriste connectée qui souhaite un site fluide, pratique et intégré.",
+    "parcours": {
+      "avant": "Prépare son séjour à Paris, compare musées et expositions, veut un site clair avec billetterie et infos pratiques.",
+      "pendant": "Souhaite une visite fluide (billets coupe-file, réservation restaurant), découvre avec curiosité les expositions.",
+      "apres": "Consulte la boutique en ligne et partage ses photos sur Instagram."
+    },
+    "pratiques_et_indicateurs": {
+      "comparaison": "compare horaires/prix sur Google/TripAdvisor",
+      "photos": "partage des photos sur Instagram"
+    },
+    "parts_temps_par_canal": {
+      "sites": "élevé",
+      "reseaux_sociaux": "moyen"
+    },
+    "confiance_par_canal": [
+      {"canal": "Sites officiels", "niveau": "élevé"},
+      {"canal": "Avis voyageurs", "niveau": "moyen"}
+    ],
+    "fenetre_attention": "3–4 min par page",
+    "contraintes_pratiques": [],
+    "systeme_croyances": {},
+    "attitudes_envers_institutions": {},
+    "attentes_transparence_science": {},
+    "role_science_societe": "",
+    "enjeux_communication": {},
+    "services_offres": [],
+    "parcours_triggers": [],
+    "astuce_activation": [],
+    "learner_profile": {"label": "", "tagline": ""},
+    "posture_ia_personnalisation": "",
+    "language_preferences": [],
+    "preferred_contact_points": [],
+    "possible_barriers_to_engagement": [],
+    "indicateurs_sources_normes": [
+      "Argumentaire Pasteur 2025"
+    ],
+    "motto": "Je veux découvrir l’histoire de Pasteur sans perdre de temps.",
+    "image": "/personas/clara.png"
+  },
+  {
+    "id": "michel",
+    "identite_profil": {
+      "age": 68,
+      "statut": "Retraité passionné d’histoire des sciences",
+      "situation": "Ancien professeur de chimie, amateur de musées",
+      "segments": ["public", "65+"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Bon niveau, intéressé par la vulgarisation",
+      "perception_evolution": "Accepte pleinement les théories scientifiques",
+      "confiance_institutions": "Fait confiance aux musées et aux publications scientifiques"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Avancé amateur",
+      "concepts_cles": ["Pasteur", "Microbiologie", "Vaccins", "Génération spontanée"],
+      "misconceptions": "Aucune misconception majeure"
+    },
+    "valeurs": ["Histoire", "Transmission", "Culture scientifique"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Prolonger la visite par des lectures", "Accéder aux archives", "Partager avec ses proches"],
+      "freins": ["Interfaces trop modernes", "Navigation peu intuitive pour seniors"]
+    },
+    "motivations": ["Apprendre encore", "Découvrir des archives", "Transmettre son intérêt"],
+    "tonalite_et_eviter": {
+      "ton": "Serein et instructif",
+      "a_eviter": ["Langage trop technique", "Design trop chargé"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français clair",
+      "formats": ["Articles longs", "Interviews", "Archives numérisées"]
+    },
+    "conclusion": "Retraité cultivé qui recherche du contenu historique et des archives accessibles.",
+    "parcours": {
+      "avant": "Lit sur Darwin et l’histoire des sciences, consulte les archives disponibles en ligne.",
+      "pendant": "S’attarde sur les objets historiques et textes explicatifs, apprécie un ton clair et instruit.",
+      "apres": "Explore les ressources numériques (archives, conférences), recommande le musée à ses proches."
+    },
+    "pratiques_et_indicateurs": {
+      "lectures": "lectures presse, dossiers, conférences",
+      "connectivite_seniors": "connectivité seniors = 64% (DEPS 2024)"
+    },
+    "parts_temps_par_canal": {
+      "sites": "élevé",
+      "presse_culturelle": "moyen",
+      "reseaux_sociaux": "faible"
+    },
+    "confiance_par_canal": [
+      {"canal": "Musées", "niveau": "élevé"},
+      {"canal": "Presse culturelle", "niveau": "moyen+"}
+    ],
+    "fenetre_attention": "8–12 min pour articles, 20–30 min pour conférences",
+    "contraintes_pratiques": [],
+    "systeme_croyances": {},
+    "attitudes_envers_institutions": {},
+    "attentes_transparence_science": {},
+    "role_science_societe": "",
+    "enjeux_communication": {},
+    "services_offres": [],
+    "parcours_triggers": [],
+    "astuce_activation": [],
+    "learner_profile": {"label": "", "tagline": ""},
+    "posture_ia_personnalisation": "",
+    "language_preferences": [],
+    "preferred_contact_points": [],
+    "possible_barriers_to_engagement": [],
+    "indicateurs_sources_normes": [
+      "DEPS 2024",
+      "Argumentaire Pasteur 2025"
+    ],
+    "motto": "J’aime plonger dans la vie de Pasteur et ses découvertes.",
+    "image": "/personas/michel.png"
+  },
+  {
+    "id": "nadia",
+    "identite_profil": {
+      "age": 8,
+      "statut": "Écolière (CM1)",
+      "situation": "En sortie scolaire avec sa classe, première visite au musée",
+      "segments": ["public", "6-11", "scolaire"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Éveil scientifique, notions très simples",
+      "perception_evolution": "Non pertinent à cet âge, curiosité générale",
+      "confiance_institutions": "Fait confiance à sa maîtresse et aux médiateurs"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Initiation",
+      "concepts_cles": ["Microbes", "Hygiène des mains", "Vaccin (idée générale)"]
+    },
+    "valeurs": ["Découverte", "Jeu", "Émerveillement"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Toucher et manipuler", "Comprendre avec des images", "Ne pas s’ennuyer"],
+      "freins": ["Textes trop longs", "Vocabulaire compliqué", "Fatigue/attention limitée"]
+    },
+    "motivations": ["S’amuser", "Raconter à la maison", "Apprendre en jouant"],
+    "tonalite_et_eviter": {
+      "ton": "Ludique et rassurant",
+      "a_eviter": ["Jargon", "Panneaux denses", "Illustrations trop abstraites"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Phrases courtes, vocabulaire courant",
+      "formats": ["Illustrations grandes", "Pictogrammes", "Ateliers courts"]
+    },
+    "conclusion": "Enfant curieuse qui apprend par le jeu et les expériences simples.",
+    "parcours": {
+      "avant": "Découvre Pasteur à l’école, entend parler des microbes et des vaccins.",
+      "pendant": "Participe à un atelier court, regarde des animations simples, manipule un microscope avec aide.",
+      "apres": "Raconte sa visite à ses parents et dessine ce qu’elle a vu." 
+    },
+    "pratiques_et_indicateurs": {
+      "tablette_classe": "utilise tablette en classe",
+      "youtube_kids": "consomme YouTube Kids",
+      "sessions": "sessions ≤3–5 min"
+    },
+    "parts_temps_par_canal": {
+      "videos_courtes": "élevé",
+      "lecture": "faible"
+    },
+    "confiance_par_canal": [
+      {"canal": "Maîtresse/Médiateurs", "niveau": "élevé"}
+    ],
+    "fenetre_attention": "≤3–5 min",
+    "contraintes_pratiques": [],
+    "systeme_croyances": {},
+    "attitudes_envers_institutions": {},
+    "attentes_transparence_science": {},
+    "role_science_societe": "",
+    "enjeux_communication": {},
+    "services_offres": [],
+    "parcours_triggers": [],
+    "astuce_activation": [],
+    "learner_profile": {"label": "", "tagline": ""},
+    "posture_ia_personnalisation": "",
+    "language_preferences": [],
+    "preferred_contact_points": [],
+    "possible_barriers_to_engagement": [],
+    "indicateurs_sources_normes": [
+      "Argumentaire Pasteur 2025 (public scolaire)"
+    ],
+    "motto": "J’adore voir les microbes au microscope, ça fait un peu peur mais c’est rigolo.",
+    "image": "/personas/nadia.png"
+  },
+  {
+    "id": "karim",
+    "identite_profil": {
+      "age": 40,
+      "statut": "Père de famille",
+      "situation": "Sortie week-end avec deux enfants (8 et 11 ans)",
+      "segments": ["public", "35-49", "familles"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Grand public, intéressé sans connaissances techniques",
+      "perception_evolution": "Positive pour la science et la santé publique",
+      "confiance_institutions": "Fait confiance aux musées reconnus et aux médecins"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Basique",
+      "concepts_cles": ["Hygiène", "Vaccination", "Transmission des maladies"],
+      "misconceptions": "Peut confondre bactéries et virus, s’interroge sur la fréquence des rappels vaccinaux"
+    },
+    "valeurs": ["Sécurité", "Éducation des enfants", "Simplicité"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Trouver une activité familiale", "Comprendre l’essentiel sans jargon", "Gérer le temps et le budget"],
+      "freins": ["Billetterie peu claire", "Parcours trop longs", "Panneaux illisibles pour enfants"]
+    },
+    "motivations": ["Sortie utile et agréable", "Apprendre quelque chose", "Occuper intelligemment le week-end"],
+    "tonalite_et_eviter": {
+      "ton": "Clair, concret, orienté famille",
+      "a_eviter": ["Jargon", "Informations éparses", "Tarifs/horaires peu lisibles"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français simple, info pratique en premier",
+      "formats": ["Parcours famille", "Panneaux double niveau adulte/enfant", "Cartes claires"]
+    },
+    "conclusion": "Parent accompagnant qui veut une visite simple, fluide et instructive pour tous.",
+    "parcours": {
+      "avant": "Compare les musées, regarde les prix et l’accessibilité (poussette, toilettes, restauration).",
+      "pendant": "Cherche un parcours court et rythmé, espaces de pause, activités enfants.",
+      "apres": "Passe à la boutique pour un petit livre, partage quelques photos." 
+    },
+    "pratiques_et_indicateurs": {
+      "recherche": "recherche Google Maps, Facebook",
+      "achat_billets": "achat de billets en ligne"
+    },
+    "parts_temps_par_canal": {
+      "sites": "élevé",
+      "reseaux_sociaux": "moyen"
+    },
+    "confiance_par_canal": {
+      "sites_officiels": "élevé",
+      "avis_familles": "moyen"
+    },
+    "fenetre_attention": "2–3 min par page",
+    "contraintes_pratiques": [],
+    "systeme_croyances": {},
+    "attitudes_envers_institutions": {},
+    "attentes_transparence_science": {},
+    "role_science_societe": "",
+    "enjeux_communication": {},
+    "services_offres": [],
+    "parcours_triggers": [],
+    "astuce_activation": [],
+    "learner_profile": {"label": "", "tagline": ""},
+    "posture_ia_personnalisation": "",
+    "language_preferences": [],
+    "preferred_contact_points": [],
+    "possible_barriers_to_engagement": [],
+    "indicateurs_sources_normes": [
+      "Argumentaire Pasteur 2025"
+    ],
+    "motto": "Je veux une visite simple et intéressante pour toute la famille.",
+    "image": "/personas/karim.png"
+  },
+  {
+    "id": "li_wei",
+    "identite_profil": {
+      "age": 27,
+      "statut": "Touriste internationale",
+      "situation": "Étudiante chinoise en séjour à Paris, visite les musées emblématiques",
+      "segments": ["public", "18-34", "international"]
+    },
+    "rapport_science": {
+      "litteratie_scientifique": "Grand public, curieuse d’histoire et de culture",
+      "perception_evolution": "Positive à l’égard des avancées médicales",
+      "confiance_institutions": "Se fie aux institutions culturelles internationales"
+    },
+    "connaissances_biologie": {
+      "niveau_base": "Basique",
+      "concepts_cles": ["Pasteur", "Vaccin contre la rage", "Laboratoire historique"],
+      "misconceptions": "Peut assimiler Pasteur à la seule vaccination, sans voir l’ensemble de ses travaux"
+    },
+    "valeurs": ["Découverte", "Patrimoine", "Photographie"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Acheter des billets en ligne en anglais", "Comprendre l’histoire de Pasteur", "Prendre des photos mémorables"],
+      "freins": ["Barrière de langue", "Infos pratiques dispersées", "Manque d’audioguides multilingues"]
+    },
+    "motivations": ["Découvrir une figure mondiale de la science", "Optimiser son temps à Paris", "Partager son voyage"],
+    "tonalite_et_eviter": {
+      "ton": "Accueillant et international",
+      "a_eviter": ["Pages uniquement en français", "Absence d’indications claires de transport et horaires"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Priorité EN/FR, prévoir CN simplifié pour pages clés",
+      "formats": ["Audioguide multilingue", "Plan de visite en anglais", "Billetterie en anglais"]
+    },
+    "conclusion": "Touriste internationale qui a besoin d’un accès multilingue et d’une billetterie en ligne simple.",
+    "parcours": {
+      "avant": "Découvre le musée via Google Maps/TripAdvisor, cherche infos en anglais et billetterie en ligne.",
+      "pendant": "Utilise un audioguide anglais, suit un parcours court avec points photo.",
+      "apres": "Partage sur WeChat/Instagram, laisse un avis en ligne." 
+    },
+    "pratiques_et_indicateurs": {
+      "usages": "usage Google Maps, TripAdvisor, WeChat, Instagram"
+    },
+    "parts_temps_par_canal": {
+      "plateformes_voyage": "élevé",
+      "sites_officiels": "élevé",
+      "reseaux_sociaux": "moyen"
+    },
+    "confiance_par_canal": [
+      {"canal": "Sites officiels", "niveau": "élevé"},
+      {"canal": "Avis voyageurs", "niveau": "moyen"}
+    ],
+    "fenetre_attention": "3–4 min par page",
+    "contraintes_pratiques": [],
+    "systeme_croyances": {
+      "rapport_information": "Se fie aux sources officielles et aux guides touristiques",
+      "perception_medias": "Utilise principalement les plateformes de voyage et les réseaux sociaux",
+      "liberte_expression_désinfo": "Préfère les informations vérifiées des institutions culturelles"
+    },
+    "attitudes_envers_institutions": "Élevée envers les musées et institutions culturelles internationales. Attend des informations claires et accessibles en plusieurs langues",
+    "attentes_transparence_science": "Niveau grand public. Besoins d'explications simples et visuelles de l'histoire scientifique",
+    "role_science_societe": "La science fait partie du patrimoine culturel mondial à découvrir",
+    "enjeux_communication": {
+      "sujets": ["Histoire de Pasteur", "Découvertes scientifiques", "Patrimoine culturel"],
+      "leviers": ["Multilingue", "Visuels", "Pratique"]
+    },
+    "services_offres": [],
+    "parcours_triggers": [],
+    "astuce_activation": [],
+    "learner_profile": {"label": "", "tagline": ""},
+    "posture_ia_personnalisation": "",
+    "language_preferences": [],
+    "preferred_contact_points": [],
+    "possible_barriers_to_engagement": [],
+    "indicateurs_sources_normes": [
+      "Argumentaire Pasteur 2025",
+      "Structure INFO"
+    ],
+    "motto": "I want to discover Pasteur easily, even if I don't speak French.",
+    "image": "/personas/li_wei.png"
+  }
+]

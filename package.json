@@ -1,0 +1,48 @@
+{
+  "name": "personas-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/app-info",
+    "apps/app-pasteur",
+    "personas-unified-demo",
+    "packages/*"
+  ],
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:info\" \"npm run dev:pasteur\"",
+    "dev:info": "npm run dev --workspace=app-info",
+    "dev:pasteur": "npm run dev --workspace=app-pasteur",
+    "build": "npm run build --workspaces",
+    "build:info": "npm run build --workspace=app-info",
+    "build:pasteur": "npm run build --workspace=app-pasteur",
+    "vercel-build": "node scripts/vercel-build.js",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
+    "install:all": "npm install && npm run install --workspaces"
+  },
+  "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@vercel/analytics": "^1.5.0",
+    "autoprefixer": "^10.4.21",
+    "lucide-react": "^0.544.0",
+    "next": "^15.5.3",
+    "personas-shared": "file:shared",
+    "postcss": "^8.4.31",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.0",
+    "typescript": "^5"
+  }
+}
