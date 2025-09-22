@@ -32,6 +32,32 @@ function generateContextualResponse(personaId: string, message: string, personaD
         "Cool ! Moi j'aime bien découvrir de nouvelles choses. Qu'est-ce qui t'intéresse ?"
       ]
     },
+    alex: {
+      // Services en ligne / médias
+      services: [
+        "Des services en ligne pour comprendre les médias ? Hmm, je suis méfiant. Les médias traditionnels sont contrôlés par les puissants. Moi je préfère les sources alternatives, les groupes Facebook et Telegram où on peut vraiment débattre sans censure.",
+        "Pour comprendre la fabrique de l'info ? Franchement, je pense qu'il faut surtout apprendre à se méfier des médias dominants. Ils nous cachent la vérité. Moi je préfère chercher dans les groupes de discussion où les gens partagent vraiment ce qui se passe.",
+        "Des services pour comprendre les médias ? Je suis sceptique. Les vrais médias libres sont sur les réseaux sociaux alternatifs. Facebook et Telegram, c'est là qu'on trouve les vraies infos, pas dans les journaux contrôlés par le système."
+      ],
+      // Expositions / musées
+      expositions: [
+        "Des expos sur les médias ? Si c'est pour nous faire croire que les médias traditionnels sont fiables, je passe. Moi je préfère les ateliers où on peut vraiment débattre et remettre en question ce qu'on nous raconte.",
+        "Les expos que j'aime ? Celles qui montrent la vraie face des médias, pas la version officielle. Il faut qu'on puisse voir comment on nous manipule et qu'on nous donne les outils pour résister.",
+        "Pour les expos, moi je veux de la transparence. Montrez-nous les coulisses, les sources cachées, les manipulations. Pas de la propagande pour nous faire croire que tout va bien."
+      ],
+      // Réseaux sociaux / sources alternatives
+      reseaux: [
+        "Facebook et Telegram, c'est là que je trouve les vraies infos ! Les médias traditionnels sont tous contrôlés. Dans les groupes de discussion, on peut vraiment débattre et partager ce qui se passe vraiment.",
+        "Les réseaux sociaux alternatifs, c'est mon truc ! Là on peut dire ce qu'on pense sans être censuré. Les médias dominants nous mentent, mais dans nos groupes on partage la vérité.",
+        "Moi je fais confiance aux groupes Facebook et Telegram. Là on peut vraiment discuter et vérifier les infos entre nous. Les médias traditionnels sont trop contrôlés par le système."
+      ],
+      // Général / autres questions
+      general: [
+        "C'est une bonne question ! Moi je préfère toujours vérifier par moi-même plutôt que de croire ce que disent les médias dominants.",
+        "Intéressant ! Moi j'aime bien débattre et remettre en question ce qu'on nous raconte. Tu veux qu'on parle de quoi exactement ?",
+        "Cool ! Moi je suis toujours méfiant face aux discours officiels. Qu'est-ce qui t'intéresse ?"
+      ]
+    },
     // Add other personas as needed...
   };
 
@@ -128,11 +154,11 @@ export async function POST(request: NextRequest) {
         "La désinformation c'est un vrai défi aujourd'hui"
       ],
       alex: [
-        "Salut ! J'aime bien débattre et comprendre les enjeux d'actualité",
-        "Parfois je me demande si ce qu'on nous dit c'est vraiment vrai",
-        "J'aime bien analyser les différents points de vue",
-        "Il faut rester critique et ne pas croire tout ce qu'on lit",
-        "L'actualité c'est complexe mais c'est important de s'y intéresser"
+        "Salut ! Je suis Alex, j'ai 46 ans et je suis plutôt sceptique face aux médias traditionnels. Je préfère chercher ma propre vérité.",
+        "Les médias dominants ne disent pas toujours la vérité. Moi je préfère me fier aux sources alternatives et aux groupes de discussion.",
+        "J'aime bien débattre et remettre en question ce qu'on nous raconte. Il faut toujours vérifier par soi-même.",
+        "Facebook et Telegram, c'est là que je trouve les vraies infos. Les médias traditionnels sont trop contrôlés.",
+        "Je suis très attaché à la liberté d'expression. Chacun doit pouvoir dire ce qu'il pense sans censure."
       ],
       jean: [
         "Bonjour ! Je m'intéresse beaucoup à l'éducation et à l'actualité",
