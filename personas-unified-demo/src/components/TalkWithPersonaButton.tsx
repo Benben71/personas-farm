@@ -61,14 +61,14 @@ export default function TalkWithPersonaButton({ persona, variant = 'page', site 
   if (variant === 'card') {
     return (
       <>
-        <Link
-          href={`/persona/${persona.id}?site=${site}`}
+        <button
+          onClick={handleOpenChat}
           className="w-full mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           <MessageCircle className="w-5 h-5" />
-          <span className="font-medium">Comprendre {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
+          <span className="font-medium">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
           <ArrowRight className="w-4 h-4 opacity-80" />
-        </Link>
+        </button>
         
         <PersonaChat 
           persona={persona} 
@@ -88,20 +88,20 @@ export default function TalkWithPersonaButton({ persona, variant = 'page', site 
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-              Comprendre et parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}
+              Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}
             </h3>
             <p className="text-sm text-neutral-600 mb-4">
-              Découvrez le profil complet de ce persona et testez vos stratégies de communication en discutant directement avec lui. 
+              Testez vos stratégies de communication en discutant directement avec ce persona. 
               Il répondra selon son profil, ses valeurs et ses motivations.
             </p>
-            <Link
-              href={`/persona/${persona.id}?site=${site}`}
+            <button
+              onClick={handleOpenChat}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
             >
               <MessageCircle className="w-4 h-4" />
-              <span className="font-medium">Découvrir le profil</span>
+              <span className="font-medium">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
               <ArrowRight className="w-4 h-4 opacity-80" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
