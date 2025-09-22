@@ -58,6 +58,32 @@ function generateContextualResponse(personaId: string, message: string, personaD
         "Cool ! Moi je suis toujours méfiant face aux discours officiels. Qu'est-ce qui t'intéresse ?"
       ]
     },
+    lucas: {
+      // Services en ligne / médias
+      services: [
+        "Des services en ligne ? Hmm, moi je préfère les jeux vidéo à l'actualité, mais si c'est présenté de façon cool, pourquoi pas ! Genre des trucs interactifs où on peut apprendre en jouant. Mais faut que ce soit pas trop scolaire, sinon je décroche.",
+        "Pour comprendre les médias ? Franchement, moi je préfère les jeux vidéo, mais si c'est présenté de façon fun, je peux essayer. Genre des trucs où on peut participer et pas juste lire des trucs ennuyeux.",
+        "Des services pour comprendre l'info ? Moi je préfère les jeux vidéo, mais si c'est interactif et pas trop compliqué, ça peut être intéressant. Faut que ce soit présenté de façon cool !"
+      ],
+      // Expositions / musées
+      expositions: [
+        "Des expos ? Moi j'aime bien quand c'est interactif et pas trop sérieux ! Genre des trucs où on peut toucher, tester, ou jouer. Les expos sur les jeux vidéo ou la technologie, ça m'intéresse. Mais faut que ce soit pas trop long, sinon je m'ennuie.",
+        "Les expos que j'aime ? Celles où on peut participer et pas juste regarder ! Genre des trucs sur la technologie, les jeux vidéo, ou l'histoire d'internet. J'aime bien quand c'est moderne et connecté.",
+        "Pour les expos, moi j'aime quand c'est fun et pas trop scolaire ! Des trucs où on peut utiliser nos téléphones ou jouer. Si c'est lié aux jeux vidéo ou à la tech, je suis partant !"
+      ],
+      // Réseaux sociaux / jeux vidéo
+      reseaux: [
+        "Les réseaux sociaux ? Moi je préfère les jeux vidéo, mais parfois je regarde des trucs sur YouTube ou Twitch. Mes potes et moi on partage des vidéos de jeux, mais parfois on tombe sur des trucs bizarres.",
+        "Sur internet, moi je suis surtout sur les plateformes de jeux vidéo. On discute avec mes potes, on partage des trucs cool, mais parfois on se demande si ce qu'on voit est vrai.",
+        "Les réseaux sociaux, c'est pas vraiment mon truc. Moi je préfère les jeux vidéo et YouTube. Mais parfois je regarde des trucs avec mes potes et on se demande si c'est vrai ou pas."
+      ],
+      // Général / autres questions
+      general: [
+        "C'est une bonne question ! Moi je préfère les jeux vidéo à l'actualité, mais je peux essayer de t'aider !",
+        "Intéressant ! Moi j'aime bien quand c'est pas trop compliqué à comprendre. Tu veux qu'on parle de quoi ?",
+        "Cool ! Moi j'aime bien découvrir de nouvelles choses, surtout si c'est fun. Qu'est-ce qui t'intéresse ?"
+      ]
+    },
     // Add other personas as needed...
   };
 
@@ -70,9 +96,9 @@ function generateContextualResponse(personaId: string, message: string, personaD
   // Analyze message content and select appropriate response category
   if (lowerMessage.includes('service') || lowerMessage.includes('en ligne') || lowerMessage.includes('médias') || lowerMessage.includes('information')) {
     return persona.services[Math.floor(Math.random() * persona.services.length)];
-  } else if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite')) {
+  } else if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite') || lowerMessage.includes('exposition') || lowerMessage.includes('aimes') || lowerMessage.includes('aime')) {
     return persona.expositions[Math.floor(Math.random() * persona.expositions.length)];
-  } else if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social')) {
+  } else if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social') || lowerMessage.includes('youtube') || lowerMessage.includes('twitch')) {
     return persona.reseaux[Math.floor(Math.random() * persona.reseaux.length)];
   } else {
     return persona.general[Math.floor(Math.random() * persona.general.length)];
