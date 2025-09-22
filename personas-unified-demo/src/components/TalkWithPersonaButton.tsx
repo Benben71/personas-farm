@@ -60,22 +60,14 @@ export default function TalkWithPersonaButton({ persona, variant = 'page', site 
 
   if (variant === 'card') {
     return (
-      <>
-        <button
-          onClick={handleOpenChat}
-          className="w-full mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-        >
-          <MessageCircle className="w-5 h-5" />
-          <span className="font-medium">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
-          <ArrowRight className="w-4 h-4 opacity-80" />
-        </button>
-        
-        <PersonaChat 
-          persona={persona} 
-          isOpen={isChatOpen} 
-          onClose={handleCloseChat} 
-        />
-      </>
+      <Link
+        href={`/persona/${persona.id}?site=${site}`}
+        className="w-full mt-4 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span className="font-medium">Comprendre {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
+        <ArrowRight className="w-4 h-4 opacity-80" />
+      </Link>
     );
   }
 
