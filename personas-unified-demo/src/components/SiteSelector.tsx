@@ -32,6 +32,14 @@ export default function SiteSelector({ currentSite }: SiteSelectorProps) {
       icon: '🌱',
       color: 'bg-green-500 hover:bg-green-600',
       textColor: 'text-white'
+    },
+    {
+      id: 'gha',
+      name: 'Global Health Awareness',
+      description: 'Comprendre les enjeux de santé publique mondiale et les défis sanitaires contemporains',
+      icon: '🏥',
+      color: 'bg-red-500 hover:bg-red-600',
+      textColor: 'text-white'
     }
   ];
 

@@ -101,7 +101,8 @@ export default function TalkWithPersonaButton({ persona, variant = 'page', site 
       <PersonaChat 
         persona={persona} 
         isOpen={isChatOpen} 
-        onClose={handleCloseChat} 
+        onClose={handleCloseChat}
+        site={site}
       />
     </>
   );

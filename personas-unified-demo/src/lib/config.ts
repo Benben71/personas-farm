@@ -15,6 +15,11 @@ export const config = {
       enabled: process.env.NEXT_PUBLIC_THEME_PASTEUR_ENABLED !== 'false',
       name: 'Exposition Pasteur',
       slug: 'pasteur'
+    },
+    gha: {
+      enabled: process.env.NEXT_PUBLIC_THEME_GHA_ENABLED !== 'false',
+      name: 'Global Health Awareness',
+      slug: 'gha'
     }
   },
   
@@ -23,7 +28,8 @@ export const config = {
     defaultAspectRatio: '3/2',
     fallbackColors: {
       info: 'from-blue-500 to-blue-600',
-      pasteur: 'from-green-500 to-green-600'
+      pasteur: 'from-green-500 to-green-600',
+      gha: 'from-red-500 to-red-600'
     }
   },
   

@@ -1,5 +1,6 @@
 import { infoTheme } from '@/themes/info-theme';
 import { pasteurTheme } from '@/themes/pasteur-theme';
+import { ghaTheme } from '@/themes/gha-theme';
 import { Persona, Theme } from '@/types';
 // TODO: Ideally, we would use a shared data module to avoid duplication,
 // but Next.js has issues with dynamic imports during build time.
@@ -7,15 +8,18 @@ import { Persona, Theme } from '@/types';
 // consider implementing a better solution to avoid data duplication.
 import infoPersonasData from '@/data/info-personas.json';
 import pasteurPersonasData from '@/data/pasteur-personas.json';
+import ghaPersonasData from '@/data/gha-personas.json';
 
 const themes: Record<string, Theme> = {
   info: infoTheme,
-  pasteur: pasteurTheme
+  pasteur: pasteurTheme,
+  gha: ghaTheme
 };
 
 const personasData: Record<string, any[]> = {
   info: infoPersonasData,
-  pasteur: pasteurPersonasData
+  pasteur: pasteurPersonasData,
+  gha: ghaPersonasData
 };
 
 export function getTheme(site: string): Theme {

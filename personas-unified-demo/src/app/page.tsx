@@ -23,7 +23,7 @@ export default async function Page({ searchParams }: PageProps) {
   }
 
   // Vérifier que le site est valide (case-insensitive)
-  if (!['info', 'pasteur'].includes(site as string)) {
+  if (!['info', 'pasteur', 'gha'].includes(site as string)) {
     // Rediriger vers 'info' si site invalide
     const theme = getTheme('info');
     const personas = getPersonas('info');

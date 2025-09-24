@@ -11,7 +11,7 @@ export default async function StrategiePage({ searchParams }: StrategiePageProps
   const site = resolvedSearchParams.site;
 
   // Vérifier que le site est spécifié et valide
-  if (!site || !['info', 'pasteur'].includes(site)) {
+  if (!site || !['info', 'pasteur', 'gha'].includes(site)) {
     notFound();
   }
 

@@ -15,7 +15,7 @@ export default async function Page({ params, searchParams }: PersonaPageProps) {
   const personaId = resolvedParams.id;
 
   // Vérifier que le site est spécifié et valide
-  if (!site || !['info', 'pasteur'].includes(site)) {
+  if (!site || !['info', 'pasteur', 'gha'].includes(site)) {
     notFound();
   }
 

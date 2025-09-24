@@ -1,284 +1,241 @@
 import { NextRequest, NextResponse } from 'next/server';
+import OpenAI from 'openai';
+import { loadPersonaData, findPersonaById, formatPersonaForPrompt, PersonaData } from '@/lib/persona-data';
 
-// Function to generate contextual responses based on message content
-function generateContextualResponse(personaId: string, message: string, personaData: any): string {
+// Initialize OpenAI client
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+// Function to detect if message is in English
+function isEnglish(message: string): boolean {
+  // Check for French words first to avoid false positives
+  const frenchWords = ["qu'est-ce", "concrètement", "mais", "fais", "quoi", "pourquoi", "comment", "où", "quand", "qui", "est-ce", "dans", "avec", "pour", "sur", "sous", "dans", "par", "de", "du", "des", "le", "la", "les", "un", "une", "je", "tu", "il", "elle", "nous", "vous", "ils", "elles"];
   const lowerMessage = message.toLowerCase();
   
-  // Define persona-specific response patterns
-  const personaResponses = {
-    nina: {
-      // Services en ligne / médias
-      services: [
-        "Oh, des services en ligne pour comprendre les médias ? Ça m'intéresse ! Moi j'aimerais bien quelque chose de fun, pas trop scolaire. Genre des vidéos courtes qui expliquent comment les journalistes travaillent, ou des jeux pour apprendre à repérer les fake news. TikTok c'est mon truc, alors si c'est dans ce style, je suis partante !",
-        "Pour comprendre la fabrique de l'info ? Hmm, moi j'aime bien quand c'est interactif ! Peut-être des quiz sur les sources, ou des vidéos qui montrent les coulisses d'un journal. Mais faut que ce soit pas trop long, sinon je décroche. Et si on pouvait partager nos découvertes avec nos amis, ce serait encore mieux !",
-        "Des services pour comprendre les médias ? Cool ! Moi j'aimerais quelque chose qui me montre comment vérifier si une info est vraie. Genre des outils simples que je peux utiliser sur mon téléphone. Et si c'est présenté de façon marrante, avec des exemples concrets, je pense que ça m'aiderait beaucoup !"
-      ],
-      // Expositions / musées
-      expositions: [
-        "Des expos ? J'aime bien quand c'est interactif et pas trop sérieux ! Genre des trucs où on peut toucher, tester, prendre des photos. Les expos sur les réseaux sociaux ou sur l'histoire d'internet, ça m'intéresse. Mais faut que ce soit pas trop long, sinon je m'ennuie. Et si on peut y aller avec des amis, c'est encore mieux !",
-        "Les expos que j'aime ? Celles où on apprend en s'amusant ! Genre des trucs sur la technologie, les médias, ou l'histoire récente. J'aime bien quand on peut participer, pas juste regarder. Et si c'est lié à ce que je vois sur les réseaux sociaux, ça me parle encore plus !",
-        "Pour les expos, moi j'aime quand c'est moderne et connecté ! Des trucs sur l'évolution des médias, ou sur comment l'info circule aujourd'hui. Si on peut utiliser nos téléphones pendant la visite, ou si c'est présenté de façon originale, je suis partante !"
-      ],
-      // Réseaux sociaux / TikTok
-      reseaux: [
-        "TikTok c'est vraiment mon truc ! J'y passe beaucoup de temps avec mes amis. On se partage des vidéos marrantes, mais parfois on tombe sur des trucs bizarres. C'est là que je me demande si c'est vrai ou pas. Ça serait bien d'avoir des outils pour vérifier directement depuis l'app !",
-        "Sur les réseaux, moi je suis surtout sur TikTok et Instagram. On partage beaucoup de trucs avec mes potes, mais parfois on se demande si ce qu'on voit est vrai. Genre les vidéos qui font peur ou qui semblent trop belles pour être vraies. C'est compliqué de faire le tri !",
-        "Les réseaux sociaux, c'est mon quotidien ! Mais parfois je me demande si ce que je vois est vraiment vrai. Genre les infos qui circulent, ou les vidéos qui semblent suspectes. Ça serait bien d'apprendre à mieux vérifier tout ça !"
-      ],
-      // Général / autres questions
-      general: [
-        "C'est une bonne question ! Moi j'aime bien apprendre des trucs nouveaux, surtout si c'est présenté de façon fun. Qu'est-ce que tu veux savoir exactement ?",
-        "Intéressant ! Moi j'aime bien quand on peut discuter de plein de trucs. Tu veux qu'on parle de quoi ?",
-        "Cool ! Moi j'aime bien découvrir de nouvelles choses. Qu'est-ce qui t'intéresse ?"
-      ]
-    },
-    alex: {
-      // Services en ligne / médias
-      services: [
-        "Des services en ligne pour comprendre les médias ? Hmm, je suis méfiant. Les médias traditionnels sont contrôlés par les puissants. Moi je préfère les sources alternatives, les groupes Facebook et Telegram où on peut vraiment débattre sans censure.",
-        "Pour comprendre la fabrique de l'info ? Franchement, je pense qu'il faut surtout apprendre à se méfier des médias dominants. Ils nous cachent la vérité. Moi je préfère chercher dans les groupes de discussion où les gens partagent vraiment ce qui se passe.",
-        "Des services pour comprendre les médias ? Je suis sceptique. Les vrais médias libres sont sur les réseaux sociaux alternatifs. Facebook et Telegram, c'est là qu'on trouve les vraies infos, pas dans les journaux contrôlés par le système."
-      ],
-      // Expositions / musées
-      expositions: [
-        "Des expos sur les médias ? Si c'est pour nous faire croire que les médias traditionnels sont fiables, je passe. Moi je préfère les ateliers où on peut vraiment débattre et remettre en question ce qu'on nous raconte.",
-        "Les expos que j'aime ? Celles qui montrent la vraie face des médias, pas la version officielle. Il faut qu'on puisse voir comment on nous manipule et qu'on nous donne les outils pour résister.",
-        "Pour les expos, moi je veux de la transparence. Montrez-nous les coulisses, les sources cachées, les manipulations. Pas de la propagande pour nous faire croire que tout va bien."
-      ],
-      // Réseaux sociaux / sources alternatives
-      reseaux: [
-        "Facebook et Telegram, c'est là que je trouve les vraies infos ! Les médias traditionnels sont tous contrôlés. Dans les groupes de discussion, on peut vraiment débattre et partager ce qui se passe vraiment.",
-        "Les réseaux sociaux alternatifs, c'est mon truc ! Là on peut dire ce qu'on pense sans être censuré. Les médias dominants nous mentent, mais dans nos groupes on partage la vérité.",
-        "Moi je fais confiance aux groupes Facebook et Telegram. Là on peut vraiment discuter et vérifier les infos entre nous. Les médias traditionnels sont trop contrôlés par le système."
-      ],
-      // Général / autres questions
-      general: [
-        "C'est une bonne question ! Moi je préfère toujours vérifier par moi-même plutôt que de croire ce que disent les médias dominants.",
-        "Intéressant ! Moi j'aime bien débattre et remettre en question ce qu'on nous raconte. Tu veux qu'on parle de quoi exactement ?",
-        "Cool ! Moi je suis toujours méfiant face aux discours officiels. Qu'est-ce qui t'intéresse ?"
-      ]
-    },
-    lucas: {
-      // Services en ligne / médias
-      services: [
-        "Des services en ligne ? Hmm, moi je préfère les jeux vidéo à l'actualité, mais si c'est présenté de façon cool, pourquoi pas ! Genre des trucs interactifs où on peut apprendre en jouant. Mais faut que ce soit pas trop scolaire, sinon je décroche.",
-        "Pour comprendre les médias ? Franchement, moi je préfère les jeux vidéo, mais si c'est présenté de façon fun, je peux essayer. Genre des trucs où on peut participer et pas juste lire des trucs ennuyeux.",
-        "Des services pour comprendre l'info ? Moi je préfère les jeux vidéo, mais si c'est interactif et pas trop compliqué, ça peut être intéressant. Faut que ce soit présenté de façon cool !"
-      ],
-      // Expositions / musées
-      expositions: [
-        "Des expos ? Moi j'aime bien quand c'est interactif et pas trop sérieux ! Genre des trucs où on peut toucher, tester, ou jouer. Les expos sur les jeux vidéo ou la technologie, ça m'intéresse. Mais faut que ce soit pas trop long, sinon je m'ennuie.",
-        "Les expos que j'aime ? Celles où on peut participer et pas juste regarder ! Genre des trucs sur la technologie, les jeux vidéo, ou l'histoire d'internet. J'aime bien quand c'est moderne et connecté.",
-        "Pour les expos, moi j'aime quand c'est fun et pas trop scolaire ! Des trucs où on peut utiliser nos téléphones ou jouer. Si c'est lié aux jeux vidéo ou à la tech, je suis partant !"
-      ],
-      // Réseaux sociaux / jeux vidéo
-      reseaux: [
-        "Les réseaux sociaux ? Moi je préfère les jeux vidéo, mais parfois je regarde des trucs sur YouTube ou Twitch. Mes potes et moi on partage des vidéos de jeux, mais parfois on tombe sur des trucs bizarres.",
-        "Sur internet, moi je suis surtout sur les plateformes de jeux vidéo. On discute avec mes potes, on partage des trucs cool, mais parfois on se demande si ce qu'on voit est vrai.",
-        "Les réseaux sociaux, c'est pas vraiment mon truc. Moi je préfère les jeux vidéo et YouTube. Mais parfois je regarde des trucs avec mes potes et on se demande si c'est vrai ou pas."
-      ],
-      // Général / autres questions
-      general: [
-        "C'est une bonne question ! Moi je préfère les jeux vidéo à l'actualité, mais je peux essayer de t'aider !",
-        "Intéressant ! Moi j'aime bien quand c'est pas trop compliqué à comprendre. Tu veux qu'on parle de quoi ?",
-        "Cool ! Moi j'aime bien découvrir de nouvelles choses, surtout si c'est fun. Qu'est-ce qui t'intéresse ?"
-      ]
-    },
-    // Add other personas as needed...
-  };
-
-  // Get persona-specific responses
-  const persona = personaResponses[personaId as keyof typeof personaResponses];
-  if (!persona) {
-    return "Intéressant ! Peux-tu me dire plus sur ce que tu penses ?";
+  if (frenchWords.some(word => lowerMessage.includes(word))) {
+    return false;
   }
 
-  // Analyze message content and select appropriate response category
+  const englishWords = ['what', 'how', 'who', 'where', 'when', 'why', 'is', 'are', 'do', 'does', 'can', 'could', 'will', 'would', 'should', 'job', 'work', 'speak', 'language', 'concretely', 'actually', 'really'];
+  return englishWords.some(word => lowerMessage.includes(word));
+}
+
+// Function to generate contextual responses based on persona data
+function generateContextualResponse(personaId: string, message: string, site: string): string {
+  const lowerMessage = message.toLowerCase();
+  
+  // Load persona data for context
+  const personas = loadPersonaData(site);
+  const persona = findPersonaById(personas, personaId);
+  
+  if (!persona) {
+    return "Désolé, je ne trouve pas mon profil. Pouvez-vous réessayer ?";
+  }
+
+  const age = persona.identite_profil.age;
+  const statut = persona.identite_profil.statut;
+  const situation = persona.identite_profil.situation;
+  const valeurs = persona.valeurs.join(', ');
+  const motivations = persona.motivations.join(', ');
+  const tonalite = persona.tonalite_et_eviter.ton;
+  const canaux = persona.pratiques_et_indicateurs.canaux.join(', ');
+  const jobs = persona.besoins_freins_jtbd.jobs.join(', ');
+  const pratiques = persona.pratiques_et_indicateurs.pratiques.join(', ');
+  
+  // Detect language and respond accordingly
+  const isUserSpeakingEnglish = isEnglish(message);
+  const personaLanguages = persona.language_preferences && persona.language_preferences.length > 0 ? persona.language_preferences : ["fr"];
+  
+  // Handle detailed job/work questions (follow-up questions)
+  if (lowerMessage.includes('concrètement') || lowerMessage.includes('concretely') || lowerMessage.includes('qu\'est-ce que tu fais') || lowerMessage.includes('what do you do') || lowerMessage.includes('dans la pratique') || lowerMessage.includes('en pratique')) {
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `Concretely, my main tasks are: ${jobs}. I work on ${pratiques} and use platforms like ${canaux}. I'm motivated by: ${motivations}.`;
+    } else {
+      return `Concrètement, mes principales tâches sont : ${jobs}. Je travaille sur ${pratiques} et j'utilise des plateformes comme ${canaux}. Je suis motivée par : ${motivations}.`;
+    }
+  }
+  
+  // Handle job/work questions
+  if (lowerMessage.includes('job') || lowerMessage.includes('work') || lowerMessage.includes('travail') || lowerMessage.includes('métier') || lowerMessage.includes('profession')) {
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `I'm a ${statut}. ${situation}. My main motivations are: ${motivations}.`;
+    } else {
+      return `Je suis ${statut}. ${situation}. Mes principales motivations sont : ${motivations}.`;
+    }
+  }
+  
+  // Handle basic questions like language, greetings, etc.
+  if (lowerMessage.includes("anglais") || lowerMessage.includes("english") || lowerMessage.includes("speak") || lowerMessage.includes("langue") || lowerMessage.includes("language")) {
+    const languages = persona.language_preferences && persona.language_preferences.length > 0 ? persona.language_preferences.join(", ") : "français";
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `Yes, I speak ${languages}. How can I help you?`;
+    } else {
+      return `Oui, je parle ${languages}. Comment puis-je t'aider ?`;
+    }
+  }
+  
+  if (lowerMessage.includes("salut") || lowerMessage.includes("bonjour") || lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `Hello! I'm ${personaId.charAt(0).toUpperCase() + personaId.slice(1)}. How are you?`;
+    } else {
+      return `Salut ! Je suis ${personaId.charAt(0).toUpperCase() + personaId.slice(1)}. Comment ça va ?`;
+    }
+  }
+  
+  if ((lowerMessage.includes("comment") && lowerMessage.includes("va")) || lowerMessage.includes("how are you")) {
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `I'm doing well, thank you! I'm ${statut} and I'm ${age} years old. How about you?`;
+    } else {
+      return `Ça va bien, merci ! Je suis ${statut} et j'ai ${age} ans. Et toi ?`;
+    }
+  }
+  
+  // Generate contextual responses based on message content and persona profile
+  if (lowerMessage.includes('présenter') || lowerMessage.includes('présente') || lowerMessage.includes('qui es-tu') || lowerMessage.includes('who are you')) {
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      return `Hello! I'm ${personaId.charAt(0).toUpperCase() + personaId.slice(1)}, I'm ${age} years old and I'm ${statut}. ${situation}. My main values are: ${valeurs}. I'm motivated by: ${motivations}.`;
+    } else {
+      return `Salut ! Je suis ${personaId.charAt(0).toUpperCase() + personaId.slice(1)}, j'ai ${age} ans et je suis ${statut}. ${situation}. Mes valeurs principales sont : ${valeurs}. Je suis motivé par : ${motivations}.`;
+    }
+  }
+  
   if (lowerMessage.includes('service') || lowerMessage.includes('en ligne') || lowerMessage.includes('médias') || lowerMessage.includes('information')) {
-    return persona.services[Math.floor(Math.random() * persona.services.length)];
-  } else if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite') || lowerMessage.includes('exposition') || lowerMessage.includes('aimes') || lowerMessage.includes('aime')) {
-    return persona.expositions[Math.floor(Math.random() * persona.expositions.length)];
-  } else if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social') || lowerMessage.includes('youtube') || lowerMessage.includes('twitch')) {
-    return persona.reseaux[Math.floor(Math.random() * persona.reseaux.length)];
+    const responses = [
+      `En tant que ${statut}, je cherche des outils qui correspondent à mon profil. J'utilise principalement ${canaux} et j'aime quand c'est présenté de façon ${tonalite}.`,
+      `Pour comprendre les médias, j'ai besoin de quelque chose qui respecte mes valeurs : ${valeurs}. Je préfère les formats adaptés à mon âge et à ma situation.`,
+      `Des services en ligne ? Ça m'intéresse ! Mais il faut que ce soit en phase avec mes motivations : ${motivations}. Je veux quelque chose d'accessible et de fiable.`
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+  
+  if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite') || lowerMessage.includes('exposition') || lowerMessage.includes('aimes') || lowerMessage.includes('aime')) {
+    const responses = [
+      `J'aime les expositions qui correspondent à mes centres d'intérêt. En tant que ${statut}, je cherche des expériences qui respectent mes valeurs : ${valeurs}.`,
+      `Pour les expos, je préfère quand c'est présenté de façon ${tonalite}. Ça doit être adapté à mon âge et à ma situation de ${situation}.`,
+      `Les expositions m'intéressent si elles touchent à mes motivations : ${motivations}. J'aime quand c'est interactif et accessible.`
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+  
+  if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social') || lowerMessage.includes('youtube') || lowerMessage.includes('twitch')) {
+    const responses = [
+      `Je suis très actif sur ${canaux}. Ces plateformes correspondent à mes valeurs : ${valeurs}. J'y trouve des contenus qui me motivent.`,
+      `Les réseaux sociaux, c'est mon quotidien ! J'utilise principalement ${canaux} et j'aime quand le contenu respecte mes valeurs : ${valeurs}.`,
+      `Sur les réseaux, je cherche des contenus qui correspondent à mes motivations : ${motivations}. Je préfère ${canaux} car ça correspond à mon profil.`
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+
+  // General responses - try to match user language
+  if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+    const generalResponses = [
+      `That's a good question! As a ${statut}, I find that interesting. My values are: ${valeurs}.`,
+      `Interesting! That touches on my motivations: ${motivations}. I'm ${situation} and that speaks to me.`,
+      `Cool! That matches my profile. I'm ${age} years old, I'm ${statut} and my values are: ${valeurs}.`
+    ];
+    return generalResponses[Math.floor(Math.random() * generalResponses.length)];
   } else {
-    return persona.general[Math.floor(Math.random() * persona.general.length)];
+    const generalResponses = [
+      `C'est une bonne question ! En tant que ${statut}, je trouve ça intéressant. Mes valeurs sont : ${valeurs}.`,
+      `Intéressant ! Ça touche à mes motivations : ${motivations}. Je suis ${situation} et ça me parle.`,
+      `Cool ! Ça correspond à mon profil. J'ai ${age} ans, je suis ${statut} et mes valeurs sont : ${valeurs}.`
+    ];
+    return generalResponses[Math.floor(Math.random() * generalResponses.length)];
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ 
-    message: 'Persona chat API is working',
-    status: 'ok',
-    timestamp: new Date().toISOString()
-  });
+// Function to generate dynamic responses using OpenAI (when available)
+async function generateDynamicResponse(personaId: string, message: string, site: string): Promise<string> {
+  try {
+    // Load persona data
+    const personas = loadPersonaData(site);
+    const persona = findPersonaById(personas, personaId);
+    
+    if (!persona) {
+      return "Désolé, je ne trouve pas mon profil. Pouvez-vous réessayer ?";
+    }
+
+    // Format persona data for the prompt
+    const personaPrompt = formatPersonaForPrompt(persona, site);
+    
+    // Detect user language
+    const isUserSpeakingEnglish = isEnglish(message);
+    const personaLanguages = persona.language_preferences && persona.language_preferences.length > 0 ? persona.language_preferences : ["fr"];
+    
+    // Create language instruction
+    let languageInstruction = "";
+    if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
+      languageInstruction = "IMPORTANT: The user is speaking English. Respond in English if you can, otherwise respond in your preferred language.";
+    }
+    
+      // Create the complete prompt
+      const systemPrompt = `${personaPrompt}
+
+${languageInstruction}
+
+INSTRUCTIONS:
+- Réponds de manière naturelle et authentique
+- Reste fidèle à ton profil et personnalité
+- Réponds directement aux questions posées
+- Sois concis (1-2 phrases) sauf si on te demande plus de détails
+- Comprends le contexte de la conversation`;
+
+      // Call OpenAI API
+      const completion = await openai.chat.completions.create({
+        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: systemPrompt
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ],
+        max_tokens: 300, // Increased from 150 to allow more natural conversation
+        temperature: 0.7,
+      });
+
+      const response = completion.choices[0]?.message?.content || "Désolé, je n'ai pas pu générer de réponse.";
+      return response;
+  } catch (error) {
+    console.error('OpenAI API error:', error);
+    throw error;
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { personaId, message, personaData } = await request.json();
-    
-    // Log the request for debugging
-    console.log('Persona chat request:', { personaId, message: message?.substring(0, 50) + '...' });
+    const { personaId, message, site = 'info' } = await request.json();
 
-    // Fallback responses for demo purposes
-    const fallbackResponses = {
-      // Info personas
-      nina: [
-        "Oh cool ! Tu veux parler de quoi ? J'adore TikTok, tu connais ?",
-        "Moi j'aime bien les vidéos courtes, c'est plus fun que les articles longs !",
-        "Mes amis et moi on partage souvent des trucs sur Instagram. Tu fais pareil ?",
-        "Parfois je me demande si ce que je vois sur les réseaux c'est vrai...",
-        "J'aime bien quand c'est drôle et pas trop sérieux, tu vois ?"
-      ],
-      lucas: [
-        "Hey ! Moi je préfère les jeux vidéo à l'actualité, mais bon...",
-        "Mes potes et moi on discute parfois de trucs qu'on voit sur internet",
-        "J'aime bien quand c'est pas trop compliqué à comprendre",
-        "Parfois je regarde des vidéos YouTube sur des sujets qui m'intéressent",
-        "L'actualité c'est pas vraiment mon truc, mais je peux essayer de t'aider !"
-      ],
-      mateo: [
-        "Salut ! Moi c'est Mateo, j'aime bien débattre avec mes potes sur les réseaux",
-        "Parfois je me demande si ce que je vois sur internet c'est vraiment vrai",
-        "J'aime bien quand c'est pas trop compliqué et que ça me parle",
-        "Mes amis et moi on partage souvent des trucs intéressants",
-        "L'actualité c'est pas toujours mon truc mais je peux essayer !"
-      ],
-      samuel: [
-        "Hey ! Je suis très connecté et j'aime comprendre comment ça marche",
-        "L'informatique c'est mon truc, mais l'actualité aussi parfois",
-        "J'aime bien analyser les infos et voir d'où elles viennent",
-        "Parfois je me demande si les algorithmes nous montrent vraiment tout",
-        "C'est intéressant de voir comment l'info circule sur internet"
-      ],
-      sofia: [
-        "Bonjour ! L'actualité santé m'intéresse beaucoup, évidemment !",
-        "En tant que médecin, je vois l'importance d'une info de qualité",
-        "Il faut toujours vérifier les sources, surtout en santé",
-        "J'aime bien quand l'info est claire et bien expliquée",
-        "La désinformation en santé peut être vraiment dangereuse"
-      ],
-      amina: [
-        "Excellente question ! J'aime beaucoup débattre de sujets d'actualité",
-        "Je pense qu'il faut toujours vérifier les sources avant de croire quelque chose",
-        "L'éducation aux médias c'est super important, surtout pour les jeunes",
-        "J'aime bien lire différents points de vue sur un même sujet",
-        "Il faut rester critique et ne pas tout prendre pour argent comptant"
-      ],
-      david: [
-        "Bonjour ! L'actualité m'inquiète parfois, surtout pour mes enfants",
-        "En tant que père, je veux comprendre ce qui se passe dans le monde",
-        "Il faut faire attention à ce qu'on lit et partage",
-        "J'aime bien quand l'info est claire et pas trop alarmiste",
-        "C'est important de rester informé mais pas de s'inquiéter pour rien"
-      ],
-      emilie: [
-        "Hello ! J'adore partager des infos et débattre de l'actualité !",
-        "En tant que journaliste, je vois l'importance d'une info de qualité",
-        "Il faut toujours vérifier les sources et être transparent",
-        "J'aime bien quand les gens s'intéressent vraiment à l'actualité",
-        "La désinformation c'est un vrai défi aujourd'hui"
-      ],
-      alex: [
-        "Salut ! Je suis Alex, j'ai 46 ans et je suis plutôt sceptique face aux médias traditionnels. Je préfère chercher ma propre vérité.",
-        "Les médias dominants ne disent pas toujours la vérité. Moi je préfère me fier aux sources alternatives et aux groupes de discussion.",
-        "J'aime bien débattre et remettre en question ce qu'on nous raconte. Il faut toujours vérifier par soi-même.",
-        "Facebook et Telegram, c'est là que je trouve les vraies infos. Les médias traditionnels sont trop contrôlés.",
-        "Je suis très attaché à la liberté d'expression. Chacun doit pouvoir dire ce qu'il pense sans censure."
-      ],
-      jean: [
-        "Bonjour ! Je m'intéresse beaucoup à l'éducation et à l'actualité",
-        "En tant qu'enseignant, je vois l'importance d'une bonne éducation aux médias",
-        "Il faut apprendre aux jeunes à être critiques face à l'info",
-        "J'aime bien quand l'actualité est bien expliquée et contextualisée",
-        "L'éducation c'est la clé pour comprendre le monde qui nous entoure"
-      ],
-      
-      // Pasteur personas
-      marie: [
-        "Super question ! Pasteur était vraiment génial, tu savais qu'il a découvert les microbes ?",
-        "Moi j'adore la biologie, surtout la génétique ! C'est fascinant !",
-        "L'évolution c'est un concept que j'arrive de mieux en mieux à comprendre",
-        "J'aime bien quand on me montre des expériences concrètes",
-        "La science c'est pas toujours facile mais c'est tellement intéressant !"
-      ],
-      pierre: [
-        "Excellente question ! En tant que prof de SVT, j'adore expliquer ces concepts",
-        "Pasteur a révolutionné notre compréhension des microbes et de la vaccination",
-        "L'évolution est un pilier de la biologie moderne, c'est passionnant à enseigner",
-        "Je pense qu'il faut rendre la science accessible à tous",
-        "Les expériences pratiques sont essentielles pour comprendre ces concepts"
-      ],
-      sophie: [
-        "Hello ! Je m'intéresse à la science pour mes enfants !",
-        "En tant que mère, je veux comprendre les découvertes importantes",
-        "Pasteur c'est quelqu'un qui a vraiment changé le monde",
-        "J'aime bien quand la science est expliquée simplement",
-        "C'est important de transmettre l'amour de la science aux enfants"
-      ],
-      clara: [
-        "Hello ! Pasteur et l'évolution me fascinent !",
-        "En tant qu'étudiante en biologie, je trouve ça passionnant",
-        "L'évolution c'est un concept fascinant à étudier",
-        "J'aime bien quand on me montre des exemples concrets",
-        "La science c'est vraiment incroyable quand on y réfléchit"
-      ],
-      michel: [
-        "Salut ! Pasteur et la science ont toujours été mes références !",
-        "En tant que médecin, je vois l'importance des découvertes de Pasteur",
-        "La vaccination c'est vraiment une révolution médicale",
-        "J'aime bien expliquer la science de manière accessible",
-        "Pasteur a vraiment changé notre compréhension des maladies"
-      ],
-      nadia: [
-        "Bonjour ! J'adore transmettre la passion de la biologie !",
-        "En tant qu'enseignante de SVT, je trouve ça passionnant",
-        "L'évolution c'est un concept clé à comprendre",
-        "J'aime bien quand les élèves s'intéressent vraiment à la science",
-        "Pasteur c'est un exemple parfait de l'importance de la recherche"
-      ],
-      karim: [
-        "Bonjour ! J'aime expliquer la science de manière accessible",
-        "En tant que chercheur en génétique, je trouve ça fascinant",
-        "L'évolution c'est vraiment un concept fondamental",
-        "J'aime bien quand on peut vulgariser la science",
-        "Pasteur a vraiment ouvert la voie à la génétique moderne"
-      ],
-      li_wei: [
-        "Salut ! La science et l'évolution sont mes passions !",
-        "En tant qu'étudiant en médecine, je trouve ça incroyable",
-        "L'évolution c'est vraiment fascinant à étudier",
-        "J'aime bien comprendre comment tout ça fonctionne",
-        "Pasteur c'est vraiment un génie de la science"
-      ]
-    };
+    if (!personaId || !message) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
 
-    // Generate contextual response based on message content and persona
-    const contextualResponse = generateContextualResponse(personaId, message, personaData);
+    let response: string;
+    let fallback = false;
 
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+    try {
+      // Try to use OpenAI for dynamic responses
+      response = await generateDynamicResponse(personaId, message, site);
+    } catch (error) {
+      console.log('Falling back to contextual responses:', error);
+      // Fall back to contextual responses if OpenAI fails
+      response = generateContextualResponse(personaId, message, site);
+      fallback = true;
+    }
 
-    const response = {
-      response: contextualResponse,
-      fallback: true,
+    return NextResponse.json({ 
+      response, 
+      fallback,
       personaId,
-      timestamp: new Date().toISOString()
-    };
-    
-    console.log('Persona chat response:', { personaId, responseLength: contextualResponse.length });
-    
-    return NextResponse.json(response);
+      site 
+    });
 
   } catch (error) {
-    console.error('Error in persona-chat API:', error);
-    
-    return NextResponse.json(
-      { 
-        error: 'Erreur lors du traitement de votre message',
-        fallback: true 
-      },
-      { status: 500 }
-    );
+    console.error('Error in persona chat API:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

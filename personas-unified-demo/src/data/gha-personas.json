@@ -1,0 +1,327 @@
+[
+  {
+    "id": "josephine",
+    "identite_profil": {
+      "age": 52,
+      "statut": "Professeure d’histoire contemporaine",
+      "situation": "Université de Kinshasa; membre d’un réseau panafricain de pédagogie",
+      "segments": ["pro", "Enseignement supérieur", "Formation des enseignants", "Conseil curriculaire"]
+    },
+    "valeurs": ["Rigueur scientifique", "Décolonisation des savoirs", "Accès équitable à l’éducation", "Coopération Africaine"],
+    "besoins_freins_jtbd": {
+      "jobs": [
+        "Intégrer la GHA dans les cours et maquettes universitaires",
+        "Former des enseignants du secondaire à l’usage des guides GHA",
+        "Documenter l’impact des modules GHA sur les apprentissages"
+      ],
+      "freins": [
+        "Manque de manuels alignés GHA",
+        "Temps limité pour reformater les cours",
+        "Accès irrégulier aux ressources numériques dans certaines régions"
+      ]
+    },
+    "motivations": [
+      "Transmettre une histoire d’Afrique complète et plurielle",
+      "Renforcer la pensée critique des étudiants",
+      "Valoriser les sources africaines et la recherche locale"
+    ],
+    "pratiques_et_indicateurs": {
+      "canaux": ["Cours magistraux", "MOOC internes", "Ateliers enseignants", "Bibliothèques universitaires"],
+      "pratiques": ["Syllabi intégrant GHA", "Études de cas par volume", "Évaluations formatives"],
+      "frequence_intensite": "2 semestres/an avec unités GHA dédiées",
+      "devices": ["Laptop", "Projecteur", "LMS universitaire"],
+      "indicateurs": [
+        {"intitule": "Enseignants formés à GHA/an", "valeur": "120", "source": "Rapport faculté"},
+        {"intitule": "Unités d’enseignement alignées GHA", "valeur": "6", "source": "Commission pédagogique"}
+      ]
+    },
+    "enjeux_communication": {
+      "sujets": ["Méthodologie historique", "Sources africaines", "Histoire des diasporas"],
+      "leviers": ["Guides abrégés GHA", "Schémas chronologiques", "Cartes et iconographie"],
+      "lien_lieu_physique": "Cours sur site + visites de musées partenaires"
+    },
+    "services_offres": [
+      "Kit syllabus GHA (plans de cours, bibliographies)",
+      "Parcours d’ateliers pour enseignants du secondaire",
+      "Webinaires inter-universitaires ‘Global Africa’"
+    ],
+    "tonalite_et_eviter": {
+      "ton": "académique, clair, sourcé",
+      "a_eviter": ["Jargon inutile", "Approches eurocentrées non contextualisées"]
+    },
+    "accessibilite_inclusion": {
+      "langage": "Français simple, définitions des concepts clés",
+      "formats": ["PDF accessibles", "Diaporamas", "Fiches synthèse"]
+    },
+    "parcours_triggers": [
+      "Réforme curriculaire nationale",
+      "Semestre d’introduction à l’histoire africaine",
+      "Programmes de formation continue"
+    ],
+    "posture_ia_personnalisation": {"usage": "Utilise IA pour générer quiz et plans de cours", "limites": "Exige vérification des sources"},
+    "confiance_par_canal": [
+      {"canal": "Revues académiques", "niveau": "Élevé"},
+      {"canal": "Guides UNESCO GHA", "niveau": "Élevé"},
+      {"canal": "Réseaux sociaux", "niveau": "Moyen"}
+    ],
+    "mode_socialisation_info": "Groupes de recherche, colloques, listes de diffusion",
+    "fenetre_attention": "90 minutes",
+    "contraintes_pratiques": ["Charges d’enseignement", "Calendrier des jurys"],
+    "objections_cles": ["Charge de travail de refonte des cours"],
+    "learner_profile": {"label": "Academic Integrator", "tagline": "Transformer le curriculum par la GHA"},
+    "astuce_activation": "Proposer des packs prêts-à-enseigner (objectifs, slides, évaluations)",
+    "note_neutralite": "S’appuie sur comités scientifiques GHA",
+    "global_vs_local_identity": "Ancrage local, perspective panafricaine et globale",
+    "language_preferences": ["fr", "en"],
+    "preferred_contact_points": ["Email universitaire", "Webinaires Zoom"],
+    "possible_barriers_to_engagement": "Contraintes institutionnelles de validation des maquettes",
+    "attitudes_envers_institutions": "Haute confiance envers UNESCO et AU",
+    "attitudes_envers_fact_checkers": "Privilégie la relecture académique",
+    "indicateurs_sources_normes": [
+      {"intitule": "Alignement Agenda 2063 / ODD 4", "valeur": "Oui", "source": "UNESCO GHA"}
+    ],
+    "date_derniere_mise_a_jour": "2025-09-23",
+    "niveau_preuve": "Aligné documents GHA",
+    "conclusion": "Persona pivot pour l’intégration académique durable",
+    "motto": "Savoir partagé, dignité renforcée",
+    "image": "/gha-personas/josephine.png",
+
+    "primary_audiences": ["Enseignants", "Étudiants", "Formateurs de formateurs", "Responsables de curricula"],
+    "dissemination_channels": ["Cours universitaires", "MOOC/LMS", "Ateliers enseignants"],
+    "key_messages": ["GHA = histoire plurielle", "Pensée critique", "Kits prêts-à-enseigner"],
+    "unesco_alignment": {"agenda_2063": ["Aspiration 5","Aspiration 6"], "sdg_targets": ["4.7","10.2"]},
+    "gha_volumes_focus": ["I","II","IV","VIII","X"],
+    "content_formats": ["Syllabus pack","Fiches synthèse","Diaporamas"],
+    "assets_needed": ["Guides abrégés","Cartes chronologiques","Bibliographies commentées"],
+    "policy_hooks": ["Réformes de curricula","Accréditations","Formation continue obligatoire"],
+    "training_needs": ["Didactique GHA","Évaluation par compétences","Usage de sources primaires"],
+    "kpis": [{"metric":"Enseignants formés/an","target":120,"source":"Faculté"}],
+    "risks": ["Temps limité pour refonte de cours","Accès inégal aux ressources numériques"],
+    "mitigations": ["Packs prêts-à-enseigner","Versions offline PDF/USB"],
+    "event_hooks": ["Journée de l’Afrique","Lancements de volumes GHA"],
+    "calls_to_action": ["Adopter le kit syllabus GHA","Planifier une formation enseignants"],
+    "digital_stack": ["LMS universitaire","Zoom/Webinar","Drive institutionnel"],
+    "example_activities": ["Séminaire ‘Global Africa’ co-enseigné","Atelier sources primaires (archives/musées partenaires)"],
+    "sora_prompt": "Ultra-realistic professional headshot portrait in pastel painted style of a 52-year-old Congolese female history professor..."
+  },
+  {
+    "id": "karim",
+    "identite_profil": {
+      "age": 45,
+      "statut": "Diplomate, Représentation permanente auprès de l’UNESCO",
+      "situation": "Coordinateur de coopération culturelle multilatérale",
+      "segments": ["pro", "Politiques publiques", "Partenariats", "Plaidoyer"]
+    },
+    "valeurs": ["Diplomatie culturelle", "Paix", "Dialogue interculturel", "Solidarité"],
+    "besoins_freins_jtbd": {
+      "jobs": [
+        "Obtenir des engagements gouvernementaux pour intégrer la GHA",
+        "Mobiliser des financements pour la diffusion des guides",
+        "Visibiliser la GHA dans les événements internationaux"
+      ],
+      "freins": ["Concurrence des priorités politiques", "Cycles budgétaires longs", "Rotation des équipes"]
+    },
+    "motivations": ["Renforcer l’image internationale de la coopération africaine", "Contribuer à des réformes éducatives durables"],
+    "pratiques_et_indicateurs": {
+      "canaux": ["Conférences ministérielles", "Sommet UA", "Side-events ONU"],
+      "pratiques": ["Notes verbales", "MoUs", "Tables rondes"],
+      "frequence_intensite": "Agenda trimestriel d’initiatives GHA",
+      "devices": ["Smartphone sécurisé", "Suite bureautique"],
+      "indicateurs": [
+        {"intitule": "Accords/MoU conclus", "valeur": "3/an", "source": "Chancellerie"},
+        {"intitule": "Budget mobilisé pour diffusion GHA", "valeur": "500k€", "source": "Rapport annuel"}
+      ]
+    },
+    "enjeux_communication": {"sujets": ["Agenda 2063", "ODD 4.7", "Global Africa"], "leviers": ["Storytelling diplomatique", "Cas d’usage pays"], "lien_lieu_physique": "Sièges d’organisations, ambassades, musées nationaux"},
+    "services_offres": ["Paquets de plaidoyer prêts-à-présenter", "Dossiers de presse multilingues", "Roadshow GHA dans capitales"],
+    "tonalite_et_eviter": {"ton": "institutionnel, factuel, inspirant", "a_eviter": ["Polémiques partisanes", "Sur-promesses non financées"]},
+    "accessibilite_inclusion": {"langage": "Multilingue clair", "formats": ["Briefs 2 pages", "Infographies KPI", "Vidéo 2 min"]},
+    "parcours_triggers": ["Fenêtre budgétaire", "Présidence de l’UA", "Agenda ministériel Éducation"],
+    "posture_ia_personnalisation": {"usage": "Analyse de parties prenantes, synthèses", "limites": "Validation humaine requise"},
+    "confiance_par_canal": [
+      {"canal": "Documents UNESCO/UA", "niveau": "Élevé"},
+      {"canal": "Presse internationale de référence", "niveau": "Moyen"}
+    ],
+    "mode_socialisation_info": "Réseaux diplomatiques, groupes de travail inter-agences",
+    "fenetre_attention": "30-45 min",
+    "contraintes_pratiques": ["Protocoles", "Délais de validation"],
+    "objections_cles": ["Priorité non immédiate pour certains gouvernements"],
+    "learner_profile": {"label": "Policy Champion", "tagline": "Transformer l’engagement en politiques publiques"},
+    "astuce_activation": "Fournir des ‘one-pagers’ et un calendrier d’opportunités diplomatiques",
+    "note_neutralite": "Références croisées (UNESCO, UA, États membres)",
+    "global_vs_local_identity": "Perspective globale, ancrage national",
+    "language_preferences": ["fr", "en", "ar"],
+    "preferred_contact_points": ["Note verbale", "Email officiel"],
+    "possible_barriers_to_engagement": "Limitations budgétaires et cycles électoraux",
+    "attitudes_envers_institutions": "Haute confiance envers organisations multilatérales",
+    "attitudes_envers_fact_checkers": "Requiert sources officielles",
+    "indicateurs_sources_normes": [{"intitule": "Alignement ODD 4/16", "valeur": "Oui", "source": "UNESCO"}],
+    "date_derniere_mise_a_jour": "2025-09-23",
+    "niveau_preuve": "Aligné documents GHA",
+    "conclusion": "Amplificateur stratégique international",
+    "motto": "Culture, paix, avenir partagé",
+    "image": "/gha-personas/karim.png",
+
+    "primary_audiences": ["Ministères Éducation/Culture","UA/UN","Fondations"],
+    "dissemination_channels": ["Conférences ministérielles","Side-events ONU/UA","Ambassades"],
+    "key_messages": ["Diplomatie culturelle","Alignement Agenda 2063 & ODD 4.7","Partenariats"],
+    "unesco_alignment": {"agenda_2063": ["Aspiration 5","Aspiration 6"], "sdg_targets": ["4.7","17.16","16.7"]},
+    "gha_volumes_focus": ["IX","X","XI"],
+    "content_formats": ["Policy briefs 2p","Infographies KPI","Keynote 10 slides"],
+    "assets_needed": ["One-pagers pays","MoU templates","Dossier de presse multilingue"],
+    "policy_hooks": ["Plans sectoriels Éducation/Culture","Coopération UA-UNESCO"],
+    "training_needs": ["Narratif diplomatique GHA","Suivi-évaluation d’impact"],
+    "kpis": [{"metric":"MoU signés/an","target":3,"source":"Chancellerie"}],
+    "risks": ["Concurrence d’agendas","Cycles budgétaires longs"],
+    "mitigations": ["Calendrier opportunités","Pipelines de co-financement"],
+    "event_hooks": ["Sommet UA","Journée internationale liée aux diasporas"],
+    "calls_to_action": ["Signer un MoU","Co-financer une diffusion nationale GHA"],
+    "digital_stack": ["Office suite","CRM diplomatique","Press kit cloud"],
+    "example_activities": ["Roadshow GHA dans 3 capitales","Side-event SDG4.7 avec étude de cas ‘Global Africa’"],
+    "sora_prompt": "Ultra-realistic professional headshot portrait in pastel painted style of a 45-year-old Moroccan male diplomat..."
+  },
+  {
+    "id": "leila",
+    "identite_profil": {
+      "age": 29,
+      "statut": "Youth Engagement Officer / Chargée de médiation numérique",
+      "situation": "Musée en Afrique du Nord; pilotage social media & outreach",
+      "segments": ["pro", "Jeunesse 15-29", "Non-formel", "Artistes & créateurs"]
+    },
+    "valeurs": ["Inclusion", "Créativité", "Fierté culturelle", "Co-création avec les jeunes"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Traduire GHA en formats courts et viraux", "Engager artistes et influenceurs", "Mesurer l’impact social"],
+      "freins": ["Budget limité pour production vidéo", "Algorithmes changeants", "Scepticisme du public"]
+    },
+    "motivations": ["Rendre l’histoire vivante et proche", "Donner une voix aux jeunes"],
+    "pratiques_et_indicateurs": {
+      "canaux": ["TikTok", "Instagram", "YouTube Shorts", "Ateliers au musée"],
+      "pratiques": ["Séries thématiques #GlobalAfrica", "Collabs artistes", "Lives Q&A"],
+      "frequence_intensite": "3-5 posts/semaine; 1 live/mois",
+      "devices": ["Smartphone", "Suite montage vidéo"],
+      "indicateurs": [
+        {"intitule": "Portée mensuelle", "valeur": "250k", "source": "Analytics"},
+        {"intitule": "Taux d’engagement", "valeur": "7%", "source": "Analytics"}
+      ]
+    },
+    "enjeux_communication": {"sujets": ["Récits panafricains", "Diasporas", "Figures historiques"], "leviers": ["Humour", "Musique", "Motion design"], "lien_lieu_physique": "Événements jeunesse dans le musée et hors-les-murs"},
+    "services_offres": ["Pack social media GHA", "Templates story/réels", "Ateliers créateurs"],
+    "tonalite_et_eviter": {"ton": "positif, visuel, participatif", "a_eviter": ["Tonalité moralisatrice", "Texte dense sans visuels"]},
+    "accessibilite_inclusion": {"langage": "Simple, bilingue FR/AR", "formats": ["Sous-titres", "ALT-text", "Captions"]},
+    "parcours_triggers": ["Journées internationales UNESCO", "Sorties de volumes GHA", "Vacances scolaires"],
+    "posture_ia_personnalisation": {"usage": "Idéation contenus, sous-titrage", "limites": "Validation humaine des faits"},
+    "confiance_par_canal": [
+      {"canal": "Guides UNESCO", "niveau": "Élevé"},
+      {"canal": "Créateurs partenaires", "niveau": "Moyen"}
+    ],
+    "mode_socialisation_info": "Communautés en ligne, clubs jeunes",
+    "fenetre_attention": "Courte (formats < 60s)",
+    "contraintes_pratiques": ["Droits musicaux", "Autorisations images"],
+    "objections_cles": ["‘L’histoire est ennuyeuse’ → contrer par formats fun"],
+    "learner_profile": {"label": "Youth Amplifier", "tagline": "Faire vibrer la GHA avec les jeunes"},
+    "astuce_activation": "Calendrier éditorial lié aux journées UNESCO",
+    "note_neutralite": "Validation par équipe scientifique interne",
+    "global_vs_local_identity": "Local first, partage global",
+    "language_preferences": ["fr", "ar", "en"],
+    "preferred_contact_points": ["DM pro Instagram", "Email musée"],
+    "possible_barriers_to_engagement": "Ressources de production limitées",
+    "attitudes_envers_institutions": "Bonne confiance envers UNESCO",
+    "attitudes_envers_fact_checkers": "Vérifie avec équipe éditoriale",
+    "indicateurs_sources_normes": [{"intitule": "ODD 4.7 (éducation à la citoyenneté mondiale)", "valeur": "Contribue", "source": "UNESCO"}],
+    "date_derniere_mise_a_jour": "2025-09-23",
+    "niveau_preuve": "Aligné documents GHA",
+    "conclusion": "Leviers numériques pour l’adhésion jeunesse",
+    "motto": "Apprendre, créer, partager",
+    "image": "/gha-personas/leila.png",
+
+    "primary_audiences": ["Jeunes 15–29","Créateurs","Éducateurs non formels"],
+    "dissemination_channels": ["TikTok","Instagram","YouTube Shorts","Ateliers"],
+    "key_messages": ["Histoire vivante","Global Africa","Apprends–crée–partage"],
+    "unesco_alignment": {"agenda_2063": ["Aspiration 5","Aspiration 6"], "sdg_targets": ["4.7","10.2"]},
+    "gha_volumes_focus": ["X","VIII","IV"],
+    "content_formats": ["Stories/Réels","Memes sourcés","Infographies bilingues","Lives Q&A"],
+    "assets_needed": ["Template vidéo 30–60s","Banque d’extraits GHA","Sous-titres auto"],
+    "policy_hooks": ["Programmes d’éducation non formelle","Journées UNESCO"],
+    "training_needs": ["Fact-checking visuel","Accessibilité (sous-titres/ALT)"],
+    "kpis": [{"metric":"Taux d’engagement","target":">=7%","source":"Analytics"}],
+    "risks": ["Budget vidéo limité","Algorithmes changeants"],
+    "mitigations": ["Templates réplicables","Calendrier éditorial UNESCO"],
+    "event_hooks": ["Journées internationales UNESCO","Sorties de volumes"],
+    "calls_to_action": ["Suivre la série #GlobalAfrica","Participer à un atelier créateur"],
+    "digital_stack": ["Suite montage mobile","Planificateur social","Analytics"],
+    "example_activities": ["Série TikTok ‘1 minute, 1 idée GHA’","Atelier créateurs avec musée partenaire"],
+    "sora_prompt": "Ultra-realistic professional headshot portrait in pastel painted style of a 29-year-old North African female youth officer..."
+  },
+  {
+    "id": "fatou",
+    "identite_profil": {
+      "age": 50,
+      "statut": "Inspectrice générale – Ministère de l’Éducation",
+      "situation": "Supervision des curricula; articulation avec écoles normales",
+      "segments": ["pro", "Décideurs éducatifs", "Programmes nationaux", "Évaluation"]
+    },
+    "valeurs": ["Qualité", "Équité", "Durabilité des réformes", "Preuves et standards"],
+    "besoins_freins_jtbd": {
+      "jobs": ["Adapter guides GHA en ressources officielles", "Former formateurs et inspecteurs", "Déployer à l’échelle nationale"],
+      "freins": ["Délais administratifs", "Contraintes budgétaires", "Hétérogénéité territoriale"]
+    },
+    "motivations": ["Assurer la cohérence et la qualité pédagogique", "Répondre aux stratégies UA/UNESCO"],
+    "pratiques_et_indicateurs": {
+      "canaux": ["Circulaires", "Formations ministérielles", "Évaluations nationales"],
+      "pratiques": ["Guides enseignants officiels", "Banques d’items", "Pilotage de manuels"],
+      "frequence_intensite": "Cycles pluriannuels",
+      "devices": ["Intranet ministériel", "Plateforme formation"],
+      "indicateurs": [
+        {"intitule": "Écoles adoptant modules GHA", "valeur": "40% année 1", "source": "DGESCO"},
+        {"intitule": "Formateurs certifiés GHA", "valeur": "300", "source": "DRH Formation"}
+      ]
+    },
+    "enjeux_communication": {"sujets": ["Standardisation", "Évaluation des acquis", "Formation initiale/continue"], "leviers": ["Pilotes régionaux", "Retours enseignants"], "lien_lieu_physique": "Écoles normales, rectorats, établissements pilotes"},
+    "services_offres": ["Boîte à outils curriculaire", "Parcours e-learning", "Comité d’experts GHA"],
+    "tonalite_et_eviter": {"ton": "technique, pragmatique", "a_eviter": ["Concepts sans mise en œuvre", "Ressources non standardisées"]},
+    "accessibilite_inclusion": {"langage": "Clair, fiches pratiques", "formats": ["SCORM", "PDF accessibles", "Checklists"]},
+    "parcours_triggers": ["Révision des programmes", "Nouveaux manuels", "Évaluations nationales"],
+    "posture_ia_personnalisation": {"usage": "Analyse de données d’évaluation", "limites": "Protection des données"},
+    "confiance_par_canal": [
+      {"canal": "Documents officiels", "niveau": "Élevé"},
+      {"canal": "Guides UNESCO", "niveau": "Élevé"}
+    ],
+    "mode_socialisation_info": "Comités, groupes d’experts, inspections",
+    "fenetre_attention": "60 min",
+    "contraintes_pratiques": ["Procédures d’achats", "Calendriers scolaires"],
+    "objections_cles": ["Charge de formation des enseignants"],
+    "learner_profile": {"label": "Curriculum Builder", "tagline": "Du guide au programme national"},
+    "astuce_activation": "Proposer kits ‘copier-coller’ pour manuels et évaluations",
+    "note_neutralite": "Comité qualité et preuves",
+    "global_vs_local_identity": "Normes nationales, cohérence régionale UA",
+    "language_preferences": ["fr"],
+    "preferred_contact_points": ["Courriel institutionnel"],
+    "possible_barriers_to_engagement": "Budgets/temps de formation",
+    "attitudes_envers_institutions": "Très haute confiance institutions publiques",
+    "attitudes_envers_fact_checkers": "Procédures de validation internes",
+    "indicateurs_sources_normes": [{"intitule": "Conformité ODD 4", "valeur": "Oui", "source": "UNESCO"}],
+    "date_derniere_mise_a_jour": "2025-09-23",
+    "niveau_preuve": "Aligné documents GHA",
+    "conclusion": "Indispensable pour l’échelle nationale",
+    "motto": "Standardiser pour pérenniser",
+    "image": "/gha-personas/fatou.png",
+
+    "primary_audiences": ["Formateurs de formateurs","Inspecteurs","Auteurs de manuels","Chefs d’établissement"],
+    "dissemination_channels": ["Circulaires","E-learning","Séminaires"],
+    "key_messages": ["Standardisation & évaluabilité","Cohérence nationale","Pérennité par la formation"],
+    "unesco_alignment": {"agenda_2063": ["Aspiration 6"], "sdg_targets": ["4.1","4.7"]},
+    "gha_volumes_focus": ["I","II","VIII","X"],
+    "content_formats": ["Guides enseignants officiels","Banque d’items","Checklists d’implémentation"],
+    "assets_needed": ["Kits ‘copier-coller’ pour manuels","SCORM/PDF accessibles","Grilles d’évaluation"],
+    "policy_hooks": ["Révision des programmes","Nouveaux manuels","Évaluations nationales"],
+    "training_needs": ["Conception curriculaire","Suivi-évaluation","Protection des données élèves"],
+    "kpis": [{"metric":"% d’écoles adoptant GHA (année 1)","target":40,"source":"DGESCO","unite":"%"}],
+    "risks": ["Délais administratifs","Hétérogénéité territoriale"],
+    "mitigations": ["Pilotes régionaux","Phasage sur 3 ans"],
+    "event_hooks": ["Calendrier scolaire","Appels à manuels"],
+    "calls_to_action": ["Valider le kit curriculaire GHA","Lancer la formation nationale"],
+    "digital_stack": ["Intranet ministériel","Plateforme e-learning","Tableaux de bord"],
+    "example_activities": ["Atelier de standardisation des séquences","Audit d’alignement ODD 4.7/GHA"],
+    "sora_prompt": "Ultra-realistic professional headshot portrait in pastel painted style of a 50-year-old Senegalese female curriculum inspector..."
+  }
+]

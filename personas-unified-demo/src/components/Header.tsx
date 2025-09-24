@@ -20,7 +20,13 @@ export default function Header({ site, personas }: HeaderProps) {
   // Déterminer le nom du thème et le titre (case-insensitive)
   const normalizedSite = (site || '').toLowerCase();
   const themeName = normalizedSite === 'info' ? '' : '';
-  const siteTitle = normalizedSite === 'info' ? 'MUSIP' : 'PASTEUR';
+  
+  let siteTitle = 'MUSIP'; // default
+  if (normalizedSite === 'pasteur') {
+    siteTitle = 'PASTEUR';
+  } else if (normalizedSite === 'gha') {
+    siteTitle = 'GHA';
+  }
   
   console.log('Header site:', site, 'normalized:', normalizedSite, 'title:', siteTitle);
 

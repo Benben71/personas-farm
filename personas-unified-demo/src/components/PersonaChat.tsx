@@ -50,9 +50,10 @@ interface PersonaChatProps {
   };
   isOpen: boolean;
   onClose: () => void;
+  site?: string;
 }
 
-export default function PersonaChat({ persona, isOpen, onClose }: PersonaChatProps) {
+export default function PersonaChat({ persona, isOpen, onClose, site }: PersonaChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -68,44 +69,54 @@ export default function PersonaChat({ persona, isOpen, onClose }: PersonaChatPro
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Add welcome message when chat opens
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        role: 'assistant',
-        content: `Salut ! Je suis ${persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}. ${getPersonaGreeting()}`,
-        timestamp: new Date()
-      };
-      setMessages([welcomeMessage]);
+      // Generate dynamic welcome message using the LLM
+      generateWelcomeMessage();
     }
   }, [isOpen, persona.id]);
 
-  const getPersonaGreeting = () => {
-    const greetings = {
-      // Personas Info
-      nina: "J'ai 14 ans et je suis en 3ème. J'adore TikTok et passer du temps avec mes amis en ligne ! Qu'est-ce que tu veux savoir ?",
-      lucas: "Hey ! Moi c'est Lucas, j'ai 15 ans et je suis en seconde. Je préfère les jeux vidéo à l'actualité, mais bon... tu veux qu'on parle de quoi ?",
-      amina: "Bonjour ! Je suis Amina, j'ai 18 ans et je suis étudiante. Je m'intéresse beaucoup à l'actualité et j'aime débattre de sujets importants.",
-      claire: "Salut ! Moi c'est Claire, j'ai 25 ans et je travaille dans le marketing. J'aime bien suivre l'actualité mais j'ai pas toujours le temps.",
-      david: "Bonjour ! Je suis David, j'ai 35 ans et je suis père de famille. L'actualité m'inquiète parfois, surtout pour mes enfants.",
-      emilie: "Hello ! Je suis Émilie, j'ai 28 ans et je suis journaliste. J'adore partager des infos et débattre de l'actualité !",
-      jean: "Bonjour ! Je suis Jean, j'ai 45 ans et je suis enseignant. Je m'intéresse beaucoup à l'éducation et à l'actualité.",
-      mateo: "Salut ! Moi c'est Mateo, j'ai 16 ans et je suis en première. J'aime bien les réseaux sociaux et débattre avec mes potes.",
-      samuel: "Hey ! Je suis Samuel, j'ai 22 ans et je suis étudiant en informatique. Je suis très connecté et j'aime comprendre comment ça marche.",
-      sofia: "Bonjour ! Je suis Sofia, j'ai 30 ans et je suis médecin. L'actualité santé m'intéresse beaucoup, évidemment !",
-      alex: "Salut ! Je suis Alex, j'ai 19 ans et je suis étudiant. J'aime bien débattre et comprendre les enjeux d'actualité.",
+  const generateWelcomeMessage = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/persona-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          personaId: persona.id,
+          message: "Peux-tu te présenter brièvement ?",
+          site: site || 'info'
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const data = await response.json();
       
-      // Personas Pasteur
-      marie: "Bonjour ! Je suis Marie, j'ai 16 ans et je suis en Terminale S. Je suis passionnée de biologie et curieuse des découvertes de Pasteur !",
-      pierre: "Salut ! Je suis Pierre, professeur de SVT depuis 20 ans. J'adore vulgariser la science et parler d'évolution !",
-      clara: "Hello ! Je suis Clara, j'ai 20 ans et je suis étudiante en biologie. Pasteur et l'évolution me fascinent !",
-      karim: "Bonjour ! Je suis Karim, j'ai 32 ans et je suis chercheur en génétique. J'aime expliquer la science de manière accessible.",
-      li_wei: "Salut ! Je suis Li Wei, j'ai 24 ans et je suis étudiant en médecine. La science et l'évolution sont mes passions !",
-      nadia: "Bonjour ! Je suis Nadia, j'ai 28 ans et je suis enseignante de SVT. J'adore transmettre la passion de la biologie !",
-      sophie: "Hello ! Je suis Sophie, j'ai 35 ans et je suis mère de famille. Je m'intéresse à la science pour mes enfants !",
-      michel: "Salut ! Je suis Michel, j'ai 50 ans et je suis médecin. Pasteur et la science ont toujours été mes références !"
-    };
-    return greetings[persona.id as keyof typeof greetings] || "Salut ! Je suis là pour discuter avec toi !";
+      const welcomeMessage: Message = {
+        id: 'welcome',
+        role: 'assistant',
+        content: data.response,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    } catch (error) {
+      console.error('Error generating welcome message:', error);
+      // Fallback to simple greeting
+      const fallbackMessage: Message = {
+        id: 'welcome',
+        role: 'assistant',
+        content: `Salut ! Je suis ${persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}. Comment puis-je t'aider ?`,
+        timestamp: new Date()
+      };
+      setMessages([fallbackMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
@@ -130,7 +141,7 @@ export default function PersonaChat({ persona, isOpen, onClose }: PersonaChatPro
         body: JSON.stringify({
           personaId: persona.id,
           message: inputMessage.trim(),
-          personaData: persona
+          site: site || 'info'
         }),
       });
 
