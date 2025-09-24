@@ -7,6 +7,7 @@ import Header from './Header';
 
 export default function PersonaPage({ site, theme, persona, allPersonas }: PersonaPageProps & { allPersonas: any[] }) {
   const [imageError, setImageError] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header with Navigation */}
@@ -17,48 +18,26 @@ export default function PersonaPage({ site, theme, persona, allPersonas }: Perso
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Main Content - Left side (2/3) */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Large 3:2 Image Section */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative w-full">
-                <div className="aspect-[3/2] w-full relative">
-                  {!imageError ? (
-                    <img
-                      src={persona.image}
-                      alt={`Photo de profil de ${persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}`}
-                      className="w-full h-full object-cover"
-                      onError={() => setImageError(true)}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-6xl">
-                        {persona.id.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                  )}
-                  
-                  {/* Text Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <h1 className="text-white text-4xl font-bold mb-2 drop-shadow-lg">
-                        {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}
-                      </h1>
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          {persona.identite_profil.age} ans
-                        </span>
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          persona.identite_profil.segments.includes('pro') 
-                            ? 'bg-blue-500/80 text-white' 
-                            : 'bg-green-500/80 text-white'
-                        }`}>
-                          {persona.identite_profil.segments.includes('pro') ? 'Profil pro' : 'Profil public'}
-                        </span>
-                        <span className="text-white/90 text-lg font-medium">
-                          {persona.identite_profil.statut}
-                        </span>
-                      </div>
-                    </div>
+
+            {/* Hero Section with Image */}
+            <div className="relative bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-blue-500 via-purple-600 to-indigo-700 flex items-center justify-center relative">
+                {!imageError ? (
+                  <img
+                    src={`/${site}-personas/${persona.id}.png`}
+                    alt={`Photo de ${persona.id}`}
+                    className="w-full h-full object-cover"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="text-white text-center">
+                    <div className="text-6xl mb-4">👤</div>
+                    <h1 className="text-2xl font-bold mb-2">{persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</h1>
                   </div>
+                )}
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h1 className="text-4xl font-bold mb-2">{persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</h1>
+                  <p className="text-xl opacity-90">{persona.identite_profil.age} ans • {persona.identite_profil.statut}</p>
                 </div>
               </div>
             </div>
@@ -70,456 +49,499 @@ export default function PersonaPage({ site, theme, persona, allPersonas }: Perso
               </h1>
             </div>
 
-            {/* Identité et Profil */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Identité et Profil</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Situation</h3>
-                  <p className="text-gray-700 leading-relaxed">{persona.identite_profil.situation}</p>
+            {/* PORTRAIT */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-8 border-l-4 border-blue-500">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                PORTRAIT
+              </h2>
+
+              {/* Valeurs & Motivations */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-indigo-600">⭐</span> Valeurs & Motivations
+                </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Valeurs fondamentales</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {persona.valeurs?.map((valeur, index) => (
+                        <span key={index} className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">
+                          {valeur}
+                        </span>
+                      )) || (
+                        <span className="text-xs text-gray-500">Non spécifié</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Motivations principales</h4>
+                    <div className="space-y-1">
+                      {persona.motivations?.map((motivation, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-green-500 flex-shrink-0"></div>
+                          <p className="text-sm text-gray-700">{motivation}</p>
+                        </div>
+                      )) || (
+                        <p className="text-sm text-gray-500">Non spécifié</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Segments</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.identite_profil.segments.map((segment, index) => (
-                      <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                        {segment}
-                      </span>
-                    ))}
+              </div>
+
+              {/* Rapport au sujet */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-green-600">🎯</span> Rapport au sujet
+                </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {persona.systeme_croyances?.rapport_information && (
+                    <div className="bg-purple-50 p-4 rounded border-l-2 border-purple-300">
+                      <h4 className="text-sm font-medium text-purple-800 mb-2">Rapport à l'information</h4>
+                      <p className="text-sm text-gray-700">{persona.systeme_croyances.rapport_information}</p>
+                    </div>
+                  )}
+
+                  {persona.systeme_croyances?.perception_medias && (
+                    <div className="bg-green-50 p-4 rounded border-l-2 border-green-300">
+                      <h4 className="text-sm font-medium text-green-800 mb-2">Vision des médias</h4>
+                      <p className="text-sm text-gray-700">{persona.systeme_croyances.perception_medias}</p>
+                    </div>
+                  )}
+
+                  {persona.role_democratique_percu && (
+                    <div className="bg-blue-50 p-4 rounded border-l-2 border-blue-300">
+                      <h4 className="text-sm font-medium text-blue-800 mb-2">Rôle démocratique</h4>
+                      <p className="text-sm text-gray-700">{persona.role_democratique_percu}</p>
+                    </div>
+                  )}
+
+                  {persona.systeme_croyances?.liberte_expression_désinfo && (
+                    <div className="bg-amber-50 p-4 rounded border-l-2 border-amber-300">
+                      <h4 className="text-sm font-medium text-amber-800 mb-2">Liberté vs désinformation</h4>
+                      <p className="text-sm text-gray-700">{persona.systeme_croyances.liberte_expression_désinfo}</p>
+                    </div>
+                  )}
+
+                  {persona.attitudes_envers_journalistes && (
+                    <div className="bg-cyan-50 p-4 rounded border-l-2 border-cyan-300">
+                      <h4 className="text-sm font-medium text-cyan-800 mb-2">Attitude envers les journalistes</h4>
+                      <p className="text-sm text-gray-700">{persona.attitudes_envers_journalistes}</p>
+                    </div>
+                  )}
+
+                  {persona.attitudes_envers_institutions && (
+                    <div className="bg-rose-50 p-4 rounded border-l-2 border-rose-300">
+                      <h4 className="text-sm font-medium text-rose-800 mb-2">Attitude envers les institutions</h4>
+                      <p className="text-sm text-gray-700">{persona.attitudes_envers_institutions}</p>
+                    </div>
+                  )}
+
+                  {persona.attitudes_envers_fact_checkers && (
+                    <div className="bg-emerald-50 p-4 rounded border-l-2 border-emerald-300">
+                      <h4 className="text-sm font-medium text-emerald-800 mb-2">Attitude envers les fact-checkers</h4>
+                      <p className="text-sm text-gray-700">{persona.attitudes_envers_fact_checkers}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Identité & Profil */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-teal-600">👤</span> Identité & Profil
+                </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Identité</h4>
+                    <div className="text-sm text-gray-600 space-y-2">
+                      <div className="flex gap-2">
+                        <span className="font-medium">{persona.identite_profil.age} ans</span>
+                        <span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs">{persona.identite_profil.statut}</span>
+                      </div>
+                      <p>{persona.identite_profil.situation}</p>
+                      {persona.language_preferences && persona.language_preferences.length > 0 && (
+                        <div className="mt-2">
+                          <h5 className="text-xs font-medium text-gray-700 mb-1">Langues parlées</h5>
+                          <div className="flex flex-wrap gap-1">
+                            {persona.language_preferences.map((lang, index) => (
+                              <span key={index} className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">
+                                {lang}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Profil d'apprentissage</h4>
+                    <div className="bg-teal-50 p-3 rounded">
+                      <p className="text-sm font-medium text-teal-800">
+                        {persona.learner_profile?.label || 'Non défini'}
+                      </p>
+                      {persona.learner_profile?.tagline && (
+                        <p className="text-sm text-teal-600 mt-1">{persona.learner_profile.tagline}</p>
+                      )}
+                    </div>
+                    {persona.astuce_activation && (
+                      <div className="mt-3">
+                        <h5 className="text-sm font-medium text-gray-800 mb-1">Comment l'activer</h5>
+                        <div className="bg-yellow-50 p-2 rounded border-l-2 border-yellow-300">
+                          <p className="text-sm text-gray-700">{persona.astuce_activation}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Note sur la neutralité intégrée */}
+                    {persona.note_neutralite && (
+                      <div className="mt-3">
+                        <h5 className="text-sm font-medium text-gray-800 mb-1">Note sur la neutralité</h5>
+                        <div className="bg-orange-50 p-2 rounded border-l-2 border-orange-300">
+                          <p className="text-sm text-gray-700">{persona.note_neutralite}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Enjeu stratégique */}
+              {persona.conclusion && (
+                <div className="pt-6 border-t border-gray-200">
+                  <h4 className="font-medium text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-red-600">🎯</span> Enjeu stratégique
+                  </h4>
+                  <p className="text-sm text-gray-700 bg-red-50 p-4 rounded-lg border-l-4 border-red-200 italic">
+                    {persona.conclusion}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* MUSÉOLOGIE & MÉDIATION */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg shadow-lg p-8 border-l-4 border-amber-500">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                MUSÉOLOGIE & MÉDIATION
+              </h2>
+
+              {/* Visite / Expérience muséale */}
+              {((persona as any)["Motivation de la visite"] || (persona as any)["Contexte de la visite"] || (persona as any)["Fréquence de visite"] || (persona as any)["Expériences préférées"] || (persona as any)["Freins à la visite"] || (persona as any)["Attentes vis-à-vis de l'information"] || (persona as any)["Besoins en langues"] || (persona as any)["Engagement après la visite"]) && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-green-600">🎫</span> Expérience de visite
+                  </h3>
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="space-y-4">
+                      {(persona as any)["Motivation de la visite"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Motivation de la visite</h4>
+                          <p className="text-gray-700 text-sm">{(persona as any)["Motivation de la visite"]}</p>
+                        </div>
+                      )}
+
+                      {(persona as any)["Contexte de la visite"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Contexte de la visite</h4>
+                          <p className="text-gray-700 text-sm">{(persona as any)["Contexte de la visite"]}</p>
+                        </div>
+                      )}
+
+                      {(persona as any)["Fréquence de visite"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Fréquence de visite</h4>
+                          <p className="text-gray-700 text-sm">{(persona as any)["Fréquence de visite"]}</p>
+                        </div>
+                      )}
+
+                      {(persona as any)["Expériences préférées"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Expériences préférées</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {Array.isArray((persona as any)["Expériences préférées"]) ?
+                              (persona as any)["Expériences préférées"].map((exp: string, index: number) => (
+                                <span key={index} className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
+                                  {exp}
+                                </span>
+                              )) : (
+                                <p className="text-gray-700 text-sm">{(persona as any)["Expériences préférées"]}</p>
+                              )
+                            }
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-4">
+                      {(persona as any)["Freins à la visite"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Freins à la visite</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {Array.isArray((persona as any)["Freins à la visite"]) ?
+                              (persona as any)["Freins à la visite"].map((frein: string, index: number) => (
+                                <span key={index} className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">
+                                  {frein}
+                                </span>
+                              )) : (
+                                <p className="text-gray-700 text-sm">{(persona as any)["Freins à la visite"]}</p>
+                              )
+                            }
+                          </div>
+                        </div>
+                      )}
+
+                      {(persona as any)["Attentes vis-à-vis de l'information"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Attentes vis-à-vis de l'information</h4>
+                          <p className="text-gray-700 text-sm">{(persona as any)["Attentes vis-à-vis de l'information"]}</p>
+                        </div>
+                      )}
+
+                      {(persona as any)["Besoins en langues"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Besoins en langues</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {Array.isArray((persona as any)["Besoins en langues"]) ?
+                              (persona as any)["Besoins en langues"].map((lang: string, index: number) => (
+                                <span key={index} className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
+                                  {lang}
+                                </span>
+                              )) : (
+                                <p className="text-gray-700 text-sm">{(persona as any)["Besoins en langues"]}</p>
+                              )
+                            }
+                          </div>
+                        </div>
+                      )}
+
+                      {(persona as any)["Engagement après la visite"] && (
+                        <div className="bg-white/60 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-800 mb-2">Engagement après la visite</h4>
+                          <p className="text-gray-700 text-sm">{(persona as any)["Engagement après la visite"]}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+
+              {/* Besoins et Freins */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-indigo-600">🎯</span> Besoins & Obstacles
+                </h3>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-3">Jobs to be Done</h4>
+                    <ul className="space-y-2">
+                      {persona.besoins_freins_jtbd.jobs.map((job, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <div className="mt-1 h-2 w-2 rounded-full bg-green-500 flex-shrink-0"></div>
+                          <span className="text-gray-700 text-sm">{job}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-3">Freins principaux</h4>
+                    <ul className="space-y-2">
+                      {persona.besoins_freins_jtbd.freins.map((frein, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <div className="mt-1 h-2 w-2 rounded-full bg-red-500 flex-shrink-0"></div>
+                          <span className="text-gray-700 text-sm">{frein}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Accessibilité & Inclusion */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-teal-600">♿</span> Accessibilité & Inclusion
+                </h3>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Langage adapté</h4>
+                    <p className="text-gray-700 text-sm">{persona.accessibilite_inclusion?.langage || 'Non spécifié'}</p>
+                  </div>
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <h4 className="font-medium text-gray-800 mb-2">Formats accessibles</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {persona.accessibilite_inclusion?.formats?.map((format, index) => (
+                        <span key={index} className="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">
+                          {format}
+                        </span>
+                      )) || (
+                        <span className="text-sm text-gray-500">Non spécifié</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Système de Croyances / Rapport à la Science */}
-            {(persona.systeme_croyances || persona.rapport_science) && (
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  {persona.systeme_croyances ? 'Système de Croyances' : 'Rapport à la Science'}
-                </h2>
-                {persona.systeme_croyances ? (
+            {/* OFFRE NUMÉRIQUE & COMMUNICATION */}
+            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow-lg p-8 border-l-4 border-cyan-500">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                OFFRE NUMÉRIQUE & COMMUNICATION
+              </h2>
+
+              {/* Pratiques digitales */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-blue-600">📱</span> Pratiques Digitales
+                </h3>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                   <div className="space-y-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Rapport à l'information</h3>
-                      <p className="text-gray-700">{persona.systeme_croyances.rapport_information}</p>
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Canaux préférés</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.pratiques_et_indicateurs?.canaux?.map((canal, index) => (
+                          <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                            {canal}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Perception des médias</h3>
-                      <p className="text-gray-700">{persona.systeme_croyances.perception_medias}</p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Liberté d'expression vs désinformation</h3>
-                      <p className="text-gray-700">{persona.systeme_croyances.liberte_expression_désinfo}</p>
+
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Appareils utilisés</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.pratiques_et_indicateurs?.devices?.map((device, index) => (
+                          <span key={index} className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">
+                            {device}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                ) : (
+
                   <div className="space-y-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Littératie scientifique</h3>
-                      <p className="text-gray-700">{persona.rapport_science?.litteratie_scientifique}</p>
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Pratiques</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.pratiques_et_indicateurs?.pratiques?.map((pratique, index) => (
+                          <span key={index} className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">
+                            {pratique}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Perception de l'évolution</h3>
-                      <p className="text-gray-700">{persona.rapport_science?.perception_evolution}</p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Confiance dans les institutions</h3>
-                      <p className="text-gray-700">{persona.rapport_science?.confiance_institutions}</p>
+
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Fréquence et intensité</h4>
+                      <p className="text-gray-700 text-sm">{persona.pratiques_et_indicateurs?.frequence_intensite || 'Non spécifié'}</p>
                     </div>
                   </div>
-                )}
-              </div>
-            )}
-
-            {/* Valeurs */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Valeurs</h2>
-              <div className="flex flex-wrap gap-2">
-                {persona.valeurs.map((value, index) => (
-                  <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                    {value}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Besoins et Freins */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Besoins et Freins</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Jobs to be Done</h3>
-                  <ul className="space-y-2">
-                    {persona.besoins_freins_jtbd.jobs.map((job, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="mt-1 h-2 w-2 rounded-full bg-green-500 flex-shrink-0"></div>
-                        <span className="text-gray-700">{job}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Freins</h3>
-                  <ul className="space-y-2">
-                    {persona.besoins_freins_jtbd.freins.map((frein, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="mt-1 h-2 w-2 rounded-full bg-red-500 flex-shrink-0"></div>
-                        <span className="text-gray-700">{frein}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
-            </div>
 
-            {/* Motivations */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Motivations</h2>
-              <div className="flex flex-wrap gap-2">
-                {persona.motivations.map((motivation, index) => (
-                  <span key={index} className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                    {motivation}
-                  </span>
-                ))}
-              </div>
-            </div>
 
-            {/* Pratiques et Indicateurs */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Pratiques et Indicateurs</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Canaux préférés</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.pratiques_et_indicateurs?.canaux?.map((canal, index) => (
-                      <span key={index} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                        {canal}
-                      </span>
-                    )) || (
-                      <span className="text-sm text-gray-500">Non spécifié</span>
-                    )}
+              {/* Stratégie de communication */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="text-green-600">💬</span> Stratégie de Communication
+                </h3>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  <div className="space-y-4">
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Sujets d'intérêt</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.enjeux_communication?.sujets?.map((sujet, index) => (
+                          <span key={index} className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs">
+                            {sujet}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Leviers d'engagement</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.enjeux_communication?.leviers?.map((levier, index) => (
+                          <span key={index} className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">
+                            {levier}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Ton recommandé</h4>
+                      <p className="text-gray-700 text-sm">{persona.tonalite_et_eviter?.ton || 'Non spécifié'}</p>
+                    </div>
+
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">À éviter absolument</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {persona.tonalite_et_eviter?.a_eviter?.map((item, index) => (
+                          <span key={index} className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs">
+                            {item}
+                          </span>
+                        )) || (
+                          <span className="text-sm text-gray-500">Non spécifié</span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Pratiques</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.pratiques_et_indicateurs?.pratiques?.map((pratique, index) => (
-                      <span key={index} className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
-                        {pratique}
-                      </span>
-                    )) || (
-                      <span className="text-sm text-gray-500">Non spécifié</span>
-                    )}
+              </div>
+
+              {/* Posture IA et Personnalisation */}
+              {persona.posture_ia_personnalisation && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-purple-600">🤖</span> Posture IA & Personnalisation
+                  </h3>
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Usage de l'IA</h4>
+                      <p className="text-gray-700 text-sm">{persona.posture_ia_personnalisation.usage}</p>
+                    </div>
+                    <div className="bg-white/60 p-4 rounded-lg">
+                      <h4 className="font-medium text-gray-800 mb-2">Limites acceptées</h4>
+                      <p className="text-gray-700 text-sm">{persona.posture_ia_personnalisation.limites}</p>
+                    </div>
                   </div>
                 </div>
+              )}
 
+              {/* Parcours et Triggers */}
+              {persona.parcours_triggers && persona.parcours_triggers.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Appareils utilisés</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.pratiques_et_indicateurs?.devices?.map((device, index) => (
-                      <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-                        {device}
-                      </span>
-                    )) || (
-                      <span className="text-sm text-gray-500">Non spécifié</span>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Fréquence et intensité</h3>
-                  <p className="text-gray-700">{persona.pratiques_et_indicateurs?.frequence_intensite || 'Non spécifié'}</p>
-                </div>
-
-                {/* Indicateurs */}
-                {persona.pratiques_et_indicateurs?.indicateurs && persona.pratiques_et_indicateurs.indicateurs.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-3">Indicateurs clés</h3>
-                    <div className="space-y-3">
-                      {persona.pratiques_et_indicateurs.indicateurs.map((indicateur, index) => (
-                        <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                          <h4 className="font-medium text-gray-800">{indicateur.intitulé}</h4>
-                          <p className="text-sm text-gray-600 mt-1">{indicateur.valeur}</p>
-                          <p className="text-xs text-gray-500 mt-1">{indicateur.source}</p>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-indigo-600">🎯</span> Parcours & Triggers
+                  </h3>
+                  <div className="bg-white/60 p-4 rounded-lg">
+                    <div className="space-y-2">
+                      {persona.parcours_triggers.map((trigger, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <div className="mt-1 h-2 w-2 rounded-full bg-indigo-500 flex-shrink-0"></div>
+                          <span className="text-gray-700 text-sm">{trigger}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
-            {/* Enjeux de Communication */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Enjeux de Communication</h2>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Sujets d'intérêt</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.enjeux_communication?.sujets?.map((sujet, index) => (
-                      <span key={index} className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">
-                        {sujet}
-                      </span>
-                    )) || (
-                      <span className="text-sm text-gray-500">Non spécifié</span>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Leviers d'engagement</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.enjeux_communication?.leviers?.map((levier, index) => (
-                      <span key={index} className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
-                        {levier}
-                      </span>
-                    )) || (
-                      <span className="text-sm text-gray-500">Non spécifié</span>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Lien avec le lieu physique</h3>
-                  <p className="text-gray-700">{persona.enjeux_communication?.lien_lieu_physique || 'Non spécifié'}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Analyse approfondie - Champs v3 */}
-            {(persona.role_democratique_percu || persona.indice_confiance_info || persona.indice_fatigue_ou_evitement || persona.vigilance_desinformation || persona.attentes_transparence_medias || persona.attitude_ia_medias || persona.parts_temps_par_canal || persona.confiance_par_canal || persona.mode_socialisation_info || persona.fenetre_attention || persona.contraintes_pratiques || persona.objections_cles || persona.attitudes_envers_journalistes || persona.attitudes_envers_institutions || persona.attitudes_envers_fact_checkers || persona.indicateurs_sources_normes) && (
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Analyse approfondie</h2>
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                  {/* Colonne gauche */}
-                  <div className="space-y-6">
-                    {persona.role_democratique_percu && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Rôle démocratique perçu des médias</h3>
-                        <p className="text-gray-700">{persona.role_democratique_percu}</p>
-                      </div>
-                    )}
-
-                    {persona.indice_confiance_info && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Indice de confiance dans l'information</h3>
-                        <div className="p-4 bg-blue-50 rounded-lg">
-                          <p className="text-sm text-blue-800 font-medium">{persona.indice_confiance_info.valeur}</p>
-                          <p className="text-xs text-blue-600 mt-1">{persona.indice_confiance_info.source}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {persona.indice_fatigue_ou_evitement && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Indice de fatigue ou d'évitement de l'information</h3>
-                        <div className="p-4 bg-orange-50 rounded-lg">
-                          <p className="text-sm text-orange-800 font-medium">{persona.indice_fatigue_ou_evitement.valeur}</p>
-                          <p className="text-xs text-orange-600 mt-1">{persona.indice_fatigue_ou_evitement.source}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {persona.vigilance_desinformation && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Vigilance face à la désinformation</h3>
-                        <div className="p-4 bg-green-50 rounded-lg">
-                          <p className="text-sm text-green-800 font-medium">Niveau: {persona.vigilance_desinformation.niveau}</p>
-                          <p className="text-xs text-green-600 mt-1">{persona.vigilance_desinformation.illustration}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {persona.attentes_transparence_medias && persona.attentes_transparence_medias.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Attentes en matière de transparence des médias</h3>
-                        <ul className="space-y-2">
-                          {persona.attentes_transparence_medias.map((attente, index) => (
-                            <li key={index} className="flex items-start gap-2">
-                              <div className="mt-1 h-2 w-2 rounded-full bg-blue-500 flex-shrink-0"></div>
-                              <span className="text-gray-700 text-sm">{attente}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {persona.attitude_ia_medias && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Attitude envers l'IA dans les médias</h3>
-                        <div className="p-4 bg-purple-50 rounded-lg">
-                          <p className="text-sm text-purple-800 font-medium mb-2">Favorable: {persona.attitude_ia_medias.favorable}</p>
-                          <div>
-                            <p className="text-xs text-purple-600 font-medium">Risques identifiés:</p>
-                            <ul className="mt-1 space-y-1">
-                              {persona.attitude_ia_medias.risques_top.map((risque, index) => (
-                                <li key={index} className="text-xs text-purple-600">• {risque}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Colonne droite */}
-                  <div className="space-y-6">
-                    {persona.parts_temps_par_canal && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Parts de temps par canal</h3>
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span className="text-sm text-gray-700">Réseaux sociaux</span>
-                            <span className="text-sm font-medium text-gray-800">{persona.parts_temps_par_canal.reseaux_sociaux}</span>
-                          </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span className="text-sm text-gray-700">Sites d'actualité</span>
-                            <span className="text-sm font-medium text-gray-800">{persona.parts_temps_par_canal.sites_actu}</span>
-                          </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span className="text-sm text-gray-700">TV/Radio</span>
-                            <span className="text-sm font-medium text-gray-800">{persona.parts_temps_par_canal.tv_radio}</span>
-                          </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span className="text-sm text-gray-700">Messageries</span>
-                            <span className="text-sm font-medium text-gray-800">{persona.parts_temps_par_canal.messageries}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {persona.confiance_par_canal && persona.confiance_par_canal.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Confiance par canal</h3>
-                        <div className="space-y-2">
-                          {persona.confiance_par_canal.map((canal, index) => (
-                            <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                              <span className="text-sm text-gray-700">{canal.canal}</span>
-                              <span className={`text-sm font-medium px-2 py-1 rounded text-xs ${
-                                canal.niveau === 'élevé' ? 'bg-green-100 text-green-800' :
-                                canal.niveau === 'moyen' ? 'bg-yellow-100 text-yellow-800' :
-                                'bg-red-100 text-red-800'
-                              }`}>
-                                {canal.niveau}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {persona.mode_socialisation_info && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Mode de socialisation à l'information</h3>
-                        <p className="text-gray-700">{persona.mode_socialisation_info}</p>
-                      </div>
-                    )}
-
-                    {persona.fenetre_attention && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Fenêtre d'attention</h3>
-                        <p className="text-gray-700">{persona.fenetre_attention}</p>
-                      </div>
-                    )}
-
-                    {persona.contraintes_pratiques && persona.contraintes_pratiques.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Contraintes pratiques</h3>
-                        <ul className="space-y-2">
-                          {persona.contraintes_pratiques.map((contrainte, index) => (
-                            <li key={index} className="flex items-start gap-2">
-                              <div className="mt-1 h-2 w-2 rounded-full bg-red-500 flex-shrink-0"></div>
-                              <span className="text-gray-700 text-sm">{contrainte}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {persona.objections_cles && persona.objections_cles.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Objections clés</h3>
-                        <ul className="space-y-2">
-                          {persona.objections_cles.map((objection, index) => (
-                            <li key={index} className="flex items-start gap-2">
-                              <div className="mt-1 h-2 w-2 rounded-full bg-orange-500 flex-shrink-0"></div>
-                              <span className="text-gray-700 text-sm">{objection}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {persona.attitudes_envers_journalistes && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Attitudes envers les journalistes</h3>
-                        <p className="text-gray-700 text-sm">{persona.attitudes_envers_journalistes}</p>
-                      </div>
-                    )}
-
-                    {persona.attitudes_envers_institutions && persona.attitudes_envers_institutions !== 'N/A' && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Attitudes envers les institutions</h3>
-                        <p className="text-gray-700 text-sm">{persona.attitudes_envers_institutions}</p>
-                      </div>
-                    )}
-
-                    {persona.attitudes_envers_fact_checkers && persona.attitudes_envers_fact_checkers !== 'N/A' && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Attitudes envers les fact-checkers</h3>
-                        <p className="text-gray-700 text-sm">{persona.attitudes_envers_fact_checkers}</p>
-                      </div>
-                    )}
-
-                    {persona.indicateurs_sources_normes && persona.indicateurs_sources_normes.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">Indicateurs, sources et normes</h3>
-                        <div className="space-y-3">
-                          {persona.indicateurs_sources_normes.map((item, index) => (
-                            <div key={index} className="p-3 bg-gray-50 rounded-lg">
-                              <div className="font-medium text-gray-800 text-sm">{item.intitule}</div>
-                              <div className="text-sm text-gray-600 mt-1">{item.valeur}</div>
-                              <div className="text-xs text-gray-500 mt-1 italic">{item.source}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Parcours et Triggers */}
-            {persona.parcours_triggers && persona.parcours_triggers.length > 0 && (
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Parcours et Triggers</h2>
-                <div className="space-y-3">
-                  {persona.parcours_triggers.map((trigger, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="mt-1 h-2 w-2 rounded-full bg-indigo-500 flex-shrink-0"></div>
-                      <span className="text-gray-700">{trigger}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Posture IA et Personnalisation */}
-            {persona.posture_ia_personnalisation && (
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Posture IA et Personnalisation</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Usage de l'IA</h3>
-                    <p className="text-gray-700">{persona.posture_ia_personnalisation.usage}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Limites acceptées</h3>
-                    <p className="text-gray-700">{persona.posture_ia_personnalisation.limites}</p>
-                  </div>
-                </div>
-              </div>
-            )}
 
           </div>
 
@@ -528,149 +550,29 @@ export default function PersonaPage({ site, theme, persona, allPersonas }: Perso
             {/* Talk with Persona */}
             <TalkWithPersonaButton persona={persona} variant="page" site={site} />
 
-            {/* Communication & Formats */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Comment lui parler</h2>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Tonalité recommandée</h3>
-                  <p className="text-sm text-gray-700 mb-3">{persona.tonalite_et_eviter?.ton || 'Non spécifié'}</p>
-                  <h4 className="text-md font-medium text-gray-800 mb-2">À éviter</h4>
-                  <ul className="space-y-1">
-                    {persona.tonalite_et_eviter?.a_eviter?.map((item, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-red-500">×</span>
-                        <span className="text-xs text-gray-600">{item}</span>
-                      </li>
-                    )) || (
-                      <li className="text-xs text-gray-500">Non spécifié</li>
-                    )}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Formats accessibles</h3>
-                  <p className="text-sm text-gray-700 mb-3">Langage: {persona.accessibilite_inclusion?.langage || 'Non spécifié'}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {persona.accessibilite_inclusion?.formats?.map((format, index) => (
-                      <span key={index} className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">
-                        {format}
-                      </span>
-                    )) || (
-                      <span className="text-xs text-gray-500">Non spécifié</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Enjeu stratégique */}
-            {persona.conclusion && (
-              <div className="bg-white rounded-lg shadow-md p-6 bg-gradient-to-br from-gray-50 to-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">Enjeu stratégique</h2>
-                <p className="text-sm text-gray-700 leading-relaxed font-medium">
-                  {persona.conclusion}
-                </p>
-              </div>
-            )}
 
-            {/* Services */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Services activables</h2>
-              <ul className="space-y-3">
-                {persona.services_offres?.map((service, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="mt-1 h-2 w-2 rounded-full bg-green-500 flex-shrink-0"></div>
-                    <span className="text-sm text-gray-700">{service}</span>
-                  </li>
-                )) || (
-                  <li className="text-sm text-gray-500">Non spécifié</li>
-                )}
-              </ul>
-            </div>
-
-            {/* Profil d'apprentissage & engagement */}
-            {persona.learner_profile && (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Profil d'apprentissage & engagement</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{persona.learner_profile.label}</h3>
-                    <p className="text-sm text-gray-700">{persona.learner_profile.tagline}</p>
-                  </div>
-                  {persona.astuce_activation && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Astuce d'activation</h3>
-                      <p className="text-sm text-gray-700">{persona.astuce_activation}</p>
-                    </div>
-                  )}
-                  {persona.note_neutralite && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Note sur la neutralité</h3>
-                      <p className="text-sm text-gray-700">{persona.note_neutralite}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Informations complémentaires */}
+            {/* Méta-informations - FOOTER */}
             {(persona.global_vs_local_identity || persona.language_preferences || persona.preferred_contact_points || persona.possible_barriers_to_engagement || persona.date_derniere_mise_a_jour || persona.niveau_preuve) && (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Informations complémentaires</h2>
+              <div className="bg-gray-100 rounded-lg shadow-sm p-6 border-t-2 border-gray-300">
+                <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+                  <span className="text-gray-500">📋</span> Méta-informations
+                </h2>
                 <div className="space-y-4">
-                  {persona.global_vs_local_identity && persona.global_vs_local_identity !== 'N/A' && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Identité globale vs locale</h3>
-                      <p className="text-sm text-gray-700">{persona.global_vs_local_identity}</p>
-                    </div>
-                  )}
-                  
-                  {persona.language_preferences && persona.language_preferences.length > 0 && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Préférences linguistiques</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {persona.language_preferences.map((lang, index) => (
-                          <span key={index} className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">
-                            {lang}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {persona.preferred_contact_points && persona.preferred_contact_points.length > 0 && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Points de contact préférés</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {persona.preferred_contact_points.map((contact, index) => (
-                          <span key={index} className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">
-                            {contact}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {persona.possible_barriers_to_engagement && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Freins possibles à l'engagement</h3>
-                      <p className="text-sm text-gray-700">{persona.possible_barriers_to_engagement}</p>
-                    </div>
-                  )}
-
                   {persona.date_derniere_mise_a_jour && (
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Date de dernière mise à jour</h3>
-                      <p className="text-sm text-gray-700">{persona.date_derniere_mise_a_jour}</p>
+                      <h3 className="text-md font-medium text-gray-800 mb-1">Dernière mise à jour</h3>
+                      <p className="text-xs text-gray-600">{persona.date_derniere_mise_a_jour}</p>
                     </div>
                   )}
 
                   {persona.niveau_preuve && (
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Niveau de preuve</h3>
-                      <p className="text-sm text-gray-700">{persona.niveau_preuve}</p>
+                      <h3 className="text-md font-medium text-gray-800 mb-1">Niveau de preuve</h3>
+                      <p className="text-xs text-gray-600">{persona.niveau_preuve}</p>
                     </div>
                   )}
+
                 </div>
               </div>
             )}
