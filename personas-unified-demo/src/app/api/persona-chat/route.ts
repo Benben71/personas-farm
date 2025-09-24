@@ -2,11 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { loadPersonaData, findPersonaById, formatPersonaForPrompt, PersonaData } from '@/lib/persona-data';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 // Function to detect if message is in English
 function isEnglish(message: string): boolean {
   // Check for French words first to avoid false positives
@@ -148,27 +143,37 @@ function generateContextualResponse(personaId: string, message: string, site: st
 // Function to generate dynamic responses using OpenAI (when available)
 async function generateDynamicResponse(personaId: string, message: string, site: string): Promise<string> {
   try {
+    // Check if OpenAI API key is available
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OpenAI API key not configured');
+    }
+
+    // Initialize OpenAI client only when needed and API key is available
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
     // Load persona data
     const personas = loadPersonaData(site);
     const persona = findPersonaById(personas, personaId);
-    
+
     if (!persona) {
       return "Désolé, je ne trouve pas mon profil. Pouvez-vous réessayer ?";
     }
 
     // Format persona data for the prompt
     const personaPrompt = formatPersonaForPrompt(persona, site);
-    
+
     // Detect user language
     const isUserSpeakingEnglish = isEnglish(message);
     const personaLanguages = persona.language_preferences && persona.language_preferences.length > 0 ? persona.language_preferences : ["fr"];
-    
+
     // Create language instruction
     let languageInstruction = "";
     if (isUserSpeakingEnglish && personaLanguages.includes('en')) {
       languageInstruction = "IMPORTANT: The user is speaking English. Respond in English if you can, otherwise respond in your preferred language.";
     }
-    
+
       // Create the complete prompt
       const systemPrompt = `${personaPrompt}
 
