@@ -73,29 +73,21 @@ export default function TalkWithPersonaButton({ persona, variant = 'page', site 
 
   return (
     <>
-      <div className="card p-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 max-w-md mx-auto">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-            <MessageCircle className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-              Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}
-            </h3>
-            <p className="text-sm text-neutral-600 mb-4">
-              Testez vos stratégies de communication en discutant directement avec ce persona. 
-              Il répondra selon son profil, ses valeurs et ses motivations.
-            </p>
-            <button
-              onClick={handleOpenChat}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span className="font-medium">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
-              <ArrowRight className="w-4 h-4 opacity-80" />
-            </button>
-          </div>
+      <div className="bg-[var(--card-light)] rounded-2xl border border-[var(--border-light)] p-8 text-center">
+        <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-[var(--primary-accent-light)] mb-5">
+          <span className="material-symbols-outlined text-[var(--primary-accent)] text-4xl">chat_bubble</span>
         </div>
+        <h3 className="text-2xl font-bold text-[var(--text-primary-light)]">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</h3>
+        <p className="mt-2 mb-6 text-[var(--text-secondary-light)]">
+          Testez vos stratégies de communication en discutant directement avec ce persona.
+        </p>
+        <button
+          onClick={handleOpenChat}
+          className="w-full flex items-center justify-center space-x-2 bg-[var(--primary-accent)] text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+        >
+          <span>Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</span>
+          <span className="material-symbols-outlined">arrow_forward</span>
+        </button>
       </div>
       
       <PersonaChat 

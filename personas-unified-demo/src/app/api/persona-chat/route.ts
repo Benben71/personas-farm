@@ -104,13 +104,82 @@ function generateContextualResponse(personaId: string, message: string, site: st
     return responses[Math.floor(Math.random() * responses.length)];
   }
   
+  // Handle museum visit questions with new visit-specific data
   if (lowerMessage.includes('expo') || lowerMessage.includes('musée') || lowerMessage.includes('visite') || lowerMessage.includes('exposition') || lowerMessage.includes('aimes') || lowerMessage.includes('aime')) {
+    // Use specific visit data if available
+    const motivation = (persona as any)["Motivation de la visite"];
+    const contexte = (persona as any)["Contexte de la visite"];
+    const frequence = (persona as any)["Fréquence de visite"];
+    const experiences = (persona as any)["Expériences préférées"];
+    const freins = (persona as any)["Freins à la visite"];
+    const engagement = (persona as any)["Engagement après la visite"];
+
+    // If we have visit-specific data, use it
+    if (motivation || experiences || frequence) {
+      const responses = [];
+
+      if (motivation) {
+        responses.push(`Ma motivation pour visiter un musée, c'est ${motivation}. ${contexte ? `Je viens généralement ${contexte}.` : ''}`);
+      }
+
+      if (experiences) {
+        const experiencesList = Array.isArray(experiences) ? experiences.join(', ') : experiences;
+        responses.push(`J'adore les ${experiencesList}. ${frequence ? `Je visite ${frequence}.` : ''}`);
+      }
+
+      if (freins) {
+        const freinsList = Array.isArray(freins) ? freins.join(', ') : freins;
+        responses.push(`Parfois j'hésite à cause de ${freinsList}, mais quand c'est bien fait, j'apprécie vraiment.`);
+      }
+
+      if (engagement) {
+        responses.push(`Après une visite, j'aime bien ${engagement}. C'est important pour moi de prolonger l'expérience.`);
+      }
+
+      if (responses.length > 0) {
+        return responses[Math.floor(Math.random() * responses.length)];
+      }
+    }
+
+    // Fallback to general responses if no specific visit data
     const responses = [
       `J'aime les expositions qui correspondent à mes centres d'intérêt. En tant que ${statut}, je cherche des expériences qui respectent mes valeurs : ${valeurs}.`,
       `Pour les expos, je préfère quand c'est présenté de façon ${tonalite}. Ça doit être adapté à mon âge et à ma situation de ${situation}.`,
       `Les expositions m'intéressent si elles touchent à mes motivations : ${motivations}. J'aime quand c'est interactif et accessible.`
     ];
     return responses[Math.floor(Math.random() * responses.length)];
+  }
+
+  // Handle specific visit context questions
+  if (lowerMessage.includes('pourquoi tu viens') || lowerMessage.includes('motivation') || lowerMessage.includes('qu\'est-ce qui t\'amène')) {
+    const motivation = (persona as any)["Motivation de la visite"];
+    const contexte = (persona as any)["Contexte de la visite"];
+
+    if (motivation) {
+      return `${motivation}. ${contexte ? `D'habitude je viens ${contexte}.` : ''}`;
+    }
+    return `Je viens au musée pour des raisons liées à mes motivations : ${motivations}.`;
+  }
+
+  // Handle visit frequency questions
+  if (lowerMessage.includes('souvent') || lowerMessage.includes('fréquence') || lowerMessage.includes('combien de fois')) {
+    const frequence = (persona as any)["Fréquence de visite"];
+
+    if (frequence) {
+      return `Je visite ${frequence}. Ça correspond bien à mon rythme de vie.`;
+    }
+    return `Ma fréquence de visite dépend de mes disponibilités et de ma situation de ${statut}.`;
+  }
+
+  // Handle what they like in museums
+  if (lowerMessage.includes('qu\'est-ce que tu préfères') || lowerMessage.includes('tes préférées') || lowerMessage.includes('activités')) {
+    const experiences = (persona as any)["Expériences préférées"];
+
+    if (experiences) {
+      const experiencesList = Array.isArray(experiences) ? experiences.join(', ') : experiences;
+      return `J'adore ${experiencesList}. C'est ce qui correspond le mieux à mon profil et à mes valeurs.`;
+    }
+    return `Je préfère les activités qui correspondent à mes valeurs : ${valeurs} et mes motivations : ${motivations}.`;
   }
   
   if (lowerMessage.includes('réseau') || lowerMessage.includes('tiktok') || lowerMessage.includes('instagram') || lowerMessage.includes('social') || lowerMessage.includes('youtube') || lowerMessage.includes('twitch')) {

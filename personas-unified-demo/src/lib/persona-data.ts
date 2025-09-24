@@ -127,6 +127,15 @@ export interface PersonaData {
   niveau_preuve: string;
   conclusion: string;
   motto: string;
+  // New visit-related fields
+  "Motivation de la visite"?: string;
+  "Contexte de la visite"?: string;
+  "Fréquence de visite"?: string;
+  "Expériences préférées"?: string[] | string;
+  "Freins à la visite"?: string[] | string;
+  "Attentes vis-à-vis de l'information"?: string;
+  "Besoins en langues"?: string[] | string;
+  "Engagement après la visite"?: string;
 }
 
 export function loadPersonaData(site: string): PersonaData[] {
@@ -259,6 +268,62 @@ PROFIL COMPLET:
   if (persona.language_preferences && persona.language_preferences.length > 0) {
     profileText += `
 - Langues parlées: ${persona.language_preferences.join(', ')}`;
+  }
+
+  // Add visit/museum experience fields if available
+  if (persona["Motivation de la visite"] || persona["Contexte de la visite"] || persona["Fréquence de visite"] || persona["Expériences préférées"] || persona["Freins à la visite"] || persona["Attentes vis-à-vis de l'information"] || persona["Besoins en langues"] || persona["Engagement après la visite"]) {
+    profileText += `
+
+EXPÉRIENCE MUSÉALE:`;
+
+    if (persona["Motivation de la visite"]) {
+      profileText += `
+- Motivation de visite: ${persona["Motivation de la visite"]}`;
+    }
+
+    if (persona["Contexte de la visite"]) {
+      profileText += `
+- Contexte de visite: ${persona["Contexte de la visite"]}`;
+    }
+
+    if (persona["Fréquence de visite"]) {
+      profileText += `
+- Fréquence de visite: ${persona["Fréquence de visite"]}`;
+    }
+
+    if (persona["Expériences préférées"]) {
+      const experiences = Array.isArray(persona["Expériences préférées"])
+        ? persona["Expériences préférées"].join(', ')
+        : persona["Expériences préférées"];
+      profileText += `
+- Expériences préférées: ${experiences}`;
+    }
+
+    if (persona["Freins à la visite"]) {
+      const freins = Array.isArray(persona["Freins à la visite"])
+        ? persona["Freins à la visite"].join(', ')
+        : persona["Freins à la visite"];
+      profileText += `
+- Freins à la visite: ${freins}`;
+    }
+
+    if (persona["Attentes vis-à-vis de l'information"]) {
+      profileText += `
+- Attentes vis-à-vis de l'information: ${persona["Attentes vis-à-vis de l'information"]}`;
+    }
+
+    if (persona["Besoins en langues"]) {
+      const langues = Array.isArray(persona["Besoins en langues"])
+        ? persona["Besoins en langues"].join(', ')
+        : persona["Besoins en langues"];
+      profileText += `
+- Besoins en langues: ${langues}`;
+    }
+
+    if (persona["Engagement après la visite"]) {
+      profileText += `
+- Engagement après la visite: ${persona["Engagement après la visite"]}`;
+    }
   }
 
   // Add final instructions
