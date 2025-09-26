@@ -13,14 +13,32 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
   const [isOffreOpen, setIsOffreOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
+  const rawAttitudesEnversInstitutions = persona.attitudes_envers_institutions as unknown;
+  const attitudesEnversInstitutionsText = typeof rawAttitudesEnversInstitutions === 'string'
+    ? rawAttitudesEnversInstitutions
+    : Array.isArray(rawAttitudesEnversInstitutions)
+      ? rawAttitudesEnversInstitutions
+          .filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+          .join(' • ')
+      : rawAttitudesEnversInstitutions && typeof rawAttitudesEnversInstitutions === 'object'
+        ? Object.values(rawAttitudesEnversInstitutions)
+            .filter((value): value is string => typeof value === 'string' && value.trim().length > 0)
+            .join(' • ')
+        : '';
+
   const personaDisplayName = `${persona.id.charAt(0).toUpperCase()}${persona.id.slice(1)}`;
   const personaRole = persona.identite_profil?.statut || 'Profil';
-  const personaHighlightChips = [
-    persona.identite_profil?.age ? `${persona.identite_profil.age} ans` : null,
-    persona.identite_profil?.segments?.length
-      ? persona.identite_profil.segments.join(' • ')
-      : null,
-  ].filter(Boolean) as string[];
+  const ageValue = persona.identite_profil?.age;
+  const ageChip = typeof ageValue === 'number' ? `${ageValue} ans` : null;
+  const segments = persona.identite_profil?.segments ?? [];
+  const profileSegment = segments.find(segment => {
+    const normalized = segment.toLowerCase();
+    return normalized === 'public' || normalized === 'pro' || normalized.startsWith('profession');
+  });
+  const profileChip = profileSegment
+    ? `profil ${profileSegment.toLowerCase().startsWith('public') ? 'public' : 'pro'}`
+    : null;
+  const personaHighlightChips = [ageChip, profileChip].filter(Boolean) as string[];
   const personaContactPoints = persona.preferred_contact_points ?? [];
 
   return (
@@ -31,20 +49,19 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
         <main className="col-span-12 lg:col-span-8 space-y-8">
           {/* Hero Section */}
           <div className="bg-[var(--card-light)] rounded-2xl overflow-hidden border border-[var(--border-light)]">
-            <div
-              className="relative h-80 sm:h-[26rem] bg-cover bg-center"
-              style={{ backgroundImage: `url(/${site}-personas/${persona.id}.png)` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
-                <p className="text-base sm:text-lg tracking-[0.35em] uppercase text-white/70 font-semibold">
-                  {personaDisplayName}
+          <div
+            className="relative h-80 sm:h-[26rem] bg-cover bg-center"
+            style={{ backgroundImage: `url(/${site}-personas/${persona.id}.png)` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 text-white">
+              <div />
+              <div className="space-y-3">
+                <p className="text-2xl sm:text-3xl font-semibold tracking-[0.35em] text-white/80">
+                  {personaDisplayName.toUpperCase()}
                 </p>
-                <h1 className="mt-2 text-4xl sm:text-5xl font-semibold leading-tight text-white">
-                  {personaRole}
-                </h1>
                 {personaHighlightChips.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {personaHighlightChips.map((chip, index) => (
                       <span
                         key={`${chip}-${index}`}
@@ -55,8 +72,12 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                     ))}
                   </div>
                 )}
+                <h1 className="text-3xl sm:text-4xl font-semibold leading-tight text-white">
+                  {personaRole}
+                </h1>
               </div>
             </div>
+          </div>
             <div className="p-8 grid gap-6 md:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-tertiary-light)]">
@@ -220,7 +241,11 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                     {persona.attitudes_envers_institutions && (
                   <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
                     <p className="font-semibold text-gray-800 mb-1">Attitude envers les institutions</p>
-                    <p className="text-gray-700">{persona.attitudes_envers_institutions || 'N/A'}</p>
+                    {attitudesEnversInstitutionsText ? (
+                      <p className="text-gray-700">{attitudesEnversInstitutionsText}</p>
+                    ) : (
+                      <p className="text-gray-500">Non spécifié</p>
+                    )}
                       </div>
                     )}
                   </div>
@@ -589,7 +614,7 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                 <span className="material-symbols-outlined text-[var(--primary-accent)] text-4xl">chat_bubble</span>
               </div>
               <h3 className="text-2xl font-bold text-[var(--text-primary-light)]">Parler avec {persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</h3>
-              <p className="mt-2 mb-6 text-[var(--text-secondary-light)]">Testez vos stratégies de communication en discutant directement avec cette persona.</p>
+              <p className="mt-2 mb-6 text-[var(--text-secondary-light)]">Discutez avec ce persona, testez vos scénarios, comprenez mieux ses attentes.</p>
                   <button 
                     onClick={() => setIsChatOpen(true)}
                     className="w-full flex items-center justify-center space-x-2 bg-[var(--primary-accent)] text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors"
