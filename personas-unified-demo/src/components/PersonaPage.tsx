@@ -1,10 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { PersonaPageProps } from '@/types';
 import TalkWithPersonaButton from './TalkWithPersonaButton';
 import Header from './Header';
 import PersonaChat from './PersonaChat';
+
+type CommentVote = 'up' | 'down';
+
+interface FeedbackComment {
+  id: string;
+  firstName: string;
+  message: string;
+  createdAt: string;
+  upvotes: number;
+  downvotes: number;
+}
 
 export default function PersonaPage(props: PersonaPageProps & { allPersonas: any[] }) {
   const { site, theme, persona, allPersonas } = props;
@@ -12,6 +23,12 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
   const [isMuseeOpen, setIsMuseeOpen] = useState(false);
   const [isOffreOpen, setIsOffreOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [comments, setComments] = useState<FeedbackComment[]>([]);
+  const [userVotes, setUserVotes] = useState<Record<string, CommentVote>>({});
+  const [newCommentName, setNewCommentName] = useState('');
+  const [newCommentMessage, setNewCommentMessage] = useState('');
+  const [hasLoadedComments, setHasLoadedComments] = useState(false);
+  const [hasLoadedVotes, setHasLoadedVotes] = useState(false);
 
   const rawAttitudesEnversInstitutions = persona.attitudes_envers_institutions as unknown;
   const attitudesEnversInstitutionsText = typeof rawAttitudesEnversInstitutions === 'string'
@@ -40,6 +57,167 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
     : null;
   const personaHighlightChips = [ageChip, profileChip].filter(Boolean) as string[];
   const personaContactPoints = persona.preferred_contact_points ?? [];
+  const feedbackStorageKey = `persona-feedback-${site}-${persona.id}`;
+  const votesStorageKey = `persona-feedback-votes-${site}-${persona.id}`;
+  const isSubmitDisabled = newCommentName.trim().length === 0 || newCommentMessage.trim().length === 0;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const storedComments = window.localStorage.getItem(feedbackStorageKey);
+      if (storedComments) {
+        const parsed = JSON.parse(storedComments) as FeedbackComment[];
+        if (Array.isArray(parsed)) {
+          setComments(parsed);
+        }
+      } else {
+        setComments([]);
+      }
+    } catch (error) {
+      console.error('Impossible de charger les retours persona :', error);
+    } finally {
+      setHasLoadedComments(true);
+    }
+  }, [feedbackStorageKey]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const storedVotes = window.localStorage.getItem(votesStorageKey);
+      if (storedVotes) {
+        const parsed = JSON.parse(storedVotes) as Record<string, CommentVote>;
+        if (parsed && typeof parsed === 'object') {
+          setUserVotes(parsed);
+        }
+      } else {
+        setUserVotes({});
+      }
+    } catch (error) {
+      console.error('Impossible de charger les votes persona :', error);
+    } finally {
+      setHasLoadedVotes(true);
+    }
+  }, [votesStorageKey]);
+
+  useEffect(() => {
+    if (!hasLoadedComments || typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(feedbackStorageKey, JSON.stringify(comments));
+    } catch (error) {
+      console.error('Impossible de sauvegarder les retours persona :', error);
+    }
+  }, [feedbackStorageKey, comments, hasLoadedComments]);
+
+  useEffect(() => {
+    if (!hasLoadedVotes || typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(votesStorageKey, JSON.stringify(userVotes));
+    } catch (error) {
+      console.error('Impossible de sauvegarder les votes persona :', error);
+    }
+  }, [userVotes, votesStorageKey, hasLoadedVotes]);
+
+  const handleCommentSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const trimmedName = newCommentName.trim();
+    const trimmedMessage = newCommentMessage.trim();
+
+    if (!trimmedName || !trimmedMessage) {
+      return;
+    }
+
+    const commentId = typeof crypto !== 'undefined' && 'randomUUID' in crypto
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    const newComment: FeedbackComment = {
+      id: commentId,
+      firstName: trimmedName,
+      message: trimmedMessage,
+      createdAt: new Date().toISOString(),
+      upvotes: 0,
+      downvotes: 0,
+    };
+
+    setComments((previous) => [newComment, ...previous]);
+    setNewCommentName('');
+    setNewCommentMessage('');
+  };
+
+  const handleVote = (commentId: string, voteType: CommentVote) => {
+    const existingVote = userVotes[commentId];
+
+    setComments((previousComments) =>
+      previousComments.map((comment) => {
+        if (comment.id !== commentId) {
+          return comment;
+        }
+
+        let upvotes = comment.upvotes;
+        let downvotes = comment.downvotes;
+
+        if (existingVote === voteType) {
+          if (voteType === 'up') {
+            upvotes = Math.max(0, upvotes - 1);
+          } else {
+            downvotes = Math.max(0, downvotes - 1);
+          }
+        } else {
+          if (existingVote === 'up') {
+            upvotes = Math.max(0, upvotes - 1);
+          } else if (existingVote === 'down') {
+            downvotes = Math.max(0, downvotes - 1);
+          }
+
+          if (voteType === 'up') {
+            upvotes += 1;
+          } else {
+            downvotes += 1;
+          }
+        }
+
+        return {
+          ...comment,
+          upvotes,
+          downvotes,
+        };
+      })
+    );
+
+    setUserVotes((previousVotes) => {
+      const updatedVotes = { ...previousVotes };
+      if (existingVote === voteType) {
+        delete updatedVotes[commentId];
+      } else {
+        updatedVotes[commentId] = voteType;
+      }
+      return updatedVotes;
+    });
+  };
+
+  const formatCommentDate = (isoString: string) => {
+    try {
+      const date = new Date(isoString);
+      return date.toLocaleString('fr-FR', {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      });
+    } catch (error) {
+      return '';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[var(--background-light)]">
@@ -47,7 +225,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
 
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 py-12">
         <main className="col-span-12 lg:col-span-8 space-y-8">
-          {/* Hero Section */}
           <div className="bg-[var(--card-light)] rounded-2xl overflow-hidden border border-[var(--border-light)]">
           <div
             className="relative h-80 sm:h-[26rem] bg-cover bg-center"
@@ -57,7 +234,7 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
             <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 text-white">
               <div />
               <div className="space-y-3">
-                <p className="text-2xl sm:text-3xl font-semibold tracking-[0.35em] text-white/80">
+                <p className="text-2xl sm:text-3xl font-semibold tracking-[0.12em] text-white/80">
                   {personaDisplayName.toUpperCase()}
                 </p>
                 {personaHighlightChips.length > 0 && (
@@ -65,7 +242,7 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                     {personaHighlightChips.map((chip, index) => (
                       <span
                         key={`${chip}-${index}`}
-                        className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs sm:text-sm font-medium backdrop-blur-sm"
+                        className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs sm:text-xs font-medium backdrop-blur-sm/70"
                       >
                         {chip}
                       </span>
@@ -107,20 +284,20 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
             </div>
           </div>
 
-          {/* Quote Section */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
             <p className="text-2xl font-medium text-center text-[var(--text-primary-light)] leading-relaxed">
               "{persona.motto || persona.systeme_croyances?.rapport_information || 'Découvrez mon profil...'}"
             </p>
           </div>
 
-          {/* PORTRAIT */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
             <h1 className="text-3xl font-bold text-[var(--text-primary-light)] mb-8">PORTRAIT</h1>
 
-            {/* Identité & Profil */}
             <div className="mb-10">
-              <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Identité & Profil</h2>
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
+                <span className="material-symbols-outlined text-[var(--primary-accent)]">badge</span>
+                Identité & Profil
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 rounded-xl p-6 space-y-4">
                   <p className="font-semibold text-[var(--text-primary-light)]">Identité</p>
@@ -161,7 +338,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             </div>
 
-            {/* Valeurs & Motivations */}
             <div className="mb-10">
               <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
                 <span className="material-symbols-outlined text-[var(--primary-accent)]">favorite</span>
@@ -196,7 +372,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             </div>
 
-            {/* Rapport sur le sujet */}
             <div className="mb-10">
               <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
                 <span className="material-symbols-outlined text-[var(--primary-accent)]">insights</span>
@@ -251,7 +426,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                   </div>
                 </div>
 
-            {/* Enjeu stratégique */}
             {persona.conclusion && (
               <div className="mb-10">
                 <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
@@ -265,7 +439,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
             )}
           </div>
 
-          {/* MUSÉOLOGIE & MÉDIATION */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-3xl font-bold text-[var(--text-primary-light)]">MUSÉOLOGIE & MÉDIATION</h1>
@@ -284,7 +457,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
 
             {isMuseeOpen && (
               <>
-                {/* Visite / Expérience muséale */}
                 {((persona as any)["Motivation de la visite"] || (persona as any)["Contexte de la visite"] || (persona as any)["Fréquence de visite"] || (persona as any)["Expériences préférées"] || (persona as any)["Freins à la visite"] || (persona as any)["Attentes vis-à-vis de l'information"] || (persona as any)["Besoins en langues"] || (persona as any)["Engagement après la visite"]) && (
               <div className="mb-8">
                 <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Expérience de visite</h2>
@@ -382,7 +554,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             )}
 
-            {/* Besoins et Freins */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Besoins & Obstacles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -415,7 +586,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             </div>
 
-                {/* Accessibilité & Inclusion */}
                 <div>
                   <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Accessibilité & Inclusion</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -441,7 +611,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
             )}
           </div>
 
-          {/* OFFRE NUMÉRIQUE & COMMUNICATION */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-3xl font-bold text-[var(--text-primary-light)]">OFFRE NUMÉRIQUE & COMMUNICATION</h1>
@@ -460,7 +629,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
 
             {isOffreOpen && (
               <>
-                {/* Pratiques digitales */}
                 <div className="mb-8">
                   <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Pratiques Digitales</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -514,7 +682,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             </div>
 
-            {/* Stratégie de communication */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Stratégie de Communication</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -568,7 +735,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </div>
             </div>
 
-                {/* Posture IA et Personnalisation */}
                 {persona.posture_ia_personnalisation && (
                   <div className="mb-8">
                     <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Posture IA & Personnalisation</h2>
@@ -585,7 +751,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                   </div>
                 )}
 
-                {/* Parcours et Triggers */}
                 {persona.parcours_triggers && persona.parcours_triggers.length > 0 && (
                   <div>
                     <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Parcours & Triggers</h2>
@@ -608,7 +773,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
 
         <aside className="col-span-12 lg:col-span-4">
           <div className="sticky top-12 space-y-8">
-            {/* Parler avec la Persona */}
             <div className="bg-[var(--card-light)] rounded-2xl border border-[var(--border-light)] p-8 text-center">
               <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-[var(--primary-accent-light)] mb-5">
                 <span className="material-symbols-outlined text-[var(--primary-accent)] text-4xl">chat_bubble</span>
@@ -624,7 +788,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                   </button>
             </div>
 
-            {/* Méta-information */}
             {(persona.date_derniere_mise_a_jour || persona.niveau_preuve) && (
               <div className="bg-[var(--card-light)] rounded-2xl border border-[var(--border-light)] p-8">
                 <div className="flex items-center space-x-3 mb-6">
@@ -647,15 +810,117 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                 </div>
               </div>
             )}
+
+            <div className="bg-[var(--card-light)] rounded-2xl border border-[var(--border-light)] p-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <span className="material-symbols-outlined text-[var(--text-tertiary-light)]">edit_note</span>
+                <h3 className="text-xl font-semibold text-[var(--text-primary-light)]">Suggérer des modifications</h3>
+              </div>
+
+              <form onSubmit={handleCommentSubmit} className="space-y-4">
+                <div className="grid gap-4">
+                  <div>
+                    <label htmlFor="suggestion-first-name" className="block text-sm font-medium text-[var(--text-tertiary-light)] mb-2">
+                      Prénom
+                    </label>
+                    <input
+                      id="suggestion-first-name"
+                      name="firstName"
+                      type="text"
+                      value={newCommentName}
+                      onChange={(event) => setNewCommentName(event.target.value)}
+                      placeholder="Votre prénom"
+                      className="w-full rounded-lg border border-[var(--border-light)] bg-white px-4 py-2 text-sm text-[var(--text-primary-light)] focus:border-[var(--primary-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-light)]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="suggestion-message" className="block text-sm font-medium text-[var(--text-tertiary-light)] mb-2">
+                      Vos suggestions
+                    </label>
+                    <textarea
+                      id="suggestion-message"
+                      name="message"
+                      value={newCommentMessage}
+                      onChange={(event) => setNewCommentMessage(event.target.value)}
+                      placeholder="Décrivez les modifications à proposer pour cette persona…"
+                      className="w-full rounded-lg border border-[var(--border-light)] bg-white px-4 py-2 text-sm text-[var(--text-primary-light)] focus:border-[var(--primary-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-light)]"
+                      rows={4}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    disabled={isSubmitDisabled}
+                    className="inline-flex items-center rounded-lg bg-[var(--primary-accent)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-[var(--border-light)] disabled:text-[var(--text-tertiary-light)]"
+                  >
+                    Envoyer ma suggestion
+                  </button>
+                </div>
+              </form>
+
+              {comments.length > 0 ? (
+                <div className="mt-6 space-y-4">
+                  {comments.map((comment) => {
+                    const userVote = userVotes[comment.id];
+                    return (
+                      <div key={comment.id} className="rounded-xl border border-[var(--border-light)] bg-white/60 p-4">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="text-sm font-semibold text-[var(--text-primary-light)]">{comment.firstName}</p>
+                            <p className="text-xs text-[var(--text-tertiary-light)]">{formatCommentDate(comment.createdAt)}</p>
+                          </div>
+                          <div className="flex items-center gap-2 text-[9px] text-[var(--text-tertiary-light)]">
+                            <button
+                              type="button"
+                              onClick={() => handleVote(comment.id, 'up')}
+                              className={`flex items-center gap-1 transition-colors duration-150 ${
+                                userVote === 'up'
+                                  ? 'text-[var(--primary-accent)]'
+                                  : 'hover:text-[var(--text-secondary-light)]'
+                              }`}
+                              aria-label="Vote positif"
+                            >
+                              <span className="material-symbols-outlined text-[10px] leading-none">thumb_up</span>
+                              <span className="min-w-[0.75rem] text-center">{comment.upvotes}</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleVote(comment.id, 'down')}
+                              className={`flex items-center gap-1 transition-colors duration-150 ${
+                                userVote === 'down'
+                                  ? 'text-red-500'
+                                  : 'hover:text-[var(--text-secondary-light)]'
+                              }`}
+                              aria-label="Vote négatif"
+                            >
+                              <span className="material-symbols-outlined text-[10px] leading-none">thumb_down</span>
+                              <span className="min-w-[0.75rem] text-center">{comment.downvotes}</span>
+                            </button>
+                          </div>
+                        </div>
+                        <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary-light)] whitespace-pre-line">
+                          {comment.message}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="mt-6 text-sm text-[var(--text-tertiary-light)]">
+                  Aucun commentaire pour le moment. Partagez vos suggestions !
+                </p>
+              )}
+            </div>
           </div>
         </aside>
       </div>
 
-      {/* Popup du Chatbot */}
       {isChatOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-4xl h-[80vh] flex flex-col">
-            {/* Header du popup */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div className="flex items-center space-x-3">
                 <div className="h-12 w-12 rounded-full bg-[var(--primary-accent-light)] flex items-center justify-center">
@@ -674,7 +939,6 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
               </button>
             </div>
 
-            {/* Contenu du chat */}
             <div className="flex-1 overflow-hidden">
               <PersonaChat 
                 persona={persona} 
