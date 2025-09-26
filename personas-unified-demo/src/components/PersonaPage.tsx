@@ -13,6 +13,16 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
   const [isOffreOpen, setIsOffreOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
+  const personaDisplayName = `${persona.id.charAt(0).toUpperCase()}${persona.id.slice(1)}`;
+  const personaRole = persona.identite_profil?.statut || 'Profil';
+  const personaHighlightChips = [
+    persona.identite_profil?.age ? `${persona.identite_profil.age} ans` : null,
+    persona.identite_profil?.segments?.length
+      ? persona.identite_profil.segments.join(' • ')
+      : null,
+  ].filter(Boolean) as string[];
+  const personaContactPoints = persona.preferred_contact_points ?? [];
+
   return (
     <div className="min-h-screen bg-[var(--background-light)]">
       <Header site={site} personas={allPersonas} />
@@ -21,13 +31,60 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
         <main className="col-span-12 lg:col-span-8 space-y-8">
           {/* Hero Section */}
           <div className="bg-[var(--card-light)] rounded-2xl overflow-hidden border border-[var(--border-light)]">
-            <div className="h-80 bg-cover bg-center" style={{backgroundImage: `url(/${site}-personas/${persona.id}.png)`}}>
+            <div
+              className="relative h-80 sm:h-[26rem] bg-cover bg-center"
+              style={{ backgroundImage: `url(/${site}-personas/${persona.id}.png)` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
+                <p className="text-base sm:text-lg tracking-[0.35em] uppercase text-white/70 font-semibold">
+                  {personaDisplayName}
+                </p>
+                <h1 className="mt-2 text-4xl sm:text-5xl font-semibold leading-tight text-white">
+                  {personaRole}
+                </h1>
+                {personaHighlightChips.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {personaHighlightChips.map((chip, index) => (
+                      <span
+                        key={`${chip}-${index}`}
+                        className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs sm:text-sm font-medium backdrop-blur-sm"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="p-8">
-              <h1 className="text-4xl font-bold text-[var(--text-primary-light)]">{persona.id.charAt(0).toUpperCase() + persona.id.slice(1)}</h1>
-              <p className="text-lg text-[var(--text-secondary-light)] mt-1">{persona.identite_profil.age} ans • {persona.identite_profil.statut}</p>
+            <div className="p-8 grid gap-6 md:grid-cols-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-tertiary-light)]">
+                  Situation
+                </p>
+                <p className="mt-2 text-lg text-[var(--text-secondary-light)]">
+                  {persona.identite_profil?.situation || 'Non spécifié'}
+                </p>
+              </div>
+              {personaContactPoints.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-tertiary-light)]">
+                    Points de contact privilégiés
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {personaContactPoints.map((channel: string, index: number) => (
+                      <span
+                        key={`${channel}-${index}`}
+                        className="rounded-full bg-[var(--primary-accent-light)] px-3 py-1 text-sm font-medium text-[var(--primary-accent)]"
+                      >
+                        {channel}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-            </div>
+          </div>
 
           {/* Quote Section */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
@@ -39,10 +96,56 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
           {/* PORTRAIT */}
           <div className="bg-[var(--card-light)] rounded-2xl p-8 border border-[var(--border-light)]">
             <h1 className="text-3xl font-bold text-[var(--text-primary-light)] mb-8">PORTRAIT</h1>
-            
+
+            {/* Identité & Profil */}
+            <div className="mb-10">
+              <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Identité & Profil</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 rounded-xl p-6 space-y-4">
+                  <p className="font-semibold text-[var(--text-primary-light)]">Identité</p>
+                  <p>{persona.identite_profil.age} ans • {persona.identite_profil.statut}</p>
+                  <p>{persona.identite_profil.situation}</p>
+                  {persona.language_preferences && persona.language_preferences.length > 0 && (
+                    <div>
+                      <p className="font-medium text-gray-500 mb-1">Langues parlées</p>
+                      <div className="flex flex-wrap gap-1">
+                        {persona.language_preferences.map((lang, index) => (
+                          <span key={index} className="font-bold bg-gray-200 text-gray-700 px-2.5 py-1 rounded-md">
+                            {lang}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-6">
+                  <div className="bg-teal-50/50 rounded-xl p-5 border border-teal-100">
+                    <p className="font-semibold text-teal-800 mb-1">Profil d'apprentissage</p>
+                    <p className="text-teal-700">
+                      <span className="font-bold">{persona.learner_profile?.label || 'Non défini'}</span>
+                      {persona.learner_profile?.tagline && (
+                        <>
+                          <br/>{persona.learner_profile.tagline}
+                        </>
+                      )}
+                    </p>
+                  </div>
+                  {persona.astuce_activation && (
+                    <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100">
+                      <p className="font-semibold text-amber-800 mb-1">Comment l'activer</p>
+                      <p className="text-amber-700">{persona.astuce_activation}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
             {/* Valeurs & Motivations */}
             <div className="mb-10">
-              <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Valeurs & Motivations</h2>
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
+                <span className="material-symbols-outlined text-[var(--primary-accent)]">favorite</span>
+                Valeurs & Motivations
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 rounded-xl p-6">
                   <p className="font-semibold text-[var(--text-primary-light)] mb-3">Valeurs principales</p>
@@ -74,7 +177,10 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
 
             {/* Rapport sur le sujet */}
             <div className="mb-10">
-              <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Rapport sur le sujet</h2>
+              <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
+                <span className="material-symbols-outlined text-[var(--primary-accent)]">insights</span>
+                Rapport sur le sujet
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {persona.systeme_croyances?.rapport_information && (
                   <div className="bg-red-50/50 rounded-xl p-5 border border-red-100">
@@ -120,53 +226,13 @@ export default function PersonaPage(props: PersonaPageProps & { allPersonas: any
                   </div>
                 </div>
 
-            {/* Identité & Profil */}
-            <div className="mb-10">
-              <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Identité & Profil</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-50 rounded-xl p-6 space-y-4">
-                  <p className="font-semibold text-[var(--text-primary-light)]">Identité</p>
-                  <p>{persona.identite_profil.age} ans • {persona.identite_profil.statut}</p>
-                  <p>{persona.identite_profil.situation}</p>
-                  {persona.language_preferences && persona.language_preferences.length > 0 && (
-                    <div>
-                      <p className="font-medium text-gray-500 mb-1">Langues parlées</p>
-                      <div className="flex flex-wrap gap-1">
-                        {persona.language_preferences.map((lang, index) => (
-                          <span key={index} className="font-bold bg-gray-200 text-gray-700 px-2.5 py-1 rounded-md">
-                            {lang}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="space-y-6">
-                  <div className="bg-teal-50/50 rounded-xl p-5 border border-teal-100">
-                    <p className="font-semibold text-teal-800 mb-1">Profil d'apprentissage</p>
-                    <p className="text-teal-700">
-                      <span className="font-bold">{persona.learner_profile?.label || 'Non défini'}</span>
-                      {persona.learner_profile?.tagline && (
-                        <>
-                          <br/>{persona.learner_profile.tagline}
-                        </>
-                      )}
-                    </p>
-                  </div>
-                  {persona.astuce_activation && (
-                    <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100">
-                      <p className="font-semibold text-amber-800 mb-1">Comment l'activer</p>
-                      <p className="text-amber-700">{persona.astuce_activation}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
             {/* Enjeu stratégique */}
             {persona.conclusion && (
               <div className="mb-10">
-                <h2 className="text-xl font-semibold text-[var(--text-primary-light)] mb-4">Enjeu stratégique</h2>
+                <h2 className="flex items-center gap-2 text-xl font-semibold text-[var(--text-primary-light)] mb-4">
+                  <span className="material-symbols-outlined text-[var(--primary-accent)]">flag</span>
+                  Enjeu stratégique
+                </h2>
                 <div className="bg-gray-50 rounded-xl p-6">
                   <p className="text-[var(--text-tertiary-light)] italic">{persona.conclusion}</p>
                 </div>

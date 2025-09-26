@@ -10,5 +10,7 @@
     "build": "cd personas-unified-demo && npm run build",
     "clean": "rm -rf node_modules personas-unified-demo/node_modules"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@vercel/speed-insights": "^1.2.0"
+  }
 }

@@ -18,9 +18,10 @@ export default function RootLayout({
       <head>
         <meta name="robots" content="noindex, nofollow" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
           rel="stylesheet"
@@ -39,7 +40,7 @@ export default function RootLayout({
             }
 
             body {
-              font-family: 'Inter', sans-serif;
+              font-family: 'Alan Sans', sans-serif;
               background-color: var(--background-light);
               color: var(--text-secondary-light);
             }

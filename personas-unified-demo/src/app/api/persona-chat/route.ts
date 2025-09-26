@@ -28,15 +28,18 @@ function generateContextualResponse(personaId: string, message: string, site: st
     return "Désolé, je ne trouve pas mon profil. Pouvez-vous réessayer ?";
   }
 
+  const safeJoin = (source?: string[] | null, fallback = 'non précisé') =>
+    Array.isArray(source) && source.length > 0 ? source.join(', ') : fallback;
+
   const age = persona.identite_profil.age;
   const statut = persona.identite_profil.statut;
   const situation = persona.identite_profil.situation;
-  const valeurs = persona.valeurs.join(', ');
-  const motivations = persona.motivations.join(', ');
-  const tonalite = persona.tonalite_et_eviter.ton;
-  const canaux = persona.pratiques_et_indicateurs.canaux.join(', ');
-  const jobs = persona.besoins_freins_jtbd.jobs.join(', ');
-  const pratiques = persona.pratiques_et_indicateurs.pratiques.join(', ');
+  const valeurs = safeJoin(persona.valeurs);
+  const motivations = safeJoin(persona.motivations);
+  const tonalite = persona.tonalite_et_eviter?.ton ?? 'ton neutre';
+  const canaux = safeJoin((persona.pratiques_et_indicateurs as any)?.canaux, 'ses canaux habituels');
+  const jobs = safeJoin(persona.besoins_freins_jtbd?.jobs);
+  const pratiques = safeJoin((persona.pratiques_et_indicateurs as any)?.pratiques);
   
   // Detect language and respond accordingly
   const isUserSpeakingEnglish = isEnglish(message);
